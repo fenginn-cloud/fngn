@@ -1,0 +1,22 @@
+{
+  "name": "FNGN — Mahmud Feyzullah Engin",
+  "short_name": "FNGN",
+  "description": "Digital Designer & Creative Technologist. UI/UX, branding, software and digital experiences.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080808",
+  "theme_color": "#080808",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-icon",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
