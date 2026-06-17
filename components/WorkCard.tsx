@@ -6,9 +6,11 @@ import { motion } from "framer-motion";
 import type { Project } from "@/data/projects";
 import { ProjectImage } from "./ProjectImage";
 import { ArrowUpRight, BehanceIcon } from "./icons";
+import { useLanguage } from "./LanguageProvider";
 
 export const WorkCard = forwardRef<HTMLDivElement, { project: Project }>(
   function WorkCard({ project }, ref) {
+    const { t } = useLanguage();
     return (
     <motion.article
       ref={ref}
@@ -35,7 +37,7 @@ export const WorkCard = forwardRef<HTMLDivElement, { project: Project }>(
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent opacity-50 transition-opacity duration-500 group-hover:opacity-75" />
         <span className="absolute left-4 top-4 rounded-full border border-white/15 bg-background/60 px-3 py-1 text-xs font-medium uppercase tracking-[0.15em] text-foreground backdrop-blur">
-          {project.category}
+          {t.categories[project.category] ?? project.category}
         </span>
         <span className="absolute right-4 top-4 flex h-10 w-10 translate-y-2 items-center justify-center rounded-full bg-accent text-[#080808] opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
           <ArrowUpRight className="h-4 w-4" />
@@ -58,7 +60,7 @@ export const WorkCard = forwardRef<HTMLDivElement, { project: Project }>(
             href={`/work/${project.slug}`}
             className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-colors hover:text-accent"
           >
-            View Case Study
+            {t.work.viewCaseStudy}
             <ArrowUpRight className="h-3.5 w-3.5" />
           </Link>
           {project.behanceUrl ? (
@@ -69,7 +71,7 @@ export const WorkCard = forwardRef<HTMLDivElement, { project: Project }>(
               className="ml-auto inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-foreground"
             >
               <BehanceIcon className="h-4 w-4" />
-              Behance
+              {t.work.behance}
             </a>
           ) : null}
         </div>

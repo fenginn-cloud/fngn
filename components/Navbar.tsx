@@ -4,10 +4,13 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { navLinks, site } from "@/data/site";
+import { site } from "@/data/site";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "./LanguageProvider";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export function Navbar() {
+  const { t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -39,7 +42,7 @@ export function Navbar() {
           <Link
             href="/#top"
             className="group flex items-center"
-            aria-label={`${site.name} home`}
+            aria-label={`${site.name} ${t.nav.home}`}
           >
             <span className="font-display text-lg font-bold tracking-tightest">
               FNGN
@@ -48,7 +51,7 @@ export function Navbar() {
           </Link>
 
           <div className="hidden items-center gap-1 md:flex">
-            {navLinks.map((link) => (
+            {t.nav.links.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
@@ -59,21 +62,25 @@ export function Navbar() {
             ))}
           </div>
 
-          <div className="hidden md:block">
+          <div className="hidden items-center gap-3 md:flex">
+            <LanguageSwitcher />
             <a href="#contact" className="btn-primary text-sm">
-              Let&apos;s talk
+              {t.nav.letsTalk}
             </a>
           </div>
 
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-line text-foreground md:hidden"
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-          >
-            {open ? <X size={18} /> : <Menu size={18} />}
-          </button>
+          <div className="flex items-center gap-2 md:hidden">
+            <LanguageSwitcher />
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-line text-foreground"
+              aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
+            >
+              {open ? <X size={18} /> : <Menu size={18} />}
+            </button>
+          </div>
         </nav>
       </div>
 
@@ -87,7 +94,7 @@ export function Navbar() {
             className="container-x md:hidden"
           >
             <div className="glass mt-2 flex flex-col gap-1 rounded-3xl p-4 shadow-soft">
-              {navLinks.map((link) => (
+              {t.nav.links.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
@@ -102,7 +109,7 @@ export function Navbar() {
                 onClick={() => setOpen(false)}
                 className="btn-primary mt-2 w-full"
               >
-                Let&apos;s talk
+                {t.nav.letsTalk}
               </a>
             </div>
           </motion.div>

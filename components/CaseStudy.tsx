@@ -7,14 +7,21 @@ import type { Project } from "@/data/projects";
 import { ProjectImage, Placeholder } from "./ProjectImage";
 import { ArrowUpRight, BehanceIcon } from "./icons";
 import { Reveal } from "./Reveal";
+import { useLanguage } from "./LanguageProvider";
+import { localizeProject } from "@/data/projectsI18n";
 
 export function CaseStudy({
-  project,
-  next,
+  project: rawProject,
+  next: rawNext,
 }: {
   project: Project;
   next: Project;
 }) {
+  const { t, lang } = useLanguage();
+  const cs = t.caseStudy;
+  const project = localizeProject(rawProject, lang);
+  const next = localizeProject(rawNext, lang);
+
   // Build a gallery: real images if present, otherwise four placeholders.
   const gallery =
     project.galleryImages && project.galleryImages.length > 0
@@ -32,14 +39,14 @@ export function CaseStudy({
               className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-foreground"
             >
               <ArrowLeft className="h-4 w-4" />
-              All Work
+              {cs.allWork}
             </Link>
           </Reveal>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <Reveal>
               <span className="rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.15em] text-accent">
-                {project.category}
+                {t.categories[project.category] ?? project.category}
               </span>
             </Reveal>
             {project.tags?.map((tag, i) => (
@@ -64,10 +71,13 @@ export function CaseStudy({
 
           <Reveal delay={0.2}>
             <dl className="mt-10 grid grid-cols-2 gap-6 border-y border-line py-8 sm:grid-cols-4">
-              <Meta label="Client" value={project.client ?? "—"} />
-              <Meta label="Year" value={project.year} />
-              <Meta label="Discipline" value={project.category} />
-              <Meta label="Role" value="Design & Direction" />
+              <Meta label={cs.meta.client} value={project.client ?? "—"} />
+              <Meta label={cs.meta.year} value={project.year} />
+              <Meta
+                label={cs.meta.discipline}
+                value={t.categories[project.category] ?? project.category}
+              />
+              <Meta label={cs.meta.role} value={cs.meta.roleValue} />
             </dl>
           </Reveal>
         </div>
@@ -93,14 +103,14 @@ export function CaseStudy({
       {/* Body */}
       <div className="container-x mt-20 grid grid-cols-1 gap-14 lg:grid-cols-[1.5fr_1fr]">
         <div className="space-y-12">
-          <Block title="Challenge" body={project.challenge} />
-          <Block title="Solution" body={project.solution} />
+          <Block title={cs.challenge} body={project.challenge} />
+          <Block title={cs.solution} body={project.solution} />
         </div>
 
         <aside className="space-y-10 lg:sticky lg:top-28 lg:self-start">
           <div>
             <h3 className="eyebrow mb-4">
-              <span className="h-px w-6 bg-accent" /> Tools Used
+              <span className="h-px w-6 bg-accent" /> {cs.toolsUsed}
             </h3>
             <ul className="flex flex-wrap gap-2">
               {project.tools.map((tool) => (
@@ -116,7 +126,7 @@ export function CaseStudy({
 
           <div>
             <h3 className="eyebrow mb-4">
-              <span className="h-px w-6 bg-accent" /> Results
+              <span className="h-px w-6 bg-accent" /> {cs.results}
             </h3>
             <div className="grid grid-cols-1 gap-3">
               {project.results.map((r) => (
@@ -141,7 +151,7 @@ export function CaseStudy({
               className="btn-ghost w-full"
             >
               <BehanceIcon className="h-4 w-4" />
-              View on Behance
+              {cs.viewOnBehance}
               <ArrowUpRight className="h-4 w-4" />
             </a>
           ) : null}
@@ -151,7 +161,7 @@ export function CaseStudy({
       {/* Gallery */}
       <section className="container-x mt-24">
         <h3 className="eyebrow mb-6">
-          <span className="h-px w-6 bg-accent" /> Gallery
+          <span className="h-px w-6 bg-accent" /> {cs.gallery}
         </h3>
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           {gallery.map((src, i) => (
@@ -188,15 +198,15 @@ export function CaseStudy({
           ))}
         </div>
         <p className="mt-4 text-sm text-muted">
-          Gallery is image-ready — drop files in{" "}
+          {cs.galleryNote.pre}{" "}
           <code className="rounded bg-surface px-1.5 py-0.5 text-foreground">
             /public/projects/{project.slug}/
           </code>{" "}
-          and list them in{" "}
+          {cs.galleryNote.mid}{" "}
           <code className="rounded bg-surface px-1.5 py-0.5 text-foreground">
             data/projects.ts
           </code>
-          .
+          {cs.galleryNote.post}
         </p>
       </section>
 
@@ -208,7 +218,7 @@ export function CaseStudy({
         >
           <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-accent/10 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
           <span className="text-xs uppercase tracking-[0.25em] text-muted">
-            Next Project
+            {cs.nextProject}
           </span>
           <div className="mt-3 flex items-center justify-between gap-6">
             <h3 className="font-display text-3xl font-bold leading-tight transition-colors duration-300 group-hover:text-accent sm:text-4xl">

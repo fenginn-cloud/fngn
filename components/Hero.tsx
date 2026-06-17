@@ -4,16 +4,10 @@ import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import { HeroVisual } from "./HeroVisual";
 import { ArrowUpRight } from "./icons";
-
-const headlineWords = [
-  "Digital",
-  "Designer",
-  "&",
-  "Creative",
-  "Technologist",
-];
+import { useLanguage } from "./LanguageProvider";
 
 export function Hero() {
+  const { t } = useLanguage();
   return (
     <section
       id="top"
@@ -48,15 +42,18 @@ export function Hero() {
               <span className="absolute inline-flex h-full w-full rounded-full bg-accent animate-pulse-ring" />
               <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-accent" />
             </span>
-            <span className="eyebrow">Available for select projects</span>
+            <span className="eyebrow">{t.hero.badge}</span>
           </motion.div>
 
           <h1 className="text-5xl font-bold leading-[0.95] sm:text-6xl lg:text-7xl xl:text-[5.2rem]">
-            {headlineWords.map((word, i) => (
-              <span key={word} className="mr-[0.25em] inline-block overflow-hidden align-bottom">
+            {t.hero.headlineTokens.map((token, i) => (
+              <span
+                key={`${token.text}-${i}`}
+                className="mr-[0.25em] inline-block overflow-hidden align-bottom"
+              >
                 <motion.span
                   className={
-                    word === "Creative" || word === "Technologist"
+                    token.accent
                       ? "accent-gradient-text inline-block"
                       : "inline-block"
                   }
@@ -68,7 +65,7 @@ export function Hero() {
                     ease: [0.22, 1, 0.36, 1],
                   }}
                 >
-                  {word}
+                  {token.text}
                 </motion.span>
               </span>
             ))}
@@ -80,8 +77,7 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.6 }}
             className="mt-7 max-w-xl text-lg leading-relaxed text-muted"
           >
-            I create digital experiences, visual identities and software-driven
-            solutions for brands, real estate businesses and modern products.
+            {t.hero.subhead}
           </motion.p>
 
           <motion.div
@@ -91,11 +87,11 @@ export function Hero() {
             className="mt-9 flex flex-wrap items-center gap-4"
           >
             <a href="#work" className="btn-primary group">
-              View Projects
+              {t.hero.viewProjects}
               <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
             <a href="#contact" className="btn-ghost">
-              Get In Touch
+              {t.hero.getInTouch}
             </a>
           </motion.div>
         </div>
@@ -118,7 +114,7 @@ export function Hero() {
         transition={{ delay: 1.2 }}
         className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-muted md:flex"
       >
-        <span className="text-[0.65rem] uppercase tracking-[0.3em]">Scroll</span>
+        <span className="text-[0.65rem] uppercase tracking-[0.3em]">{t.hero.scroll}</span>
         <ArrowDown className="h-4 w-4 animate-bounce" />
       </motion.a>
     </section>

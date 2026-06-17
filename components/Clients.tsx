@@ -1,18 +1,20 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { clients } from "@/data/site";
 import { SectionHeading } from "./SectionHeading";
 import { childVariants, StaggerGroup } from "./Reveal";
+import { useLanguage } from "./LanguageProvider";
 
 export function Clients() {
+  const { t } = useLanguage();
+  const clients = t.clients.items;
   return (
     <section id="clients" className="relative py-24 sm:py-32">
       <div className="container-x">
         <SectionHeading
-          eyebrow="Featured Clients & Projects"
-          title="Trusted by brands building something lasting."
-          description="A selection of clients and ventures across real estate, sport, product and digital."
+          eyebrow={t.clients.eyebrow}
+          title={t.clients.title}
+          description={t.clients.description}
         />
 
         <StaggerGroup className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">

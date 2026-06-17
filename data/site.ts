@@ -9,7 +9,7 @@ export const site = {
   email: "hello@fngn.com.tr",
   phone: "+90 553 686 07 04",
   phoneHref: "+905536860704",
-  location: "Istanbul, Türkiye",
+  location: "Sakarya, Türkiye",
   socials: {
     instagram: "https://www.instagram.com/fenginn",
     linkedin:

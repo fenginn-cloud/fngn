@@ -1,4 +1,7 @@
+"use client";
+
 import { site } from "@/data/site";
+import { useLanguage } from "./LanguageProvider";
 import {
   BehanceIcon,
   InstagramIcon,
@@ -16,6 +19,9 @@ const socials = [
 ];
 
 export function Footer() {
+  const { t } = useLanguage();
+  const f = t.footer;
+
   return (
     <footer className="relative overflow-hidden border-t border-line">
       <div className="container-x py-16">
@@ -36,25 +42,21 @@ export function Footer() {
               <span className="ml-1 h-1.5 w-1.5 rounded-full bg-accent" />
             </div>
             <p className="mt-5 max-w-sm font-display text-lg leading-snug text-foreground">
-              Designed with purpose.
-              <br />
-              Built with precision.
-              <br />
-              Crafted by FNGN.
+              {f.tagline.map((line, i) => (
+                <span key={i}>
+                  {line}
+                  {i < f.tagline.length - 1 ? <br /> : null}
+                </span>
+              ))}
             </p>
           </div>
 
           <div>
             <h3 className="text-xs uppercase tracking-[0.2em] text-muted">
-              Navigate
+              {f.navHeading}
             </h3>
             <ul className="mt-5 space-y-3 text-sm">
-              {[
-                { label: "Work", href: "#work" },
-                { label: "About", href: "#about" },
-                { label: "Expertise", href: "#expertise" },
-                { label: "Contact", href: "#contact" },
-              ].map((l) => (
+              {f.navLinks.map((l) => (
                 <li key={l.href}>
                   <a
                     href={l.href}
@@ -69,7 +71,7 @@ export function Footer() {
 
           <div>
             <h3 className="text-xs uppercase tracking-[0.2em] text-muted">
-              Connect
+              {f.connectHeading}
             </h3>
             <div className="mt-5 flex flex-wrap gap-2">
               {socials.map(({ label, href, Icon }) => (
@@ -91,7 +93,7 @@ export function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-line pt-8 text-sm text-muted sm:flex-row">
-          <p>© 2026 FNGN. All rights reserved.</p>
+          <p>{f.rights}</p>
           <p>
             {site.fullName} — {site.location}
           </p>

@@ -1,11 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { processSteps } from "@/data/site";
 import { SectionHeading } from "./SectionHeading";
 import { childVariants, StaggerGroup } from "./Reveal";
+import { useLanguage } from "./LanguageProvider";
 
 export function Process() {
+  const { t } = useLanguage();
+  const processSteps = t.process.items;
   return (
     <section
       id="process"
@@ -13,9 +15,9 @@ export function Process() {
     >
       <div className="container-x">
         <SectionHeading
-          eyebrow="Process"
-          title="A clear path from idea to launch."
-          description="A focused four-step method that keeps work strategic, considered and on time."
+          eyebrow={t.process.eyebrow}
+          title={t.process.title}
+          description={t.process.description}
         />
 
         <StaggerGroup className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">

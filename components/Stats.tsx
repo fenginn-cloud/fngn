@@ -1,11 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { stats } from "@/data/site";
 import { Counter } from "./Counter";
 import { childVariants, StaggerGroup } from "./Reveal";
+import { useLanguage } from "./LanguageProvider";
 
 export function Stats() {
+  const { t } = useLanguage();
+  const stats = t.stats.items;
   return (
     <section id="stats" className="relative border-y border-line bg-surface/40">
       <div className="container-x py-16 sm:py-20">

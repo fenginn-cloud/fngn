@@ -3,8 +3,10 @@
 import { useMemo, useState } from "react";
 import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 import { categories, projects, type Category } from "@/data/projects";
+import { localizeProject } from "@/data/projectsI18n";
 import { SectionHeading } from "./SectionHeading";
 import { WorkCard } from "./WorkCard";
+import { useLanguage } from "./LanguageProvider";
 import { cn } from "@/lib/utils";
 
 type Filter = "All" | Category;
@@ -12,29 +14,37 @@ type Filter = "All" | Category;
 const filters: Filter[] = ["All", ...categories];
 
 export function SelectedWorks() {
+  const { t, lang } = useLanguage();
   const [active, setActive] = useState<Filter>("All");
 
-  const visible = useMemo(
-    () =>
+  const visible = useMemo(() => {
+    const list =
       active === "All"
         ? projects
-        : projects.filter((p) => p.category === active),
-    [active],
-  );
+        : projects.filter((p) => p.category === active);
+    return list.map((p) => localizeProject(p, lang));
+  }, [active, lang]);
+
+  const filterLabel = (filter: Filter) =>
+    filter === "All" ? t.work.filterAll : t.categories[filter] ?? filter;
 
   return (
     <section id="work" className="relative scroll-mt-24 py-24 sm:py-32">
       <div className="container-x">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
-            eyebrow="Selected Works"
-            title="A curated body of design, brand and digital work."
-            description="Filter by discipline to explore case studies across branding, product, real estate and more."
+            eyebrow={t.work.eyebrow}
+            title={t.work.title}
+            description={t.work.description}
           />
         </div>
 
         {/* filter bar */}
-        <div className="mt-10 flex flex-wrap gap-2" role="tablist" aria-label="Filter projects">
+        <div
+          className="mt-10 flex flex-wrap gap-2"
+          role="tablist"
+          aria-label="Filter projects"
+        >
           {filters.map((filter) => {
             const isActive = active === filter;
             return (
@@ -58,7 +68,7 @@ export function SelectedWorks() {
                     transition={{ type: "spring", stiffness: 380, damping: 32 }}
                   />
                 )}
-                <span className="relative z-10">{filter}</span>
+                <span className="relative z-10">{filterLabel(filter)}</span>
               </button>
             );
           })}

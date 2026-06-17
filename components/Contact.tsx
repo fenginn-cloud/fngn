@@ -6,6 +6,7 @@ import { Check, Copy } from "lucide-react";
 import { site } from "@/data/site";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
+import { useLanguage } from "./LanguageProvider";
 import {
   BehanceIcon,
   InstagramIcon,
@@ -16,40 +17,35 @@ import {
 
 const channels = [
   {
-    key: "email",
-    label: "Email",
+    key: "email" as const,
     value: site.email,
     href: `mailto:${site.email}`,
     Icon: MailIcon,
     copyable: true,
   },
   {
-    key: "phone",
-    label: "Phone",
+    key: "phone" as const,
     value: site.phone,
     href: `tel:${site.phoneHref}`,
     Icon: PhoneIcon,
     copyable: true,
   },
   {
-    key: "instagram",
-    label: "Instagram",
+    key: "instagram" as const,
     value: "@fenginn",
     href: site.socials.instagram,
     Icon: InstagramIcon,
     copyable: false,
   },
   {
-    key: "linkedin",
-    label: "LinkedIn",
+    key: "linkedin" as const,
     value: "Mahmud Feyzullah Engin",
     href: site.socials.linkedin,
     Icon: LinkedInIcon,
     copyable: false,
   },
   {
-    key: "behance",
-    label: "Behance",
+    key: "behance" as const,
     value: "mahmutengin",
     href: site.socials.behance,
     Icon: BehanceIcon,
@@ -58,6 +54,7 @@ const channels = [
 ];
 
 export function Contact() {
+  const { t } = useLanguage();
   const [copied, setCopied] = useState<string | null>(null);
 
   const copy = async (key: string, value: string) => {
@@ -77,13 +74,13 @@ export function Contact() {
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-[1fr_1fr] lg:gap-20">
           <div>
             <SectionHeading
-              eyebrow="Contact"
-              title="Let's build work that performs as beautifully as it looks."
-              description="Have a project, a brand or a product in mind? I'd love to hear about it. Reach out through any channel below."
+              eyebrow={t.contact.eyebrow}
+              title={t.contact.title}
+              description={t.contact.description}
             />
             <Reveal delay={0.15}>
               <a href={`mailto:${site.email}`} className="btn-primary mt-9 group">
-                Start a project
+                {t.contact.startProject}
                 <span className="transition-transform duration-300 group-hover:translate-x-0.5">
                   →
                 </span>
@@ -115,7 +112,7 @@ export function Contact() {
                   className="min-w-0 flex-1"
                 >
                   <span className="block text-xs uppercase tracking-[0.18em] text-muted">
-                    {c.label}
+                    {t.contact.labels[c.key]}
                   </span>
                   <span className="block truncate text-base font-medium text-foreground transition-colors group-hover:text-accent">
                     {c.value}
@@ -125,7 +122,7 @@ export function Contact() {
                   <button
                     type="button"
                     onClick={() => copy(c.key, c.value)}
-                    aria-label={`Copy ${c.label}`}
+                    aria-label={`${t.contact.copy} ${t.contact.labels[c.key]}`}
                     className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-line text-muted transition-all duration-300 hover:border-accent hover:text-accent"
                   >
                     {copied === c.key ? (

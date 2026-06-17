@@ -13,35 +13,38 @@ import {
   Code2,
   type LucideIcon,
 } from "lucide-react";
-import { expertise } from "@/data/site";
 import { SectionHeading } from "./SectionHeading";
 import { childVariants, StaggerGroup } from "./Reveal";
+import { useLanguage } from "./LanguageProvider";
 
-const icons: Record<string, LucideIcon> = {
-  "UI/UX Design": Layout,
-  "Web Design": Globe,
-  "Software Interfaces": AppWindow,
-  "Brand Identity": Sparkles,
-  "Social Media Design": Share2,
-  "Creative Direction": Compass,
-  "Motion Graphics": Clapperboard,
-  "Real Estate Marketing": Building2,
-  "Frontend Development": Code2,
-};
+// Icons are matched by position so they stay correct across languages.
+const iconList: LucideIcon[] = [
+  Layout,
+  Globe,
+  AppWindow,
+  Sparkles,
+  Share2,
+  Compass,
+  Clapperboard,
+  Building2,
+  Code2,
+];
 
 export function Expertise() {
+  const { t } = useLanguage();
+  const expertise = t.expertise.items;
   return (
     <section id="expertise" className="relative py-24 sm:py-32">
       <div className="container-x">
         <SectionHeading
-          eyebrow="Expertise"
-          title="Capabilities that span the whole creative stack."
-          description="From the first strategic idea to a shipped, production-grade product — design, brand and code under one roof."
+          eyebrow={t.expertise.eyebrow}
+          title={t.expertise.title}
+          description={t.expertise.description}
         />
 
         <StaggerGroup className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {expertise.map((item) => {
-            const Icon = icons[item.title] ?? Sparkles;
+          {expertise.map((item, idx) => {
+            const Icon = iconList[idx] ?? Sparkles;
             return (
               <motion.article
                 key={item.title}

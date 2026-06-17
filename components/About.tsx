@@ -1,46 +1,34 @@
 "use client";
 
-import { timeline } from "@/data/site";
+import { motion } from "framer-motion";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal, StaggerGroup, childVariants } from "./Reveal";
-import { motion } from "framer-motion";
+import { useLanguage } from "./LanguageProvider";
 
 export function About() {
+  const { t } = useLanguage();
+  const a = t.about;
+
   return (
     <section id="about" className="relative py-24 sm:py-32">
       <div className="container-x">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-[1fr_1fr] lg:gap-24">
           <div>
-            <SectionHeading
-              eyebrow="About"
-              title="A multidisciplinary creative working where design meets technology."
-            />
+            <SectionHeading eyebrow={a.eyebrow} title={a.title} />
             <Reveal delay={0.1}>
               <p className="mt-6 text-base leading-relaxed text-muted sm:text-lg">
-                Mahmud Feyzullah Engin is a multidisciplinary creative
-                professional working at the intersection of design, technology
-                and digital marketing. His work spans web design, software
-                interfaces, branding, social media campaigns and real estate
-                marketing solutions.
+                {a.p1}
               </p>
             </Reveal>
             <Reveal delay={0.15}>
               <p className="mt-4 text-base leading-relaxed text-muted sm:text-lg">
-                The goal is always the same — work that performs as beautifully
-                as it looks, built with intention from the first idea to the
-                final pixel.
+                {a.p2}
               </p>
             </Reveal>
 
             <Reveal delay={0.2}>
               <div className="mt-10 flex flex-wrap gap-3">
-                {[
-                  "Design",
-                  "Technology",
-                  "Branding",
-                  "Marketing",
-                  "Real Estate",
-                ].map((tag) => (
+                {a.tags.map((tag) => (
                   <span
                     key={tag}
                     className="rounded-full border border-line bg-surface px-4 py-2 text-sm text-muted"
@@ -50,18 +38,51 @@ export function About() {
                 ))}
               </div>
             </Reveal>
+
+            {/* Languages */}
+            <Reveal delay={0.25}>
+              <div className="mt-12">
+                <span className="eyebrow mb-6 block">
+                  <span className="h-px w-6 bg-accent" /> {a.languagesEyebrow}
+                </span>
+                <ul className="space-y-5">
+                  {a.languages.map((l) => (
+                    <li key={l.name}>
+                      <div className="flex items-baseline justify-between">
+                        <span className="font-display text-base font-semibold">
+                          {l.name}
+                        </span>
+                        <span className="text-sm text-accent">{l.level}</span>
+                      </div>
+                      <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-surface-2">
+                        <motion.div
+                          className="h-full rounded-full bg-gradient-to-r from-accent to-accent-hover"
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${l.value}%` }}
+                          viewport={{ once: true, margin: "-60px" }}
+                          transition={{
+                            duration: 1,
+                            ease: [0.22, 1, 0.36, 1],
+                          }}
+                        />
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
           </div>
 
           {/* timeline */}
           <div>
             <Reveal>
               <span className="eyebrow mb-8 block">
-                <span className="h-px w-6 bg-accent" /> Experience
+                <span className="h-px w-6 bg-accent" /> {a.experienceEyebrow}
               </span>
             </Reveal>
             <StaggerGroup className="relative space-y-2">
               <span className="absolute left-[7px] top-2 h-[calc(100%-2rem)] w-px bg-gradient-to-b from-accent/60 via-line to-transparent" />
-              {timeline.map((item) => (
+              {a.timeline.map((item) => (
                 <motion.div
                   key={item.company}
                   variants={childVariants}

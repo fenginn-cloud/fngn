@@ -9,6 +9,7 @@ import {
 } from "@/lib/jsonld";
 import { JsonLd } from "@/components/JsonLd";
 import { Grain } from "@/components/Grain";
+import { LanguageProvider } from "@/components/LanguageProvider";
 
 const display = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -106,7 +107,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        {children}
+        <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
   );
