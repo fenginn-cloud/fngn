@@ -25,7 +25,7 @@ export type Social = keyof typeof site.socials;
  * GA only loads AFTER the visitor accepts cookies (KVKK / GDPR opt-in).
  * Paste the ID below, or set NEXT_PUBLIC_GA_ID in Vercel env vars.
  */
-export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID ?? "";
+export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID ?? "G-PLY1P3HJ8F";
 
 export const navLinks = [
   { label: "Work", href: "#work" },
