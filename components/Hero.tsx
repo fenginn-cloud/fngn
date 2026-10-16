@@ -60,8 +60,8 @@ export function Hero() {
           }}
         />
 
-        {/* FN·GN monogram — kept from the original hero, blended in */}
-        <div className="absolute left-1/2 top-1/2 h-[min(94vw,680px)] w-[min(94vw,680px)] -translate-x-1/2 -translate-y-1/2 opacity-80 mix-blend-screen">
+        {/* Rotating rings — kept from the original hero, framing the headline */}
+        <div className="absolute left-1/2 top-1/2 h-[min(94vw,700px)] w-[min(94vw,700px)] -translate-x-1/2 -translate-y-1/2 opacity-90 mix-blend-screen">
           <motion.div
             className="absolute inset-0"
             animate={{ rotate: 360 }}
@@ -109,14 +109,8 @@ export function Hero() {
             animate={{ rotate: 360 }}
             transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
           >
-            <span className="absolute left-1/2 top-[4%] h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-accent" />
+            <span className="absolute left-1/2 top-[3%] h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-accent shadow-[0_0_12px_rgba(226,98,5,0.8)]" />
           </motion.div>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="font-display text-7xl font-extrabold tracking-tightest sm:text-8xl">
-              <span className="text-accent/20">FN</span>
-              <span className="text-white/[0.07]">GN</span>
-            </span>
-          </div>
         </div>
 
         {/* top & bottom fades */}
