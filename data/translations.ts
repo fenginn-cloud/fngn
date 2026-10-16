@@ -201,7 +201,7 @@ const en = {
     eyebrow: "Contact",
     title: "Let's build work that performs as beautifully as it looks.",
     description:
-      "Have a project, a brand or a product in mind? I'd love to hear about it. Reach out through any channel below.",
+      "Have a project, a brand or a product in mind? We'd love to hear about it. Reach out through any channel below.",
     startProject: "Start a project",
     labels: {
       email: "Email",
@@ -217,7 +217,7 @@ const en = {
       message: "Tell me about your project",
       submit: "Send message",
       sending: "Sending…",
-      success: "Thanks! Your message is on its way — I'll reply soon.",
+      success: "Thanks! Your message is on its way — we'll reply soon.",
       error: "Something went wrong. Please email hello@fngn.com.tr instead.",
     },
   },
@@ -312,7 +312,7 @@ const en = {
   },
   services: {
     eyebrow: "Services",
-    title: "What I can do for your brand.",
+    title: "What we can do for your brand.",
     description:
       "Clear, end-to-end offerings — pick a single focus or combine them into a full engagement.",
     cta: "Discuss a project",
@@ -400,7 +400,7 @@ const en = {
       },
       {
         q: "How does a project work?",
-        a: "Four clear steps: Discover, Design, Build, Launch. We start with a short conversation about your goals, then I share a plan, timeline and quote before any work begins.",
+        a: "Four clear steps: Discover, Design, Build, Launch. We start with a short conversation about your goals, then share a plan, timeline and quote before any work begins.",
       },
       {
         q: "How long does a project take?",
@@ -408,15 +408,15 @@ const en = {
       },
       {
         q: "Which languages do you work in?",
-        a: "Turkish (native) and English (C1 · Advanced), so I can work comfortably with both local and international clients.",
+        a: "We work in Turkish (native level) and English (C1 · Advanced), comfortably with both local and international clients.",
       },
       {
         q: "Do you work remotely?",
-        a: "Yes — I'm based in Sakarya, Türkiye and work with clients across Türkiye and abroad, fully remotely.",
+        a: "Yes — we're based in Sakarya, Türkiye and work with clients across Türkiye and abroad, fully remotely.",
       },
       {
         q: "How do I get a quote or start?",
-        a: "Message me on WhatsApp or email hello@fngn.com.tr with a few words about your project. I'll reply with the next steps and a tailored quote.",
+        a: "Message us on WhatsApp or email hello@fngn.com.tr with a few words about your project. We'll reply with the next steps and a tailored quote.",
       },
     ],
   },
@@ -630,7 +630,7 @@ const tr: Dict = {
     eyebrow: "İletişim",
     title: "Göründüğü kadar iyi performans gösteren işler üretelim.",
     description:
-      "Aklında bir proje, marka ya da ürün mü var? Duymak isterim. Aşağıdaki kanallardan birinden bana ulaş.",
+      "Aklında bir proje, marka ya da ürün mü var? Duymak isteriz. Aşağıdaki kanallardan birinden bize ulaş.",
     startProject: "Projeye başla",
     labels: {
       email: "E-posta",
@@ -646,7 +646,7 @@ const tr: Dict = {
       message: "Projenden kısaca bahset",
       submit: "Mesaj gönder",
       sending: "Gönderiliyor…",
-      success: "Teşekkürler! Mesajın yola çıktı — en kısa sürede döneceğim.",
+      success: "Teşekkürler! Mesajın yola çıktı — en kısa sürede döneceğiz.",
       error: "Bir şeyler ters gitti. Bunun yerine hello@fngn.com.tr adresine yazabilirsin.",
     },
   },
@@ -741,7 +741,7 @@ const tr: Dict = {
   },
   services: {
     eyebrow: "Hizmetler",
-    title: "Markan için neler yapabilirim.",
+    title: "Markan için neler yapabiliriz.",
     description:
       "Net, uçtan uca hizmetler — tek bir alana odaklan ya da hepsini birleştirip tam kapsamlı çalışalım.",
     cta: "Proje konuşalım",
@@ -820,28 +820,28 @@ const tr: Dict = {
     description: "Başlamadan önce merak edebileceğin her şey.",
     items: [
       {
-        q: "Hangi hizmetleri sunuyorsun?",
+        q: "Hangi hizmetleri sunuyorsunuz?",
         a: "Marka kimliği, web tasarımı & geliştirme, UI/UX, sosyal medya tasarımı ve gayrimenkul pazarlama — stratejiden teslime kadar uçtan uca.",
       },
       {
         q: "Bir proje nasıl ilerliyor?",
-        a: "Dört net adım: Keşfet, Tasarla, İnşa Et, Yayınla. Önce hedeflerini kısa bir görüşmeyle konuşuruz; işe başlamadan önce sana plan, zaman çizelgesi ve teklif sunarım.",
+        a: "Dört net adım: Keşfet, Tasarla, İnşa Et, Yayınla. Önce hedeflerini kısa bir görüşmeyle konuşuruz; işe başlamadan önce sana plan, zaman çizelgesi ve teklif sunarız.",
       },
       {
         q: "Bir proje ne kadar sürer?",
         a: "Logo veya kimlik yaklaşık 1–2 hafta, web sitesi 2–4 hafta civarı, sosyal medya ise aylık süren bir destektir. Net süre işin kapsamına göre değişir.",
       },
       {
-        q: "Hangi dillerde çalışıyorsun?",
-        a: "Türkçe (ana dil) ve İngilizce (C1 · İleri) — hem yerel hem uluslararası müşterilerle rahatça çalışabiliyorum.",
+        q: "Hangi dillerde çalışıyorsunuz?",
+        a: "Türkçe (ana dil) ve İngilizce (C1 · İleri) — hem yerel hem uluslararası müşterilerle rahatça çalışıyoruz.",
       },
       {
-        q: "Uzaktan çalışıyor musun?",
-        a: "Evet — Sakarya, Türkiye merkezliyim ve Türkiye'nin her yerinden ve yurt dışından müşterilerle tamamen uzaktan çalışıyorum.",
+        q: "Uzaktan çalışıyor musunuz?",
+        a: "Evet — Sakarya, Türkiye merkezliyiz ve Türkiye'nin her yerinden ve yurt dışından müşterilerle tamamen uzaktan çalışıyoruz.",
       },
       {
         q: "Nasıl teklif alırım veya başlarım?",
-        a: "WhatsApp'tan yaz ya da hello@fngn.com.tr adresine projenden kısaca bahset. Sana sonraki adımları ve sana özel bir teklifi ileteyim.",
+        a: "WhatsApp'tan yaz ya da hello@fngn.com.tr adresine projenden kısaca bahset. Sana sonraki adımları ve sana özel bir teklifi iletelim.",
       },
     ],
   },
