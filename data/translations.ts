@@ -8,11 +8,11 @@ export interface HeadlineToken {
 const en = {
   nav: {
     links: [
-      { label: "Work", href: "#work" },
-      { label: "Services", href: "#services" },
-      { label: "About", href: "#about" },
-      { label: "Expertise", href: "#expertise" },
-      { label: "Contact", href: "#contact" },
+      { label: "Work", href: "/#work" },
+      { label: "Services", href: "/#services" },
+      { label: "About", href: "/#about" },
+      { label: "Blog", href: "/blog" },
+      { label: "Contact", href: "/#contact" },
     ],
     letsTalk: "Let's talk",
     home: "home",
@@ -230,10 +230,10 @@ const en = {
     tagline: ["Designed with purpose.", "Built with precision.", "Crafted by FNGN."],
     navHeading: "Navigate",
     navLinks: [
-      { label: "Work", href: "#work" },
-      { label: "About", href: "#about" },
-      { label: "Expertise", href: "#expertise" },
-      { label: "Contact", href: "#contact" },
+      { label: "Work", href: "/#work" },
+      { label: "Services", href: "/#services" },
+      { label: "Blog", href: "/blog" },
+      { label: "Contact", href: "/#contact" },
     ],
     connectHeading: "Connect",
     rights: "© 2026 FNGN. All rights reserved.",
@@ -425,6 +425,16 @@ const en = {
       },
     ],
   },
+  blog: {
+    eyebrow: "Blog",
+    title: "Notes on design, brand & marketing.",
+    description:
+      "Practical thoughts on branding, social media and digital — for brands and real estate.",
+    readMore: "Read",
+    backToBlog: "All posts",
+    minRead: "min read",
+    backHome: "Back home",
+  },
 };
 
 export type Dict = typeof en;
@@ -432,11 +442,11 @@ export type Dict = typeof en;
 const tr: Dict = {
   nav: {
     links: [
-      { label: "İşler", href: "#work" },
-      { label: "Hizmetler", href: "#services" },
-      { label: "Hakkımda", href: "#about" },
-      { label: "Uzmanlık", href: "#expertise" },
-      { label: "İletişim", href: "#contact" },
+      { label: "İşler", href: "/#work" },
+      { label: "Hizmetler", href: "/#services" },
+      { label: "Hakkımda", href: "/#about" },
+      { label: "Blog", href: "/blog" },
+      { label: "İletişim", href: "/#contact" },
     ],
     letsTalk: "İletişime geç",
     home: "ana sayfa",
@@ -654,10 +664,10 @@ const tr: Dict = {
     tagline: ["Amaçla tasarlandı.", "Özenle inşa edildi.", "FNGN tarafından üretildi."],
     navHeading: "Gezin",
     navLinks: [
-      { label: "İşler", href: "#work" },
-      { label: "Hakkımda", href: "#about" },
-      { label: "Uzmanlık", href: "#expertise" },
-      { label: "İletişim", href: "#contact" },
+      { label: "İşler", href: "/#work" },
+      { label: "Hizmetler", href: "/#services" },
+      { label: "Blog", href: "/blog" },
+      { label: "İletişim", href: "/#contact" },
     ],
     connectHeading: "Bağlan",
     rights: "© 2026 FNGN. Tüm hakları saklıdır.",
@@ -844,6 +854,16 @@ const tr: Dict = {
         a: "WhatsApp'tan yaz ya da hello@fngn.com.tr adresine projenden kısaca bahset. Sana sonraki adımları ve sana özel bir teklifi ileteyim.",
       },
     ],
+  },
+  blog: {
+    eyebrow: "Blog",
+    title: "Tasarım, marka ve pazarlama üzerine notlar.",
+    description:
+      "Markalar ve gayrimenkul için marka, sosyal medya ve dijital üzerine pratik yazılar.",
+    readMore: "Oku",
+    backToBlog: "Tüm yazılar",
+    minRead: "dk okuma",
+    backHome: "Ana sayfaya dön",
   },
 };
 

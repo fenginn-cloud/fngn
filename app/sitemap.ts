@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/data/site";
 import { projects } from "@/data/projects";
+import { posts } from "@/data/posts";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -12,6 +13,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  const blogRoutes: MetadataRoute.Sitemap = posts.map((p) => ({
+    url: `${site.url}/blog/${p.slug}`,
+    lastModified: new Date(p.date),
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+
   return [
     {
       url: site.url,
@@ -19,7 +27,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 1,
     },
+    {
+      url: `${site.url}/blog`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
     ...projectRoutes,
+    ...blogRoutes,
     {
       url: `${site.url}/gizlilik`,
       lastModified: now,

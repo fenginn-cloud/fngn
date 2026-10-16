@@ -66,7 +66,7 @@ export function Navbar() {
           <div className="hidden items-center gap-3 md:flex">
             <LanguageSwitcher />
             <a
-              href="#contact"
+              href="/#contact"
               onClick={() => track("nav_lets_talk")}
               className="btn-primary text-sm"
             >
@@ -110,7 +110,7 @@ export function Navbar() {
                 </a>
               ))}
               <a
-                href="#contact"
+                href="/#contact"
                 onClick={() => {
                   setOpen(false);
                   track("nav_lets_talk");

@@ -1,6 +1,7 @@
 import { site } from "@/data/site";
 import { projects } from "@/data/projects";
 import { dictionaries } from "@/data/translations";
+import { getPost } from "@/data/posts";
 
 export function personSchema() {
   return {
@@ -64,6 +65,25 @@ export function organizationSchema() {
       site.socials.behance,
     ],
     review: reviews,
+  };
+}
+
+export function articleSchema(slug: string) {
+  const post = getPost(slug);
+  if (!post) return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.date,
+    dateModified: post.date,
+    inLanguage: "tr",
+    keywords: post.tags.join(", "),
+    url: `${site.url}/blog/${post.slug}`,
+    author: { "@type": "Person", name: site.fullName, url: site.url },
+    publisher: { "@type": "Organization", name: site.name, url: site.url },
+    mainEntityOfPage: `${site.url}/blog/${post.slug}`,
   };
 }
 
