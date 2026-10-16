@@ -215,6 +215,15 @@ const en = {
       behance: "Behance",
     },
     copy: "Copy",
+    form: {
+      name: "Your name",
+      email: "Your email",
+      message: "Tell me about your project",
+      submit: "Send message",
+      sending: "Sending…",
+      success: "Thanks! Your message is on its way — I'll reply soon.",
+      error: "Something went wrong. Please email hello@fngn.com.tr instead.",
+    },
   },
   footer: {
     tagline: ["Designed with purpose.", "Built with precision.", "Crafted by FNGN."],
@@ -381,6 +390,37 @@ const en = {
         field: "Real Estate",
         quote:
           "On social media it's not only about being visible, but about building a trustworthy brand identity. FNGN Dijital carried our corporate presence onto digital platforms with content suited to our sector and a modern design approach. A team that does its work with care.",
+      },
+    ],
+  },
+  faq: {
+    eyebrow: "FAQ",
+    title: "Frequently asked questions.",
+    description: "Everything you might want to know before we start.",
+    items: [
+      {
+        q: "Which services do you offer?",
+        a: "Brand identity, web design & development, UI/UX, social media design and real estate marketing — handled end to end, from strategy to delivery.",
+      },
+      {
+        q: "How does a project work?",
+        a: "Four clear steps: Discover, Design, Build, Launch. We start with a short conversation about your goals, then I share a plan, timeline and quote before any work begins.",
+      },
+      {
+        q: "How long does a project take?",
+        a: "A logo or identity is roughly 1–2 weeks, a website around 2–4 weeks, and social media is ongoing monthly support. The exact timing depends on the scope.",
+      },
+      {
+        q: "Which languages do you work in?",
+        a: "Turkish (native) and English (C1 · Advanced), so I can work comfortably with both local and international clients.",
+      },
+      {
+        q: "Do you work remotely?",
+        a: "Yes — I'm based in Sakarya, Türkiye and work with clients across Türkiye and abroad, fully remotely.",
+      },
+      {
+        q: "How do I get a quote or start?",
+        a: "Message me on WhatsApp or email hello@fngn.com.tr with a few words about your project. I'll reply with the next steps and a tailored quote.",
       },
     ],
   },
@@ -598,6 +638,15 @@ const tr: Dict = {
       behance: "Behance",
     },
     copy: "Kopyala",
+    form: {
+      name: "Adın",
+      email: "E-posta adresin",
+      message: "Projenden kısaca bahset",
+      submit: "Mesaj gönder",
+      sending: "Gönderiliyor…",
+      success: "Teşekkürler! Mesajın yola çıktı — en kısa sürede döneceğim.",
+      error: "Bir şeyler ters gitti. Bunun yerine hello@fngn.com.tr adresine yazabilirsin.",
+    },
   },
   footer: {
     tagline: ["Amaçla tasarlandı.", "Özenle inşa edildi.", "FNGN tarafından üretildi."],
@@ -760,6 +809,37 @@ const tr: Dict = {
         field: "Gayrimenkul",
         quote:
           "Sosyal medyada yalnızca görünür olmak değil, güven veren bir marka kimliği oluşturmak da önemli. FNGN Dijital, sektörümüze uygun içerikleri ve modern tasarım anlayışıyla kurumsal duruşumuzu dijital platformlara başarıyla taşıdı. İşini özenle yapan bir ekip.",
+      },
+    ],
+  },
+  faq: {
+    eyebrow: "SSS",
+    title: "Sıkça sorulan sorular.",
+    description: "Başlamadan önce merak edebileceğin her şey.",
+    items: [
+      {
+        q: "Hangi hizmetleri sunuyorsun?",
+        a: "Marka kimliği, web tasarımı & geliştirme, UI/UX, sosyal medya tasarımı ve gayrimenkul pazarlama — stratejiden teslime kadar uçtan uca.",
+      },
+      {
+        q: "Bir proje nasıl ilerliyor?",
+        a: "Dört net adım: Keşfet, Tasarla, İnşa Et, Yayınla. Önce hedeflerini kısa bir görüşmeyle konuşuruz; işe başlamadan önce sana plan, zaman çizelgesi ve teklif sunarım.",
+      },
+      {
+        q: "Bir proje ne kadar sürer?",
+        a: "Logo veya kimlik yaklaşık 1–2 hafta, web sitesi 2–4 hafta civarı, sosyal medya ise aylık süren bir destektir. Net süre işin kapsamına göre değişir.",
+      },
+      {
+        q: "Hangi dillerde çalışıyorsun?",
+        a: "Türkçe (ana dil) ve İngilizce (C1 · İleri) — hem yerel hem uluslararası müşterilerle rahatça çalışabiliyorum.",
+      },
+      {
+        q: "Uzaktan çalışıyor musun?",
+        a: "Evet — Sakarya, Türkiye merkezliyim ve Türkiye'nin her yerinden ve yurt dışından müşterilerle tamamen uzaktan çalışıyorum.",
+      },
+      {
+        q: "Nasıl teklif alırım veya başlarım?",
+        a: "WhatsApp'tan yaz ya da hello@fngn.com.tr adresine projenden kısaca bahset. Sana sonraki adımları ve sana özel bir teklifi ileteyim.",
       },
     ],
   },

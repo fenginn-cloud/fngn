@@ -2,11 +2,17 @@ export const site = {
   name: "FNGN",
   fullName: "Mahmud Feyzullah Engin",
   role: "Digital Designer & Creative Technologist",
+  roleTr: "Dijital Tasarımcı & Kreatif Teknolog",
   url: "https://fngn.com.tr",
   domain: "fngn.com.tr",
   description:
     "Mahmud Feyzullah Engin (FNGN) is a digital designer and creative technologist crafting digital experiences, visual identities and software-driven solutions for brands, real estate businesses and modern products.",
+  descriptionTr:
+    "Mahmud Feyzullah Engin (FNGN); markalar, gayrimenkul işletmeleri ve modern ürünler için UI/UX, web tasarımı, marka kimliği ve sosyal medya çözümleri üreten dijital tasarımcı ve kreatif teknolog. Sakarya, Türkiye.",
   email: "hello@fngn.com.tr",
+  // Formspree (or similar) endpoint for the contact form, e.g.
+  // "https://formspree.io/f/xxxxxx". Empty = form falls back to opening mailto.
+  formEndpoint: "",
   phone: "+90 553 686 07 04",
   phoneHref: "+905536860704",
   whatsapp: "905334606154", // +90 533 460 61 54 (WhatsApp line)

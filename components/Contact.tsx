@@ -8,6 +8,7 @@ import { site } from "@/data/site";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
 import { useLanguage } from "./LanguageProvider";
+import { ContactForm } from "./ContactForm";
 import {
   BehanceIcon,
   InstagramIcon,
@@ -80,16 +81,9 @@ export function Contact() {
               description={t.contact.description}
             />
             <Reveal delay={0.15}>
-              <a
-                href={`mailto:${site.email}`}
-                onClick={() => track("start_project")}
-                className="btn-primary mt-9 group"
-              >
-                {t.contact.startProject}
-                <span className="transition-transform duration-300 group-hover:translate-x-0.5">
-                  →
-                </span>
-              </a>
+              <div className="mt-9">
+                <ContactForm />
+              </div>
             </Reveal>
           </div>
 

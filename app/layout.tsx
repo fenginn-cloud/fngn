@@ -39,17 +39,20 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — ${site.fullName} | ${site.role}`,
+    default: `${site.name} — ${site.fullName} | ${site.roleTr}`,
     template: `%s — ${site.name}`,
   },
-  description: site.description,
+  description: site.descriptionTr,
   applicationName: site.name,
   authors: [{ name: site.fullName, url: site.url }],
   creator: site.fullName,
   publisher: site.name,
   keywords: [
+    // Brand & name
     "Mahmud Feyzullah Engin",
     "FNGN",
+    "FNGN Dijital",
+    // English
     "Digital Designer",
     "Creative Technologist",
     "UI/UX Design",
@@ -58,6 +61,22 @@ export const metadata: Metadata = {
     "Social Media Design",
     "Real Estate Marketing",
     "Frontend Developer",
+    // Türkçe
+    "dijital tasarımcı",
+    "marka kimliği tasarımı",
+    "logo tasarımı",
+    "sosyal medya tasarımı",
+    "web tasarım",
+    "web sitesi tasarımı",
+    "gayrimenkul pazarlama",
+    "gayrimenkul sosyal medya",
+    "kreatif tasarımcı",
+    "grafik tasarımcı",
+    "freelance tasarımcı",
+    // Coğrafi
+    "Sakarya tasarımcı",
+    "Sakarya sosyal medya ajansı",
+    "İstanbul tasarımcı",
     "Türkiye",
   ],
   alternates: {
@@ -65,17 +84,18 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "tr_TR",
+    alternateLocale: ["en_US"],
     url: site.url,
     siteName: site.name,
     title: `${site.name} — ${site.fullName}`,
-    description: site.description,
+    description: site.descriptionTr,
     // Social preview image is generated automatically by app/opengraph-image.tsx
   },
   twitter: {
     card: "summary_large_image",
     title: `${site.name} — ${site.fullName}`,
-    description: site.description,
+    description: site.descriptionTr,
     creator: "@fenginn",
   },
   robots: {
@@ -100,7 +120,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable}`}>
+    <html lang="tr" className={`${display.variable} ${sans.variable}`}>
       <body className="bg-background text-foreground">
         <JsonLd data={personSchema()} />
         <JsonLd data={organizationSchema()} />

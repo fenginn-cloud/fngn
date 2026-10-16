@@ -1,5 +1,6 @@
 import { site } from "@/data/site";
 import { projects } from "@/data/projects";
+import { dictionaries } from "@/data/translations";
 
 export function personSchema() {
   return {
@@ -34,6 +35,13 @@ export function personSchema() {
 }
 
 export function organizationSchema() {
+  // Real client testimonials as Review structured data (no fabricated ratings).
+  const reviews = dictionaries.tr.testimonials.items.map((item) => ({
+    "@type": "Review",
+    author: { "@type": "Organization", name: item.name },
+    reviewBody: item.quote,
+  }));
+
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -43,12 +51,31 @@ export function organizationSchema() {
     email: `mailto:${site.email}`,
     telephone: site.phone,
     founder: site.fullName,
-    description: site.description,
+    description: site.descriptionTr,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Sakarya",
+      addressCountry: "TR",
+    },
+    areaServed: "TR",
     sameAs: [
       site.socials.instagram,
       site.socials.linkedin,
       site.socials.behance,
     ],
+    review: reviews,
+  };
+}
+
+export function faqSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: dictionaries.tr.faq.items.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
   };
 }
 

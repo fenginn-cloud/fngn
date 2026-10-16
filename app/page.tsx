@@ -8,15 +8,17 @@ import { Clients } from "@/components/Clients";
 import { SelectedWorks } from "@/components/SelectedWorks";
 import { Process } from "@/components/Process";
 import { Testimonials } from "@/components/Testimonials";
+import { FAQ } from "@/components/FAQ";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
-import { portfolioSchema } from "@/lib/jsonld";
+import { portfolioSchema, faqSchema } from "@/lib/jsonld";
 
 export default function Home() {
   return (
     <>
       <JsonLd data={portfolioSchema()} />
+      <JsonLd data={faqSchema()} />
       <Navbar />
       <main id="main">
         <Hero />
@@ -28,6 +30,7 @@ export default function Home() {
         <SelectedWorks />
         <Process />
         <Testimonials />
+        <FAQ />
         <Contact />
       </main>
       <Footer />

@@ -21,16 +21,17 @@ const LanguageContext = createContext<LanguageContextValue | null>(null);
 const STORAGE_KEY = "fngn-lang";
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>("en");
+  // Turkish is the default (primary audience + SSR for Turkish SEO).
+  const [lang, setLang] = useState<Lang>("tr");
 
-  // Restore saved preference (or detect Turkish browsers) once on mount.
+  // Restore saved preference, or switch non-Turkish browsers to English.
   useEffect(() => {
     try {
       const saved = window.localStorage.getItem(STORAGE_KEY) as Lang | null;
       if (saved === "en" || saved === "tr") {
         setLang(saved);
-      } else if (navigator.language?.toLowerCase().startsWith("tr")) {
-        setLang("tr");
+      } else if (!navigator.language?.toLowerCase().startsWith("tr")) {
+        setLang("en");
       }
     } catch {
       /* localStorage unavailable */
