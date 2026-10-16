@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { track } from "@vercel/analytics";
 import { Check, Copy } from "lucide-react";
 import { site } from "@/data/site";
 import { SectionHeading } from "./SectionHeading";
@@ -79,7 +80,11 @@ export function Contact() {
               description={t.contact.description}
             />
             <Reveal delay={0.15}>
-              <a href={`mailto:${site.email}`} className="btn-primary mt-9 group">
+              <a
+                href={`mailto:${site.email}`}
+                onClick={() => track("start_project")}
+                className="btn-primary mt-9 group"
+              >
                 {t.contact.startProject}
                 <span className="transition-transform duration-300 group-hover:translate-x-0.5">
                   →
@@ -109,6 +114,7 @@ export function Contact() {
                       ? "noopener noreferrer"
                       : undefined
                   }
+                  onClick={() => track("contact_click", { channel: c.key })}
                   className="min-w-0 flex-1"
                 >
                   <span className="block text-xs uppercase tracking-[0.18em] text-muted">

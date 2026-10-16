@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { track } from "@vercel/analytics";
 import { ArrowDown } from "lucide-react";
 import { HeroVisual } from "./HeroVisual";
 import { ArrowUpRight } from "./icons";
@@ -86,11 +87,19 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.75 }}
             className="mt-9 flex flex-wrap items-center gap-4"
           >
-            <a href="#work" className="btn-primary group">
+            <a
+              href="#work"
+              onClick={() => track("hero_view_projects")}
+              className="btn-primary group"
+            >
               {t.hero.viewProjects}
               <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
-            <a href="#contact" className="btn-ghost">
+            <a
+              href="#contact"
+              onClick={() => track("hero_get_in_touch")}
+              className="btn-ghost"
+            >
               {t.hero.getInTouch}
             </a>
           </motion.div>

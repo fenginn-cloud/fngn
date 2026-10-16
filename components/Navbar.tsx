@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
+import { track } from "@vercel/analytics";
 import { Menu, X } from "lucide-react";
 import { site } from "@/data/site";
 import { cn } from "@/lib/utils";
@@ -64,7 +65,11 @@ export function Navbar() {
 
           <div className="hidden items-center gap-3 md:flex">
             <LanguageSwitcher />
-            <a href="#contact" className="btn-primary text-sm">
+            <a
+              href="#contact"
+              onClick={() => track("nav_lets_talk")}
+              className="btn-primary text-sm"
+            >
               {t.nav.letsTalk}
             </a>
           </div>
@@ -106,7 +111,10 @@ export function Navbar() {
               ))}
               <a
                 href="#contact"
-                onClick={() => setOpen(false)}
+                onClick={() => {
+                  setOpen(false);
+                  track("nav_lets_talk");
+                }}
                 className="btn-primary mt-2 w-full"
               >
                 {t.nav.letsTalk}

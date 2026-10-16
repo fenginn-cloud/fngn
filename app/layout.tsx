@@ -10,6 +10,7 @@ import {
 import { JsonLd } from "@/components/JsonLd";
 import { Grain } from "@/components/Grain";
 import { LanguageProvider } from "@/components/LanguageProvider";
+import { Analytics } from "@vercel/analytics/next";
 
 const display = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -108,6 +109,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <LanguageProvider>{children}</LanguageProvider>
+        <Analytics />
       </body>
     </html>
   );
