@@ -35,9 +35,9 @@ const en = {
   stats: {
     items: [
       { value: 50, suffix: "+", label: "Design Projects" },
-      { value: 20, suffix: "+", label: "Web Projects" },
-      { value: 5, suffix: "+", label: "Brand Identity Systems" },
-      { value: 100, suffix: "+", label: "Social Media Designs" },
+      { value: 100, suffix: "+", label: "Web Projects" },
+      { value: 20, suffix: "+", label: "Brand Identity Systems" },
+      { value: 1000, suffix: "+", label: "Social Media Designs" },
     ],
   },
   about: {
@@ -334,9 +334,9 @@ const tr: Dict = {
   stats: {
     items: [
       { value: 50, suffix: "+", label: "Tasarım Projesi" },
-      { value: 20, suffix: "+", label: "Web Projesi" },
-      { value: 5, suffix: "+", label: "Marka Kimliği Sistemi" },
-      { value: 100, suffix: "+", label: "Sosyal Medya Tasarımı" },
+      { value: 100, suffix: "+", label: "Web Projesi" },
+      { value: 20, suffix: "+", label: "Marka Kimliği Sistemi" },
+      { value: 1000, suffix: "+", label: "Sosyal Medya Tasarımı" },
     ],
   },
   about: {
