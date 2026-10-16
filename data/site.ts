@@ -12,6 +12,11 @@ export const site = {
   email: "hello@fngn.com.tr",
   // Formspree endpoint for the contact form. Empty = fall back to mailto.
   formEndpoint: "https://formspree.io/f/maeqalzk",
+  // Downloadable CV per language (files live in /public/cv/).
+  cv: {
+    tr: "/cv/Mahmud-Feyzullah-Engin-CV-TR.pdf",
+    en: "/cv/Mahmud-Feyzullah-Engin-CV-EN.pdf",
+  },
   phone: "+90 553 686 07 04",
   phoneHref: "+905536860704",
   whatsapp: "905334606154", // +90 533 460 61 54 (WhatsApp line)

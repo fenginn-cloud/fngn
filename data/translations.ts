@@ -86,6 +86,7 @@ const en = {
           "Crafting graphic design systems and original illustration work for clients.",
       },
     ],
+    downloadCv: "Download CV",
     languagesEyebrow: "Languages",
     languages: [
       { name: "Turkish", level: "Native", value: 100 },
@@ -509,6 +510,7 @@ const tr: Dict = {
           "Müşteriler için grafik tasarım sistemleri ve özgün illüstrasyon çalışmaları üretmek.",
       },
     ],
+    downloadCv: "CV İndir",
     languagesEyebrow: "Diller",
     languages: [
       { name: "Türkçe", level: "Ana dil", value: 100 },

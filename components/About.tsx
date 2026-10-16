@@ -1,13 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { track } from "@vercel/analytics";
+import { Download } from "lucide-react";
+import { site } from "@/data/site";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal, StaggerGroup, childVariants } from "./Reveal";
 import { useLanguage } from "./LanguageProvider";
 
 export function About() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const a = t.about;
+  const cvUrl = lang === "tr" ? site.cv.tr : site.cv.en;
 
   return (
     <section id="about" className="relative py-24 sm:py-32">
@@ -37,6 +41,18 @@ export function About() {
                   </span>
                 ))}
               </div>
+            </Reveal>
+
+            <Reveal delay={0.22}>
+              <a
+                href={cvUrl}
+                download
+                onClick={() => track("cv_download", { lang })}
+                className="btn-ghost mt-8 group"
+              >
+                <Download className="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5" />
+                {a.downloadCv}
+              </a>
             </Reveal>
 
             {/* Languages */}
