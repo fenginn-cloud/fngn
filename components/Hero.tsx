@@ -56,9 +56,69 @@ export function Hero() {
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(70% 62% at 50% 46%, rgba(8,8,8,0.82), rgba(8,8,8,0.35) 55%, transparent 78%)",
+              "radial-gradient(70% 62% at 50% 46%, rgba(8,8,8,0.8), rgba(8,8,8,0.32) 55%, transparent 78%)",
           }}
         />
+
+        {/* FN·GN monogram — kept from the original hero, blended in */}
+        <div className="absolute left-1/2 top-1/2 h-[min(94vw,680px)] w-[min(94vw,680px)] -translate-x-1/2 -translate-y-1/2 opacity-80 mix-blend-screen">
+          <motion.div
+            className="absolute inset-0"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 70, repeat: Infinity, ease: "linear" }}
+          >
+            <svg viewBox="0 0 400 400" className="h-full w-full">
+              <circle
+                cx="200"
+                cy="200"
+                r="192"
+                fill="none"
+                stroke="rgba(226,98,5,0.5)"
+                strokeWidth="1"
+                strokeDasharray="2 10"
+              />
+              <circle
+                cx="200"
+                cy="200"
+                r="150"
+                fill="none"
+                stroke="rgba(255,255,255,0.06)"
+                strokeWidth="1"
+              />
+            </svg>
+          </motion.div>
+          <motion.div
+            className="absolute inset-0"
+            animate={{ rotate: -360 }}
+            transition={{ duration: 95, repeat: Infinity, ease: "linear" }}
+          >
+            <svg viewBox="0 0 400 400" className="h-full w-full">
+              <circle
+                cx="200"
+                cy="200"
+                r="118"
+                fill="none"
+                stroke="rgba(226,98,5,0.35)"
+                strokeWidth="1"
+                strokeDasharray="1 14"
+              />
+            </svg>
+          </motion.div>
+          <motion.div
+            className="absolute inset-0"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
+          >
+            <span className="absolute left-1/2 top-[4%] h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-accent" />
+          </motion.div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="font-display text-7xl font-extrabold tracking-tightest sm:text-8xl">
+              <span className="text-accent/20">FN</span>
+              <span className="text-white/[0.07]">GN</span>
+            </span>
+          </div>
+        </div>
+
         {/* top & bottom fades */}
         <div className="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-background to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent" />

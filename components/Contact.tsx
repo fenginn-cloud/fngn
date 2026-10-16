@@ -34,7 +34,7 @@ const channels = [
   },
   {
     key: "instagram" as const,
-    value: "@fenginn",
+    value: "@fngndijital",
     href: site.socials.instagram,
     Icon: InstagramIcon,
     copyable: false,

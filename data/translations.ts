@@ -19,7 +19,7 @@ const en = {
   },
   hero: {
     badge: "Digital Design Studio",
-    titleBold: "We transform ideas",
+    titleBold: "We transform your ideas",
     titleItalic: "into digital experiences.",
     subhead:
       "We craft websites, brands and digital solutions that feel considered, not rushed — for businesses that care about design.",
@@ -448,8 +448,8 @@ const tr: Dict = {
   },
   hero: {
     badge: "Dijital Tasarım Stüdyosu",
-    titleBold: "Fikirleri dönüştürüyoruz",
-    titleItalic: "dijital deneyimlere.",
+    titleBold: "Fikirlerinizi dijital deneyimlere",
+    titleItalic: "dönüştürüyoruz.",
     subhead:
       "Markalar, gayrimenkul ve modern ürünler için aceleye gelmemiş, özenle kurgulanmış web siteleri, kimlikler ve dijital çözümler üretiyoruz.",
     viewProjects: "Projeleri Gör",

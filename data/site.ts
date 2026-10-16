@@ -22,7 +22,7 @@ export const site = {
   whatsapp: "905334606154", // +90 533 460 61 54 (WhatsApp line)
   location: "Sakarya, Türkiye",
   socials: {
-    instagram: "https://www.instagram.com/fenginn",
+    instagram: "https://www.instagram.com/fngndijital",
     linkedin:
       "https://www.linkedin.com/in/mahmud-feyzullah-engin-93766723a/",
     behance: "https://www.behance.net/mahmutengin",
