@@ -12,6 +12,7 @@ import { Grain } from "@/components/Grain";
 import { LanguageProvider } from "@/components/LanguageProvider";
 import { ConsentProvider } from "@/components/ConsentProvider";
 import { CookieConsent } from "@/components/CookieConsent";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { Analytics } from "@vercel/analytics/next";
 
@@ -114,6 +115,7 @@ export default function RootLayout({
         <ConsentProvider>
           <LanguageProvider>
             {children}
+            <WhatsAppButton />
             <CookieConsent />
           </LanguageProvider>
           <GoogleAnalytics />

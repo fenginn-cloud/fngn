@@ -9,9 +9,9 @@ const en = {
   nav: {
     links: [
       { label: "Work", href: "#work" },
+      { label: "Services", href: "#services" },
       { label: "About", href: "#about" },
       { label: "Expertise", href: "#expertise" },
-      { label: "Process", href: "#process" },
       { label: "Contact", href: "#contact" },
     ],
     letsTalk: "Let's talk",
@@ -300,6 +300,64 @@ const en = {
     "Web Design": "Web Design",
   } as Record<string, string>,
   switcher: { label: "Language", en: "EN", tr: "TR" },
+  whatsapp: {
+    aria: "Message on WhatsApp",
+    label: "WhatsApp",
+    message: "Hi Mahmud, I'd like to talk about a project with you.",
+  },
+  services: {
+    eyebrow: "Services",
+    title: "What I can do for your brand.",
+    description:
+      "Clear, end-to-end offerings — pick a single focus or combine them into a full engagement.",
+    cta: "Discuss a project",
+    items: [
+      {
+        title: "Brand & Identity",
+        description:
+          "A distinctive identity system your brand can grow with.",
+        points: [
+          "Logo & wordmark",
+          "Brand guidelines",
+          "Color & type system",
+          "Templates & assets",
+        ],
+      },
+      {
+        title: "Web & Interface",
+        description:
+          "High-end websites and product interfaces, designed and built.",
+        points: [
+          "Landing & corporate sites",
+          "UI/UX design",
+          "Frontend (Next.js)",
+          "Fast & responsive",
+        ],
+      },
+      {
+        title: "Social Media & Content",
+        description:
+          "A recognisable, scalable content system that performs.",
+        points: [
+          "Post & campaign templates",
+          "Content direction",
+          "Monthly design support",
+          "Ad creatives",
+        ],
+      },
+      {
+        title: "Real Estate Marketing",
+        description:
+          "Marketing that sells the experience, not just the property.",
+        points: [
+          "Listing & residence campaigns",
+          "Project branding",
+          "Social & print collateral",
+          "Launch support",
+        ],
+      },
+    ],
+  },
 };
 
 export type Dict = typeof en;
@@ -308,9 +366,9 @@ const tr: Dict = {
   nav: {
     links: [
       { label: "İşler", href: "#work" },
+      { label: "Hizmetler", href: "#services" },
       { label: "Hakkımda", href: "#about" },
       { label: "Uzmanlık", href: "#expertise" },
-      { label: "Süreç", href: "#process" },
       { label: "İletişim", href: "#contact" },
     ],
     letsTalk: "İletişime geç",
@@ -599,6 +657,60 @@ const tr: Dict = {
     "Web Design": "Web Tasarımı",
   },
   switcher: { label: "Dil", en: "EN", tr: "TR" },
+  whatsapp: {
+    aria: "WhatsApp'tan yaz",
+    label: "WhatsApp",
+    message: "Merhaba Mahmud, sizinle bir proje hakkında konuşmak istiyorum.",
+  },
+  services: {
+    eyebrow: "Hizmetler",
+    title: "Markan için neler yapabilirim.",
+    description:
+      "Net, uçtan uca hizmetler — tek bir alana odaklan ya da hepsini birleştirip tam kapsamlı çalışalım.",
+    cta: "Proje konuşalım",
+    items: [
+      {
+        title: "Marka & Kimlik",
+        description: "Markanın birlikte büyüyebileceği ayırt edici bir kimlik sistemi.",
+        points: [
+          "Logo & logotype",
+          "Marka kılavuzu",
+          "Renk & tipografi sistemi",
+          "Şablonlar & materyaller",
+        ],
+      },
+      {
+        title: "Web & Arayüz",
+        description: "Tasarlanıp geliştirilen üst düzey web siteleri ve ürün arayüzleri.",
+        points: [
+          "Tanıtım & kurumsal site",
+          "UI/UX tasarımı",
+          "Frontend (Next.js)",
+          "Hızlı & duyarlı",
+        ],
+      },
+      {
+        title: "Sosyal Medya & İçerik",
+        description: "Tanınabilir, ölçeklenebilir ve sonuç getiren bir içerik sistemi.",
+        points: [
+          "Gönderi & kampanya şablonları",
+          "İçerik yönetimi",
+          "Aylık tasarım desteği",
+          "Reklam görselleri",
+        ],
+      },
+      {
+        title: "Gayrimenkul Pazarlama",
+        description: "Sadece mülkü değil, deneyimi satan pazarlama.",
+        points: [
+          "İlan & rezidans kampanyaları",
+          "Proje markalaşması",
+          "Sosyal & basılı materyal",
+          "Lansman desteği",
+        ],
+      },
+    ],
+  },
 };
 
 export const dictionaries: Record<Lang, Dict> = { en, tr };
