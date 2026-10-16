@@ -358,6 +358,32 @@ const en = {
       },
     ],
   },
+  testimonials: {
+    eyebrow: "Testimonials",
+    title: "What clients say.",
+    description:
+      "A few words from the brands and teams I've worked with.",
+    items: [
+      {
+        name: "RE/MAX Dream",
+        field: "Real Estate",
+        quote:
+          "Since we started working with FNGN Dijital, our social media has taken on a far more professional and corporate look. A team that understands the dynamics of real estate and adds value to our brand with creative ideas and quality content.",
+      },
+      {
+        name: "Sapanca Realty",
+        field: "Real Estate",
+        quote:
+          "Having our brand represented correctly in the digital world mattered to us. FNGN Dijital delivered work that met our expectations with original designs, compelling content and great attention to detail. They bring a professional approach at every stage.",
+      },
+      {
+        name: "Kent Emlak",
+        field: "Real Estate",
+        quote:
+          "On social media it's not only about being visible, but about building a trustworthy brand identity. FNGN Dijital carried our corporate presence onto digital platforms with content suited to our sector and a modern design approach. A team that does its work with care.",
+      },
+    ],
+  },
 };
 
 export type Dict = typeof en;
@@ -708,6 +734,32 @@ const tr: Dict = {
           "Sosyal & basılı materyal",
           "Lansman desteği",
         ],
+      },
+    ],
+  },
+  testimonials: {
+    eyebrow: "Referanslar",
+    title: "Müşteriler ne diyor.",
+    description:
+      "Birlikte çalıştığım markalardan ve ekiplerden birkaç söz.",
+    items: [
+      {
+        name: "RE/MAX Dream",
+        field: "Gayrimenkul",
+        quote:
+          "FNGN Dijital ile çalışmaya başladığımızdan bu yana sosyal medya hesaplarımız çok daha profesyonel ve kurumsal bir görünüme kavuştu. Gayrimenkul sektörünün dinamiklerini anlayan, yaratıcı fikirleri ve kaliteli içerikleriyle markamıza değer katan bir ekip.",
+      },
+      {
+        name: "Sapanca Realty",
+        field: "Gayrimenkul",
+        quote:
+          "Markamızın dijital dünyada doğru şekilde temsil edilmesi bizim için önemliydi. FNGN Dijital, özgün tasarımları, etkileyici içerikleri ve detaylara verdiği önemle beklentilerimizi karşılayan bir çalışma ortaya koydu. Her aşamada profesyonel bir yaklaşım sergiliyorlar.",
+      },
+      {
+        name: "Kent Emlak",
+        field: "Gayrimenkul",
+        quote:
+          "Sosyal medyada yalnızca görünür olmak değil, güven veren bir marka kimliği oluşturmak da önemli. FNGN Dijital, sektörümüze uygun içerikleri ve modern tasarım anlayışıyla kurumsal duruşumuzu dijital platformlara başarıyla taşıdı. İşini özenle yapan bir ekip.",
       },
     ],
   },

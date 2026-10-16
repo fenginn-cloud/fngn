@@ -6,7 +6,7 @@ import { site } from "@/data/site";
 import { useLanguage } from "./LanguageProvider";
 import { useConsent } from "./ConsentProvider";
 
-const WA_NUMBER = site.phoneHref.replace(/[^0-9]/g, ""); // 905536860704
+const WA_NUMBER = site.whatsapp.replace(/[^0-9]/g, ""); // 905334606154
 
 function WhatsAppGlyph() {
   return (

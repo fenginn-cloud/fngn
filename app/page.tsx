@@ -7,6 +7,7 @@ import { Services } from "@/components/Services";
 import { Clients } from "@/components/Clients";
 import { SelectedWorks } from "@/components/SelectedWorks";
 import { Process } from "@/components/Process";
+import { Testimonials } from "@/components/Testimonials";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
@@ -26,6 +27,7 @@ export default function Home() {
         <Clients />
         <SelectedWorks />
         <Process />
+        <Testimonials />
         <Contact />
       </main>
       <Footer />

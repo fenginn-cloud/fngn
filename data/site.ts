@@ -9,6 +9,7 @@ export const site = {
   email: "hello@fngn.com.tr",
   phone: "+90 553 686 07 04",
   phoneHref: "+905536860704",
+  whatsapp: "905334606154", // +90 533 460 61 54 (WhatsApp line)
   location: "Sakarya, Türkiye",
   socials: {
     instagram: "https://www.instagram.com/fenginn",
