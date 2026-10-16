@@ -17,6 +17,7 @@ import { LanguageProvider } from "@/components/LanguageProvider";
 import { ConsentProvider } from "@/components/ConsentProvider";
 import { CookieConsent } from "@/components/CookieConsent";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { ChatAssistant } from "@/components/ChatAssistant";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { Analytics } from "@vercel/analytics/next";
 
@@ -151,6 +152,7 @@ export default function RootLayout({
           <LanguageProvider>
             {children}
             <WhatsAppButton />
+            <ChatAssistant />
             <CookieConsent />
           </LanguageProvider>
           <GoogleAnalytics />

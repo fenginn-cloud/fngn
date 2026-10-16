@@ -38,7 +38,7 @@ export function WhatsAppButton() {
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ delay: 0.6, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-      className="group fixed bottom-5 right-5 z-[60] flex items-center gap-0 overflow-hidden rounded-full bg-[#25D366] px-4 py-4 text-[#0a0a0a] shadow-[0_12px_30px_-8px_rgba(37,211,102,0.6)] transition-all duration-300 hover:gap-2 hover:pr-5 sm:bottom-6 sm:right-6"
+      className="group fixed bottom-5 left-5 z-[60] flex items-center gap-0 overflow-hidden rounded-full bg-[#25D366] px-4 py-4 text-[#0a0a0a] shadow-[0_12px_30px_-8px_rgba(37,211,102,0.6)] transition-all duration-300 hover:gap-2 hover:pr-5 sm:bottom-6 sm:left-6"
     >
       <WhatsAppGlyph />
       <span className="max-w-0 whitespace-nowrap text-sm font-semibold opacity-0 transition-all duration-300 group-hover:max-w-[160px] group-hover:opacity-100">

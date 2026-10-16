@@ -430,6 +430,17 @@ const en = {
     minRead: "min read",
     backHome: "Back home",
   },
+  assistant: {
+    aria: "Open chat",
+    title: "FNGN Assistant",
+    subtitle: "Typically replies in minutes",
+    greeting:
+      "Hi! 👋 How can we help? Pick a question below, or reach us directly.",
+    quick: "Quick questions",
+    whatsapp: "Chat on WhatsApp",
+    email: "Send an email",
+    close: "Close",
+  },
 };
 
 export type Dict = typeof en;
@@ -854,6 +865,17 @@ const tr: Dict = {
     backToBlog: "Tüm yazılar",
     minRead: "dk okuma",
     backHome: "Ana sayfaya dön",
+  },
+  assistant: {
+    aria: "Sohbeti aç",
+    title: "FNGN Asistan",
+    subtitle: "Genellikle dakikalar içinde yanıt",
+    greeting:
+      "Merhaba! 👋 Nasıl yardımcı olabiliriz? Aşağıdan bir soru seç ya da doğrudan bize ulaş.",
+    quick: "Hızlı sorular",
+    whatsapp: "WhatsApp'tan yaz",
+    email: "E-posta gönder",
+    close: "Kapat",
   },
 };
 
