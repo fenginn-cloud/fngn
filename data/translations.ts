@@ -227,6 +227,46 @@ const en = {
     ],
     connectHeading: "Connect",
     rights: "© 2026 FNGN. All rights reserved.",
+    privacy: "Privacy & Cookies",
+    cookiePrefs: "Cookie settings",
+  },
+  consent: {
+    title: "We value your privacy",
+    text: "We use cookies to measure site traffic with Google Analytics and improve your experience. Analytics only runs if you accept. You can change your choice anytime.",
+    accept: "Accept",
+    reject: "Reject",
+    learnMore: "Learn more",
+  },
+  privacy: {
+    title: "Privacy & Cookie Policy",
+    updated: "Last updated: 16 October 2026",
+    backHome: "Back home",
+    sections: [
+      {
+        heading: "Who we are",
+        body: "This website (fngn.com.tr) is operated by Mahmud Feyzullah Engin (FNGN), the data controller. For any request you can reach us at hello@fngn.com.tr.",
+      },
+      {
+        heading: "What data we collect",
+        body: "We do not ask for personal data to browse this site. We collect anonymous, aggregated usage statistics (pages viewed, approximate country, device type, referring site) to understand how the site is used.",
+      },
+      {
+        heading: "Cookies & analytics",
+        body: "Vercel Web Analytics runs without cookies and does not identify you. Google Analytics is only loaded after you click “Accept”, and sets cookies to measure visits with an anonymised IP address. If you click “Reject”, no analytics cookies are set.",
+      },
+      {
+        heading: "Legal basis (KVKK / GDPR)",
+        body: "Analytics cookies are processed based on your explicit consent, in line with Türkiye's KVKK (Law No. 6698) and the GDPR. Cookieless, aggregated measurement is used for our legitimate interest in operating the site.",
+      },
+      {
+        heading: "Your rights",
+        body: "Under KVKK Article 11 and the GDPR you may ask what data is processed, request correction or deletion, and withdraw consent at any time via the “Cookie settings” link in the footer. To exercise your rights, email hello@fngn.com.tr.",
+      },
+      {
+        heading: "Contact",
+        body: "Mahmud Feyzullah Engin — Sakarya, Türkiye — hello@fngn.com.tr",
+      },
+    ],
   },
   caseStudy: {
     allWork: "All Work",
@@ -486,6 +526,46 @@ const tr: Dict = {
     ],
     connectHeading: "Bağlan",
     rights: "© 2026 FNGN. Tüm hakları saklıdır.",
+    privacy: "Gizlilik & Çerezler",
+    cookiePrefs: "Çerez ayarları",
+  },
+  consent: {
+    title: "Gizliliğinize önem veriyoruz",
+    text: "Site trafiğini Google Analytics ile ölçmek ve deneyiminizi iyileştirmek için çerez kullanıyoruz. Analitik yalnızca kabul ederseniz çalışır. Tercihinizi istediğiniz zaman değiştirebilirsiniz.",
+    accept: "Kabul Et",
+    reject: "Reddet",
+    learnMore: "Detaylı bilgi",
+  },
+  privacy: {
+    title: "Gizlilik & Çerez Politikası",
+    updated: "Son güncelleme: 16 Ekim 2026",
+    backHome: "Ana sayfaya dön",
+    sections: [
+      {
+        heading: "Biz kimiz",
+        body: "Bu web sitesi (fngn.com.tr) veri sorumlusu Mahmud Feyzullah Engin (FNGN) tarafından işletilmektedir. Her türlü talebiniz için hello@fngn.com.tr adresinden bize ulaşabilirsiniz.",
+      },
+      {
+        heading: "Hangi verileri topluyoruz",
+        body: "Siteyi gezmek için sizden kişisel veri istemiyoruz. Sitenin nasıl kullanıldığını anlamak amacıyla anonim ve toplu kullanım istatistikleri (görüntülenen sayfalar, yaklaşık ülke, cihaz türü, yönlendiren site) topluyoruz.",
+      },
+      {
+        heading: "Çerezler & analitik",
+        body: "Vercel Web Analytics çerez kullanmaz ve sizi tanımlamaz. Google Analytics yalnızca siz “Kabul Et” dedikten sonra yüklenir ve ziyaretleri anonimleştirilmiş IP adresiyle ölçmek için çerez kullanır. “Reddet” derseniz hiçbir analitik çerez yerleştirilmez.",
+      },
+      {
+        heading: "Hukuki dayanak (KVKK / GDPR)",
+        body: "Analitik çerezler, 6698 sayılı KVKK ve GDPR uyarınca açık rızanıza dayanılarak işlenir. Çerezsiz ve toplu ölçüm, siteyi işletmeye yönelik meşru menfaatimiz kapsamında kullanılır.",
+      },
+      {
+        heading: "Haklarınız",
+        body: "KVKK 11. madde ve GDPR kapsamında; hangi verilerin işlendiğini öğrenme, düzeltilmesini veya silinmesini isteme ve rızanızı dilediğiniz zaman geri çekme hakkınız vardır. Rızanızı footer'daki “Çerez ayarları” bağlantısından geri çekebilirsiniz. Haklarınızı kullanmak için hello@fngn.com.tr adresine yazın.",
+      },
+      {
+        heading: "İletişim",
+        body: "Mahmud Feyzullah Engin — Sakarya, Türkiye — hello@fngn.com.tr",
+      },
+    ],
   },
   caseStudy: {
     allWork: "Tüm İşler",

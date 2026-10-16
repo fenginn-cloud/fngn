@@ -1,7 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { site } from "@/data/site";
 import { useLanguage } from "./LanguageProvider";
+import { useConsent } from "./ConsentProvider";
 import {
   BehanceIcon,
   InstagramIcon,
@@ -20,6 +22,7 @@ const socials = [
 
 export function Footer() {
   const { t } = useLanguage();
+  const { reset } = useConsent();
   const f = t.footer;
 
   return (
@@ -94,6 +97,21 @@ export function Footer() {
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-line pt-8 text-sm text-muted sm:flex-row">
           <p>{f.rights}</p>
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+            <Link
+              href="/gizlilik"
+              className="transition-colors hover:text-foreground"
+            >
+              {f.privacy}
+            </Link>
+            <button
+              type="button"
+              onClick={reset}
+              className="transition-colors hover:text-foreground"
+            >
+              {f.cookiePrefs}
+            </button>
+          </div>
           <p>
             {site.fullName} — {site.location}
           </p>

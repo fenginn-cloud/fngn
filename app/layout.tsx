@@ -10,6 +10,9 @@ import {
 import { JsonLd } from "@/components/JsonLd";
 import { Grain } from "@/components/Grain";
 import { LanguageProvider } from "@/components/LanguageProvider";
+import { ConsentProvider } from "@/components/ConsentProvider";
+import { CookieConsent } from "@/components/CookieConsent";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { Analytics } from "@vercel/analytics/next";
 
 const display = Bricolage_Grotesque({
@@ -108,7 +111,13 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <LanguageProvider>{children}</LanguageProvider>
+        <ConsentProvider>
+          <LanguageProvider>
+            {children}
+            <CookieConsent />
+          </LanguageProvider>
+          <GoogleAnalytics />
+        </ConsentProvider>
         <Analytics />
       </body>
     </html>

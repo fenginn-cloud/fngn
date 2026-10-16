@@ -20,5 +20,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     ...projectRoutes,
+    {
+      url: `${site.url}/gizlilik`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
   ];
 }
