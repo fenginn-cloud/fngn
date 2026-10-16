@@ -18,16 +18,11 @@ const en = {
     home: "home",
   },
   hero: {
-    badge: "Available for select projects",
-    headlineTokens: [
-      { text: "Digital" },
-      { text: "Designer" },
-      { text: "&" },
-      { text: "Creative", accent: true },
-      { text: "Technologist", accent: true },
-    ] as HeadlineToken[],
+    badge: "Digital Design Studio",
+    titleBold: "We transform ideas",
+    titleItalic: "into digital experiences.",
     subhead:
-      "I create digital experiences, visual identities and software-driven solutions for brands, real estate businesses and modern products.",
+      "We craft websites, brands and digital solutions that feel considered, not rushed — for businesses that care about design.",
     viewProjects: "View Projects",
     getInTouch: "Get In Touch",
     scroll: "Scroll",
@@ -452,16 +447,11 @@ const tr: Dict = {
     home: "ana sayfa",
   },
   hero: {
-    badge: "Seçili projeler için müsait",
-    headlineTokens: [
-      { text: "Dijital" },
-      { text: "Tasarımcı" },
-      { text: "&" },
-      { text: "Kreatif", accent: true },
-      { text: "Teknolog", accent: true },
-    ],
+    badge: "Dijital Tasarım Stüdyosu",
+    titleBold: "Fikirleri dönüştürüyoruz",
+    titleItalic: "dijital deneyimlere.",
     subhead:
-      "Markalar, gayrimenkul işletmeleri ve modern ürünler için dijital deneyimler, görsel kimlikler ve yazılım odaklı çözümler tasarlıyorum.",
+      "Markalar, gayrimenkul ve modern ürünler için aceleye gelmemiş, özenle kurgulanmış web siteleri, kimlikler ve dijital çözümler üretiyoruz.",
     viewProjects: "Projeleri Gör",
     getInTouch: "İletişime Geç",
     scroll: "Kaydır",

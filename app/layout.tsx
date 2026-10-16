@@ -1,5 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Hanken_Grotesk } from "next/font/google";
+import {
+  Bricolage_Grotesque,
+  Hanken_Grotesk,
+  Instrument_Serif,
+} from "next/font/google";
 import "./globals.css";
 import { site } from "@/data/site";
 import {
@@ -28,6 +32,14 @@ const sans = Hanken_Grotesk({
   variable: "--font-sans",
   display: "swap",
   weight: ["300", "400", "500", "600", "700"],
+});
+
+const serif = Instrument_Serif({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  display: "swap",
+  weight: ["400"],
+  style: ["normal", "italic"],
 });
 
 export const viewport: Viewport = {
@@ -120,7 +132,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="tr" className={`${display.variable} ${sans.variable}`}>
+    <html
+      lang="tr"
+      className={`${display.variable} ${sans.variable} ${serif.variable}`}
+    >
       <body className="bg-background text-foreground">
         <JsonLd data={personSchema()} />
         <JsonLd data={organizationSchema()} />
