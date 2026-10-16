@@ -1,5 +1,26 @@
 import { Reveal } from "./Reveal";
 
+/**
+ * Renders the heading with its last word in an elegant italic serif —
+ * echoing the hero's "bold grotesque + italic serif" pairing site-wide.
+ */
+function SplitTitle({ title }: { title: string }) {
+  const words = title.trim().split(/\s+/);
+  if (words.length < 2) {
+    return <span className="font-serif font-normal italic tracking-normal">{title}</span>;
+  }
+  const last = words.pop();
+  const head = words.join(" ");
+  return (
+    <>
+      {head}{" "}
+      <span className="font-serif font-normal italic tracking-normal">
+        {last}
+      </span>
+    </>
+  );
+}
+
 export function SectionHeading({
   eyebrow,
   title,
@@ -27,7 +48,7 @@ export function SectionHeading({
       </Reveal>
       <Reveal delay={0.05}>
         <h2 className="mt-4 text-3xl font-bold leading-[1.05] sm:text-4xl lg:text-5xl">
-          {title}
+          <SplitTitle title={title} />
         </h2>
       </Reveal>
       {description ? (
