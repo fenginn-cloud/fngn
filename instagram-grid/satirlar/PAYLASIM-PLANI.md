@@ -15,15 +15,15 @@ Böylece profilde soldan sağa doğru okunur. Her satır kendi turuncu çizgisiy
 **kare-1 (Önce):** Tanıdık geldi mi? 👀 Düzensiz paylaşım, her gönderide farklı renk, akılda kalmayan bir marka. Bu 3 karelik hikâye Talu Textile'ın dönüşümü. Kaydırın →
 #sosyalmedya #markakimliği #sakarya #fngndijital
 
-## 02 · Logo Nasıl Doğar? — Eksado
-**kare-3 (Final):** Ve Eksado hazır. 🏡🌱 Ev, yaprak ve tekerlek: taşınabilir, doğayla iç içe yaşam tek bir işarette. Sıradaki logo sizinki olsun → DM / +90 533 460 61 54
-#logotasarım #eksado #markakimliği #fngndijital
+## 02 · Eksado — Sosyal Medya & Reels
+**kare-3 (Sonuç):** İzlenmeler ciddi şekilde arttı. 📈 Eksado ile Reels'e odaklandık; doğru kanca, dinamik kurgu ve düzenli paylaşımla hesabın görünürlüğü bambaşka bir seviyeye çıktı. Sıradaki büyüme hikâyesi sizinki olsun → DM / +90 533 460 61 54
+#reels #sosyalmedyayönetimi #eksado #fngndijital
 
-**kare-2 (Geometri & renk):** Her çizgi bir sebeple orada. Açılar, oranlar ve 3 renk: toprak, enerji, doğa. İyi bir logo büyütüldüğünde de küçültüldüğünde de bozulmaz.
-#logodesign #grafiktasarım #renkpaleti #tasarımsüreci
+**kare-2 (Strateji):** Bir Reels'in kaderi ilk 3 saniyede belli olur. ⏱️ Güçlü kanca + hızlı kurgu + planlı paylaşım takvimi. Çekim fikrinden yayına kadar her adım bizden. Kaydedin, kendi Reels'leriniz için kullanın. 🔖
+#reelsipuçları #içerikstratejisi #videokurgu #instagramreels
 
-**kare-1 (Eskiz):** Her logo bir eskizle başlar. ✏️ Bilgisayardan önce kâğıt, kalem ve doğru sorular: "Bu marka ne anlatmalı?" Süreci 3 karede izleyin →
-#eskiz #logotasarımı #tasarımsüreci #sakarya
+**kare-1 (Vaka):** Vaka: Eksado 🌿 Eksado'nun sosyal medya yönetimini üstlendik ve hikâyesini etkileyici Reels videolarıyla anlattık. Sonucu görmek için kaydırın →
+#sosyalmedyayönetimi #reels #sakarya #fngndijital
 
 ## 03 · Müşteriler Konuşuyor
 **kare-3 (Kent Emlak):** "Kurumsal duruşumuzu dijital platformlara başarıyla taşıdı." Teşekkürler Kent Emlak! 🧡
