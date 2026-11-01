@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=block" rel="stylesheet">
+<style>
+  :root{--bg:#080808;--s1:#0f0f0f;--fg:#F5F5F5;--muted:#9a9a9a;--acc:#E26205;--acc2:#FF7A1A;--line:rgba(255,255,255,.09)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:3240px;height:4320px;background:var(--bg);overflow:hidden}
+  body{position:relative;font-family:'Hanken Grotesk',sans-serif;color:var(--fg);-webkit-font-smoothing:antialiased}
+  .tile{position:absolute;width:1080px;height:1440px;overflow:hidden}
+  .abs{position:absolute}
+  .disp{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;letter-spacing:-.045em;line-height:.92;white-space:nowrap}
+  .ser{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-.01em;color:var(--acc2)}
+  .eyebrow{font-size:30px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);font-weight:500}
+  .idx{position:absolute;top:96px;right:110px;font-size:28px;letter-spacing:.2em;color:var(--muted);font-weight:500}
+  .idx b{color:var(--acc2);font-weight:600}
+  .chip{display:inline-block;border:1.5px solid rgba(255,255,255,.16);border-radius:999px;padding:16px 30px;font-size:31px;margin:0 12px 16px 0;color:#dcdcdc}
+  .desc{font-size:40px;line-height:1.38;color:#bdbdbd;font-weight:400}
+  .brand{display:flex;align-items:center;gap:22px;font-size:30px;letter-spacing:.26em;font-weight:600}
+</style>
+</head>
+<body>
+
+<!-- ===== Background layer spanning the whole 3x3 ===== -->
+<svg class="abs" style="left:0;top:0" width="3240" height="4320" viewBox="0 0 3240 4320">
+  <defs>
+    <radialGradient id="glow1" cx="1620" cy="700" r="1150" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#E26205" stop-opacity=".30"/>
+      <stop offset=".45" stop-color="#E26205" stop-opacity=".07"/>
+      <stop offset="1" stop-color="#E26205" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="2700" cy="3700" r="1300" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#E26205" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#E26205" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .55 0"/></filter>
+  </defs>
+  <rect width="3240" height="4320" fill="#080808"/>
+  <rect width="3240" height="4320" fill="url(#glow1)"/>
+  <rect width="3240" height="4320" fill="url(#glow2)"/>
+
+  <!-- concentric rings around the headline (row 1) -->
+  <g fill="none" stroke="rgba(255,255,255,.10)" stroke-width="2">
+    <circle cx="1620" cy="700" r="430"/>
+    <circle cx="1620" cy="700" r="610"/>
+    <circle cx="1620" cy="700" r="800" stroke="rgba(255,255,255,.07)"/>
+    <circle cx="1620" cy="700" r="1010" stroke="rgba(255,255,255,.05)"/>
+  </g>
+  <circle cx="1620" cy="700" r="610" fill="none" stroke="#E26205" stroke-width="4" stroke-dasharray="520 3313" stroke-dashoffset="-180" stroke-linecap="round"/>
+  <circle cx="1620" cy="700" r="800" fill="none" stroke="#FF7A1A" stroke-opacity=".7" stroke-width="3" stroke-dasharray="260 4766" stroke-dashoffset="-2600" stroke-linecap="round"/>
+  <circle cx="2154" cy="1004" r="10" fill="#FF7A1A"/>
+
+  <!-- the connecting thread: snakes through all 9 tiles -->
+  <path d="M 80 1300 H 3165 V 2740 H 80 V 4180 H 2160"
+        fill="none" stroke="#E26205" stroke-opacity=".55" stroke-width="3"/>
+  <g fill="#080808" stroke="#E26205" stroke-width="3">
+    <circle cx="540" cy="1300" r="11"/><circle cx="1620" cy="1300" r="11"/><circle cx="2700" cy="1300" r="11"/>
+    <circle cx="2700" cy="2740" r="11"/><circle cx="1620" cy="2740" r="11"/><circle cx="540" cy="2740" r="11"/>
+    <circle cx="540" cy="4180" r="11"/><circle cx="1620" cy="4180" r="11"/>
+  </g>
+
+  <!-- subtle tile-separating hairlines inside rows 2-3 -->
+  <rect width="3240" height="4320" filter="url(#grain)" opacity=".07"/>
+</svg>
+
+<!-- ================= ROW 1 — panorama headline ================= -->
+<div class="tile" style="left:0;top:0">
+  <div class="abs brand" style="left:150px;top:110px">
+    <svg width="64" height="64" viewBox="0 0 64 64"><rect width="64" height="64" rx="15" fill="#0c0c0c"/><rect x="1.25" y="1.25" width="61.5" height="61.5" rx="13.75" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="1.5"/><path d="M22 15h23v8H31v7.5h12.5v8H31V49h-9V15Z" fill="#E26205"/><circle cx="45.5" cy="45.5" r="3.4" fill="#FF7A1A"/></svg>
+    FNGN DİJİTAL
+  </div>
+  <div class="idx"><b>01</b> / 09</div>
+  <div class="abs disp fit" data-w="820" style="left:150px;top:640px;font-size:150px">Fikirlerinizi</div>
+  <div class="abs desc" style="left:150px;top:880px;width:700px;font-size:36px;color:#8f8f8f">Bir fikirle gelin.<br>Gerisini birlikte tasarlayalım.</div>
+</div>
+
+<div class="tile" style="left:1080px;top:0">
+  <div class="idx"><b>02</b> / 09</div>
+  <div class="abs ser" style="left:0;width:1080px;text-align:center;top:470px;font-size:200px;line-height:.9">dijital<br>deneyimlere</div>
+</div>
+
+<div class="tile" style="left:2160px;top:0">
+  <div class="idx"><b>03</b> / 09</div>
+  <div class="abs disp fit" data-w="800" style="left:130px;top:640px;font-size:140px">dönüştürüyoruz.</div>
+  <div class="abs" style="left:130px;top:880px;font-size:34px;letter-spacing:.14em;color:#bdbdbd;font-weight:500;text-transform:uppercase;line-height:1.7">
+    Web <span style="color:var(--acc2)">·</span> Marka <span style="color:var(--acc2)">·</span> Sosyal Medya
+  </div>
+  <div class="abs" style="left:130px;top:1130px;font-size:30px;color:#8f8f8f;letter-spacing:.06em">Sakarya, Türkiye — fngn.com.tr</div>
+</div>
+
+<!-- ================= ROW 2 — services ================= -->
+<!-- Tile 4 : Web Tasarım -->
+<div class="tile" style="left:0;top:1440px">
+  <div class="abs eyebrow" style="left:150px;top:100px">Hizmet 01</div>
+  <div class="idx"><b>04</b> / 09</div>
+  <svg class="abs" style="left:150px;top:220px" width="780" height="470" viewBox="0 0 780 470">
+    <rect x="1" y="1" width="778" height="468" rx="28" fill="#111" stroke="rgba(255,255,255,.14)" stroke-width="2"/>
+    <circle cx="40" cy="38" r="9" fill="#E26205"/><circle cx="70" cy="38" r="9" fill="#333"/><circle cx="100" cy="38" r="9" fill="#333"/>
+    <rect x="140" y="26" width="300" height="24" rx="12" fill="#1c1c1c"/>
+    <line x1="0" y1="76" x2="780" y2="76" stroke="rgba(255,255,255,.08)" stroke-width="2"/>
+    <rect x="40" y="120" width="380" height="42" rx="8" fill="#F5F5F5"/>
+    <rect x="40" y="176" width="300" height="42" rx="8" fill="#FF7A1A"/>
+    <rect x="40" y="250" width="320" height="16" rx="8" fill="#2a2a2a"/>
+    <rect x="40" y="280" width="260" height="16" rx="8" fill="#2a2a2a"/>
+    <rect x="40" y="340" width="170" height="56" rx="28" fill="#E26205"/>
+    <rect x="460" y="120" width="280" height="276" rx="20" fill="#1a1a1a"/>
+    <circle cx="600" cy="258" r="78" fill="none" stroke="#E26205" stroke-width="3"/>
+    <circle cx="600" cy="258" r="40" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="2"/>
+  </svg>
+  <div class="abs disp" style="left:150px;top:770px;font-size:144px">Web <span class="ser" style="font-size:170px">tasarım</span></div>
+  <div class="abs desc" style="left:150px;top:965px;width:800px">Hızlı, mobil uyumlu ve size müşteri getiren web siteleri.</div>
+  <div class="abs" style="left:150px;top:1120px;width:830px">
+    <span class="chip">Kurumsal site</span><span class="chip">Emlak sitesi</span><span class="chip">Landing page</span>
+  </div>
+</div>
+
+<!-- Tile 5 : Marka Kimliği -->
+<div class="tile" style="left:1080px;top:1440px">
+  <div class="abs eyebrow" style="left:150px;top:100px">Hizmet 02</div>
+  <div class="idx"><b>05</b> / 09</div>
+  <svg class="abs" style="left:150px;top:200px" width="780" height="510" viewBox="0 0 780 510">
+    <g fill="none" stroke="rgba(255,255,255,.13)" stroke-width="2">
+      <line x1="0" y1="80" x2="780" y2="80"/><line x1="0" y1="430" x2="780" y2="430"/>
+      <line x1="215" y1="0" x2="215" y2="510"/><line x1="565" y1="0" x2="565" y2="510"/>
+      <circle cx="390" cy="255" r="175"/><circle cx="390" cy="255" r="235" stroke-dasharray="6 10"/>
+    </g>
+    <g transform="translate(250 90) scale(4.4) translate(-14 -11)">
+      <path d="M22 15h23v8H31v7.5h12.5v8H31V49h-9V15Z" fill="#E26205"/>
+      <circle cx="45.5" cy="45.5" r="3.4" fill="#FF7A1A"/>
+    </g>
+    <g font-family="Hanken Grotesk" font-size="20" fill="#8f8f8f" letter-spacing="2">
+      <text x="10" y="70">BASELINE</text><text x="600" y="500">GRID 8PX</text>
+    </g>
+    <g>
+      <rect x="610" y="120" width="56" height="56" rx="12" fill="#E26205"/>
+      <rect x="610" y="190" width="56" height="56" rx="12" fill="#F5F5F5"/>
+      <rect x="610" y="260" width="56" height="56" rx="12" fill="#181818" stroke="rgba(255,255,255,.2)"/>
+    </g>
+  </svg>
+  <div class="abs disp" style="left:150px;top:770px;font-size:144px">Marka <span class="ser" style="font-size:170px">kimliği</span></div>
+  <div class="abs desc" style="left:150px;top:965px;width:800px">Akılda kalan, her yerde aynı duran bir marka dili.</div>
+  <div class="abs" style="left:150px;top:1120px;width:830px">
+    <span class="chip">Logo</span><span class="chip">Kurumsal kimlik</span><span class="chip">Kartvizit</span><span class="chip">Ambalaj</span>
+  </div>
+</div>
+
+<!-- Tile 6 : Sosyal Medya -->
+<div class="tile" style="left:2160px;top:1440px">
+  <div class="abs eyebrow" style="left:130px;top:100px">Hizmet 03</div>
+  <div class="idx"><b>06</b> / 09</div>
+  <svg class="abs" style="left:130px;top:190px" width="800" height="530" viewBox="0 0 800 530">
+    <rect x="230" y="2" width="300" height="526" rx="44" fill="#111" stroke="rgba(255,255,255,.16)" stroke-width="3"/>
+    <rect x="335" y="20" width="90" height="16" rx="8" fill="#222"/>
+    <circle cx="282" cy="80" r="26" fill="#E26205"/>
+    <rect x="322" y="68" width="120" height="12" rx="6" fill="#333"/><rect x="322" y="88" width="80" height="10" rx="5" fill="#262626"/>
+    <g>
+      <rect x="250" y="128" width="84" height="112" fill="#E26205"/><rect x="338" y="128" width="84" height="112" fill="#1d1d1d"/><rect x="426" y="128" width="84" height="112" fill="#2a2a2a"/>
+      <rect x="250" y="244" width="84" height="112" fill="#232323"/><rect x="338" y="244" width="84" height="112" fill="#FF7A1A" fill-opacity=".85"/><rect x="426" y="244" width="84" height="112" fill="#1a1a1a"/>
+      <rect x="250" y="360" width="84" height="112" fill="#1a1a1a"/><rect x="338" y="360" width="84" height="112" fill="#2a2a2a"/><rect x="426" y="360" width="84" height="112" fill="#F5F5F5"/>
+    </g>
+    <!-- floating reactions -->
+    <g font-family="Hanken Grotesk" font-weight="600" font-size="26">
+      <rect x="20" y="150" width="190" height="64" rx="32" fill="#181818" stroke="rgba(255,255,255,.14)"/>
+      <path d="M58 170c-6-8-20-4-18 6 2 9 18 16 18 16s16-7 18-16c2-10-12-14-18-6z" fill="#FF7A1A"/><text x="92" y="192" fill="#F5F5F5">+60%</text>
+      <rect x="570" y="330" width="210" height="64" rx="32" fill="#181818" stroke="rgba(255,255,255,.14)"/>
+      <path d="M602 348h22v30l-11-8-11 8z" fill="#F5F5F5"/><text x="640" y="372" fill="#F5F5F5">Kaydet</text>
+    </g>
+  </svg>
+  <div class="abs disp" style="left:130px;top:770px;font-size:144px">Sosyal <span class="ser" style="font-size:170px">medya</span></div>
+  <div class="abs desc" style="left:130px;top:965px;width:800px">Kaydırmayı durduran, tutarlı ve planlı içerik.</div>
+  <div class="abs" style="left:130px;top:1120px;width:830px">
+    <span class="chip">Post & karusel</span><span class="chip">Reels</span><span class="chip">Şablon sistemi</span>
+  </div>
+</div>
+
+<!-- ================= ROW 3 — proof + CTA ================= -->
+<div class="tile" style="left:0;top:2880px">
+  <div class="abs eyebrow" style="left:150px;top:100px">Rakamlarla FNGN</div>
+  <div class="idx"><b>07</b> / 09</div>
+  <div class="abs disp" style="left:140px;top:300px;font-size:420px;letter-spacing:-.06em">50<span style="color:var(--acc)">+</span></div>
+  <div class="abs" style="left:150px;top:720px;font-size:56px;font-weight:500">Tasarım projesi</div>
+  <div class="abs" style="left:150px;top:830px;width:780px;height:2px;background:rgba(255,255,255,.12)"></div>
+  <div class="abs disp" style="left:150px;top:890px;font-size:120px">20<span style="color:var(--acc)">+</span></div>
+  <div class="abs" style="left:430px;top:922px;font-size:40px;color:#bdbdbd;line-height:1.25">web projesi<br>yayında</div>
+  <div class="abs" style="left:150px;top:1080px;font-size:28px;letter-spacing:.2em;color:#8f8f8f;text-transform:uppercase;line-height:1.8">RE/MAX Dream · Hece Group<br>Eksado · Kartvizit.up</div>
+</div>
+
+<div class="tile" style="left:1080px;top:2880px">
+  <div class="abs eyebrow" style="left:150px;top:100px">Rakamlarla FNGN</div>
+  <div class="idx"><b>08</b> / 09</div>
+  <div class="abs disp" style="left:140px;top:300px;font-size:420px;letter-spacing:-.06em">100<span style="color:var(--acc)">+</span></div>
+  <div class="abs" style="left:150px;top:720px;font-size:56px;font-weight:500">Sosyal medya tasarımı</div>
+  <div class="abs" style="left:150px;top:830px;width:780px;height:2px;background:rgba(255,255,255,.12)"></div>
+  <div class="abs disp" style="left:150px;top:890px;font-size:120px">5<span style="color:var(--acc)">+</span></div>
+  <div class="abs" style="left:350px;top:922px;font-size:40px;color:#bdbdbd;line-height:1.25">marka kimliği<br>sistemi</div>
+  <div class="abs" style="left:150px;top:1080px;font-size:28px;letter-spacing:.2em;color:#8f8f8f;text-transform:uppercase;line-height:1.8">Dream Residence · Sapanca<br>Kurtköyspor · Talu Textile</div>
+</div>
+
+<!-- Tile 9 : CTA (orange) -->
+<div class="tile" style="left:2160px;top:2880px;background:#E26205">
+  <svg class="abs" style="left:0;top:0" width="1080" height="1440">
+    <defs><filter id="g2"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .5 0"/></filter></defs>
+    <g fill="none" stroke="rgba(8,8,8,.16)" stroke-width="2"><circle cx="980" cy="260" r="260"/><circle cx="980" cy="260" r="380"/><circle cx="980" cy="260" r="500"/></g>
+    <path d="M0 1300 H 900" stroke="#080808" stroke-opacity=".7" stroke-width="3" fill="none"/>
+    <circle cx="900" cy="1300" r="22" fill="#080808"/>
+    <rect width="1080" height="1440" filter="url(#g2)" opacity=".08"/>
+  </svg>
+  <div class="abs eyebrow" style="left:130px;top:100px;color:rgba(8,8,8,.7)">Sıra sizde</div>
+  <div class="idx" style="color:rgba(8,8,8,.6)"><b style="color:#080808">09</b> / 09</div>
+  <div class="abs disp" style="left:130px;top:330px;font-size:150px;color:#080808;line-height:.95">Sıradaki<br>proje<br><span style="font-family:'Instrument Serif';font-style:italic;font-weight:400;letter-spacing:-.01em;font-size:180px;color:#FFF3EA">sizinki</span><br>olsun.</div>
+  <div class="abs" style="left:130px;top:960px;display:flex;flex-direction:column;gap:22px;font-size:40px;color:#080808;font-weight:600">
+    <div style="display:flex;align-items:center;gap:22px">
+      <svg width="46" height="46" viewBox="0 0 24 24" fill="#080808"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3Z"/></svg>
+      +90 533 460 61 54
+    </div>
+    <div style="display:flex;align-items:center;gap:22px">
+      <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#080808" stroke-width="2"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c3 3.2 3 15.8 0 19M12 2.5c-3 3.2-3 15.8 0 19"/></svg>
+      fngn.com.tr
+    </div>
+  </div>
+  <div class="abs" style="left:130px;top:1160px;font-size:30px;color:rgba(8,8,8,.7);letter-spacing:.06em">DM'den yazın — @fngndijital</div>
+</div>
+
+<script>
+  document.fonts.ready.then(() => {
+    document.querySelectorAll('.fit').forEach(el => {
+      const max = +el.dataset.w; let fs = parseFloat(getComputedStyle(el).fontSize);
+      while (el.scrollWidth > max && fs > 40) { fs -= 2; el.style.fontSize = fs + 'px'; }
+    });
+    document.body.dataset.ready = '1';
+  });
+</script>
+</body>
+</html>
