@@ -1,0 +1,53 @@
+<!doctype html><html lang="tr"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=block" rel="stylesheet">
+<link rel="stylesheet" href="../ortak.css">
+<style>
+ .q{position:absolute;left:150px;top:400px;width:800px;font-family:'Instrument Serif';font-style:italic;font-size:86px;line-height:1.06;letter-spacing:-.01em}
+ .mark{position:absolute;left:130px;top:150px;font-family:'Instrument Serif';font-size:420px;line-height:1;color:var(--acc2)}
+ .who{position:absolute;left:150px;top:1060px}
+ .who .n{font-family:'Bricolage Grotesque';font-weight:700;font-size:54px;letter-spacing:-.02em}
+ .who .f{font-size:28px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-top:14px}
+ .stars{position:absolute;left:150px;top:1185px;font-size:40px;letter-spacing:8px;color:var(--acc2)}
+</style></head><body>
+<svg class="abs" style="left:0;top:0" width="3240" height="1440">
+  <defs>
+    <radialGradient id="g" cx="1620" cy="720" r="1300" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#E26205" stop-opacity=".18"/><stop offset="1" stop-color="#E26205" stop-opacity="0"/></radialGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0"/></filter>
+  </defs>
+  <rect width="3240" height="1440" fill="url(#g)"/>
+  <rect x="1080" width="1080" height="1440" fill="#E26205"/>
+  <path d="M80 1300 H 1080" stroke="#E26205" stroke-width="3" opacity=".7"/>
+  <path d="M1080 1300 H 2160" stroke="#080808" stroke-width="3" opacity=".6"/>
+  <path d="M2160 1300 H 3090" stroke="#E26205" stroke-width="3" opacity=".7"/>
+  <g stroke-width="3"><circle cx="540" cy="1300" r="11" fill="#080808" stroke="#E26205"/><circle cx="1620" cy="1300" r="11" fill="#E26205" stroke="#080808"/><circle cx="2700" cy="1300" r="11" fill="#080808" stroke="#E26205"/></g>
+  <rect width="3240" height="1440" filter="url(#grain)" opacity=".07"/>
+</svg>
+
+<div class="tile t1">
+  <div class="abs eyebrow" style="left:150px;top:100px">Müşteriler konuşuyor</div>
+  <div class="idx"><b>01</b> / 03</div>
+  <div class="mark">“</div>
+  <div class="q">Sosyal medya hesaplarımız çok daha <span style="color:var(--acc2)">profesyonel ve kurumsal</span> bir görünüme kavuştu.</div>
+  <div class="who"><div class="n">RE/MAX Dream</div><div class="f">Gayrimenkul</div></div>
+  <div class="stars">★★★★★</div>
+</div>
+
+<div class="tile t2">
+  <div class="abs eyebrow" style="left:150px;top:100px;color:rgba(8,8,8,.65)">Müşteriler konuşuyor</div>
+  <div class="idx" style="color:rgba(8,8,8,.6)"><b style="color:#080808">02</b> / 03</div>
+  <div class="mark" style="color:#080808">“</div>
+  <div class="q" style="color:#080808">Özgün tasarımları ve <span style="color:#FFF3EA">detaylara verdiği önemle</span> beklentilerimizi karşıladı.</div>
+  <div class="who"><div class="n" style="color:#080808">Sapanca Realty</div><div class="f" style="color:rgba(8,8,8,.65)">Gayrimenkul</div></div>
+  <div class="stars" style="color:#080808">★★★★★</div>
+</div>
+
+<div class="tile t3">
+  <div class="abs eyebrow" style="left:150px;top:100px">Müşteriler konuşuyor</div>
+  <div class="idx"><b>03</b> / 03</div>
+  <div class="mark">“</div>
+  <div class="q">Kurumsal duruşumuzu dijital platformlara <span style="color:var(--acc2)">başarıyla taşıdı.</span> İşini özenle yapan bir ekip.</div>
+  <div class="who"><div class="n">Kent Emlak</div><div class="f">Gayrimenkul</div></div>
+  <div class="stars">★★★★★</div>
+</div>
+<script>document.fonts.ready.then(()=>document.body.dataset.ready='1')</script>
+</body></html>
