@@ -335,7 +335,7 @@ window.renderAt=(t)=>{
     const c1={az:.95,el:.14,d:11.5,tg:new THREE.Vector3(.85,2.35,0)},c2={az:.72,el:.2,d:10.5,tg:new THREE.Vector3(.85,2.35,0)},
           c3={az:.72,el:.1,d:4.6,tg:new THREE.Vector3(-.2,.62,.2)};
     if(t<23.6)applyCam(mixCam(c1,c2,ease(seg(t,16.4,23.6)),false));else applyCam(mixCam(c2,c3,ease(seg(t,23.6,26.0))));
-    LAY.forEach((l,i)=>{const end=i===LAY.length-1?23.7:l.t0+2.0;const a=Math.min(seg(t,l.t0+.7,l.t0+1.0),1-seg(t,end-.25,end));
+    LAY.forEach((l,i)=>{const end=i===LAY.length-1?23.7:l.t0+1.85;const a=Math.min(seg(t,l.t0+.95,l.t0+1.25),1-seg(t,end-.25,end));
       placeFx(l.el,new THREE.Vector3(l.g.position.x+.02,SB+SH*.62,.25),a,300);});
     placeFx(labChassis,new THREE.Vector3(.05,SB-.21,.35),seg(t,24.6,25.2),300);
     placeFx(labAxle,new THREE.Vector3(-.95,.33,.12),seg(t,25.3,25.9),520);
