@@ -45,6 +45,32 @@ leafo = orange & (ys <= 365)
 ys_all, xs_all = np.nonzero(green | orange | brown)
 x0, y0, x1, y1 = xs_all.min() / S - 6, ys_all.min() / S - 6, xs_all.max() / S + 6, ys_all.max() / S + 6
 layers = [('house', brown), ('leaf-orange', leafo), ('leaf-green', green), ('word', word)]
+# EKSADO yazısını sütun boşluklarından harflere ayır
+colsum = word.sum(0) > 0
+runs, cx_ = [], 0
+while cx_ < len(colsum):
+    if colsum[cx_]:
+        ce_ = cx_
+        while ce_ < len(colsum) and colsum[ce_]: ce_ += 1
+        runs.append([cx_, ce_]); cx_ = ce_
+    else: cx_ += 1
+merged = []
+for r in runs:
+    if merged and r[0] - merged[-1][1] < 3 * S: merged[-1][1] = r[1]
+    else: merged.append(r)
+cnt = word.sum(0)
+mw = sorted(r[1] - r[0] for r in merged)[len(merged) // 2]
+segs = []
+for r in merged:
+    if r[1] - r[0] > 1.6 * mw:
+        lo, hi = r[0] + int(.3 * (r[1] - r[0])), r[0] + int(.7 * (r[1] - r[0]))
+        cut = lo + int(np.argmin(cnt[lo:hi])); segs += [[r[0], cut], [cut, r[1]]]
+    else: segs.append(r)
+merged = segs
+assert len(merged) == 6, merged
+for i, (a0, a1) in enumerate(merged):
+    m = np.zeros_like(word); m[:, a0:a1] = word[:, a0:a1]
+    layers.append((f'w{i}', m))
 body = '\n'.join(f'  <path id="{n}" fill="{med(m)}" fill-rule="evenodd" d="{trace(m)}"/>' for n, m in layers)
 svg = f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{x0:.1f} {y0:.1f} {x1-x0:.1f} {y1-y0:.1f}">\n{body}\n</svg>\n'
 open(out, 'w').write(svg)

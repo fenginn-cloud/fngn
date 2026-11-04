@@ -88,7 +88,7 @@ for k, t in enumerate(np.arange(42.3, 52.0, beat)):
 pad(['F2', 'C3', 'A3'], 52.27, 56.6, .04, .6)
 pad(['C2', 'G2', 'E3', 'B3', 'D4'], 56.0, 60.0, .065, .45)
 for i, n_ in enumerate(['C5', 'E5', 'G5', 'B5', 'D6']):
-    note(n_, O(57.4) + i * .45, .03, 1.5, pan=(i - 2) * .2)
+    note(n_, O(56.35) + i * .62, .026, 1.5, pan=(i - 2) * .2)
 
 # ---------------- ses efektleri (paket) ----------------
 sfx('App Click 1.wav', 1.80, -10); sfx('universfield-computer-mouse-click-352734.mp3', 1.93, 0)          # anahtar
@@ -119,7 +119,12 @@ for i in range(4):
 sfx('App Click 1.wav', O(53.3), -10); sfx('universfield-computer-mouse-click-352734.mp3', O(53.42), 0)  # anahtar
 sfx('simple-whoosh-02-433006.mp3', O(55.0), -18)                                                    # logo girişi
 sfx('shine-6-268910.mp3', O(56.1), -12, maxlen=3.6)                                                 # yapraklar
-sfx('marimba-bloop-3-188151.mp3', O(56.8), -13)                                                     # EKSADO yazısı
+for a_, rest in [(56.35, 6), (57.15, 4), (57.95, 3)]:                                            # Ekolojik / Sağlam / Doğal
+    sfx('soft-subtle-ui-pop-sfx-348820.mp3', O(a_), -14, maxlen=.5)
+    for j in range(rest):
+        sfx('ui-sounds-pack-3-7-359721.mp3', O(a_ + .38 + .24 * j / rest), -2, pan=.15)
+    sfx('minimal-pop-click-ui-11-198311.mp3', O(a_ + .93), -12, maxlen=.6)
+sfx('marimba-bloop-3-188151.mp3', O(58.95), -12)                                                    # EKSADO tamam
 
 # ---------------- reverb, seslendirme, master ----------------
 ir_n = int(2.0 * SR); ir_t = np.arange(ir_n) / SR
