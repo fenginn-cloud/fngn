@@ -370,7 +370,7 @@ function core(t,isAnat){
     setCam(A.az+.25,A.el+.03,lerp(.62,.46,ease(seg(t,51,55.5))),A.tg);
   } else keyLight.color.set('#fff1dc');
   scene.background.copy(bg);scene.fog.color.copy(bg);M.floor.color.copy(flo);
-  renderer.render(scene,camera);
+  if(!(mode==='macro'&&t>55.6))renderer.render(scene,camera);
 
   // ---------- overlays ----------
   op($('fade'),isAnat?0:1-easeOut(seg(t,0,.7)));
