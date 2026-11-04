@@ -41,6 +41,7 @@
 <script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
 </head><body>
 <div id="stage"></div>
+<canvas id="xf" width="1080" height="1920" style="position:absolute;inset:0;width:1080px;height:1920px;opacity:0"></canvas>
 <div class="ov" id="vig"></div>
 <div id="topg" class="ov" style="background:linear-gradient(rgba(8,8,9,.8),rgba(8,8,9,0) 640px);opacity:0"></div>
 <div id="labels" class="ov"></div>
@@ -68,7 +69,7 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
 const W=1080,H=1920;
 const renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});
-renderer.setSize(W,H);renderer.setPixelRatio(1);
+renderer.setPixelRatio(+(new URLSearchParams(location.search).get('pr')||1));renderer.setSize(W,H);
 renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;
 renderer.outputColorSpace=THREE.SRGBColorSpace;
 renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
@@ -91,7 +92,7 @@ const seg=(t,a,b)=>clamp((t-a)/(b-a));
 const win=(t,a,b,f=.35)=>Math.min(seg(t,a,a+f),1-seg(t,b-f,b));
 function rib(rep){const c=document.createElement('canvas');c.width=256;c.height=4;const g=c.getContext('2d');const im=g.createImageData(256,4);
   for(let x=0;x<256;x++){const nx=Math.sin(x/256*Math.PI*2)*.55,nz=Math.sqrt(1-nx*nx);for(let y=0;y<4;y++){const i=(y*256+x)*4;im.data[i]=(nx*.5+.5)*255;im.data[i+1]=128;im.data[i+2]=(nz*.5+.5)*255;im.data[i+3]=255;}}
-  g.putImageData(im,0,0);const t=new THREE.CanvasTexture(c);t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(rep,1);return t;}
+  g.putImageData(im,0,0);const t=new THREE.CanvasTexture(c);t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(rep,1);t.anisotropy=8;return t;}
 function wood(base,dark,boards,rep,rot=0){const c=document.createElement('canvas');c.width=c.height=512;const g=c.getContext('2d');g.fillStyle=base;g.fillRect(0,0,512,512);
   let r=7;const rnd=()=>(r=(r*16807)%2147483647)/2147483647;
   for(let i=0;i<900;i++){g.strokeStyle=dark;g.globalAlpha=rnd()*.10;g.lineWidth=rnd()*2+.4;const y=rnd()*512;g.beginPath();g.moveTo(0,y);
@@ -106,8 +107,8 @@ function fibers(){const c=document.createElement('canvas');c.width=c.height=512;
   const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;t.wrapS=t.wrapT=THREE.RepeatWrapping;return t;}
 
 const M={
-  clad:new THREE.MeshStandardMaterial({color:'#2a2d31',metalness:.55,roughness:.48,normalMap:rib(13),normalScale:new THREE.Vector2(.9,.9)}),
-  roof:new THREE.MeshStandardMaterial({color:'#1f2124',metalness:.55,roughness:.5,normalMap:rib(13)}),
+  clad:new THREE.MeshStandardMaterial({color:'#2a2d31',metalness:.45,roughness:.64,normalMap:rib(13),normalScale:new THREE.Vector2(.5,.5)}),
+  roof:new THREE.MeshStandardMaterial({color:'#1f2124',metalness:.45,roughness:.68,normalMap:rib(13),normalScale:new THREE.Vector2(.5,.5)}),
   thermo:new THREE.MeshStandardMaterial({map:wood('#7a4e31','#2b170b',8,[.6,.6]),roughness:.72}),
   lambri:new THREE.MeshStandardMaterial({map:wood('#d9b98c','#8a6440',10,[.5,.5]),roughness:.8,side:THREE.BackSide,emissive:C('#ffb36e'),emissiveIntensity:0}),
   lambriF:new THREE.MeshStandardMaterial({map:wood('#dcbd90','#8a6440',9,[1,1],Math.PI/2),roughness:.75}),
@@ -230,7 +231,8 @@ const LAY=[
   layer(-.02,.42,gF,['Galvaniz çelik karkas','90×45 mm, 0,8 mm profil.']),
   layer(-.075,0,gL,['16 mm ladin lambri','İç kaplama.']),
 ];
-LAY.forEach((l,i)=>{l.t0=17.6+i*1.2;});
+LAY.forEach((l,i)=>{l.t0=17.4+i*2.0;});
+const LS=[18.3,20.3,22.3,24.3,25.5],LE=[20.25,22.25,24.25,25.45,27.5];
 
 // ---------- items (eksado.com/micasa donanım listesi) ----------
 function fridge(){const g=new THREE.Group();g.add(at(box(.5,.55,.85,M.white,.03),0,.275,0));g.add(at(box(.03,.03,.42,M.steel,.012),.19,.565,0));g.add(at(box(.48,.004,.004,M.dark),0,.551,-.28));return g;}
@@ -306,8 +308,8 @@ function shadowBox(s){Object.assign(sun.shadow.camera,{left:-s,right:s,top:s,bot
 function vis(m){house.visible=m==='studio'||m==='ret'||m==='macro';factory.visible=m==='factory';ghost.visible=m==='ghost';anat.visible=m==='anat';
   order.forEach(o=>o.g.visible=false);}
 
-window.renderAt=(t)=>{
-  const mode=t<16.4?'studio':t<27.3?'anat':t<32.3?'ghost':t<39?'factory':t<51?'ret':'macro';
+function core(t,isAnat){
+  const mode=t<16.4?'studio':isAnat?'anat':t<32.3?'ghost':t<39?'factory':t<51?'ret':'macro';
   vis(mode);
   // defaults
   let bg=BG.clone(),flo=C('#e3dfd8');sun.color.set('#fff3e4');sun.position.set(9,15,5);sun.intensity=2.4;shadowBox(10);
@@ -334,11 +336,11 @@ window.renderAt=(t)=>{
     LAY.forEach(l=>{const u=ease(seg(t,l.t0,l.t0+1.0));l.g.position.x=l.x0+l.dx*u;});
     const c1={az:.95,el:.14,d:11.5,tg:new THREE.Vector3(.85,2.35,0)},c2={az:.72,el:.2,d:10.5,tg:new THREE.Vector3(.85,2.35,0)},
           c3={az:.72,el:.1,d:4.6,tg:new THREE.Vector3(-.2,.62,.2)};
-    if(t<23.6)applyCam(mixCam(c1,c2,ease(seg(t,16.4,23.6)),false));else applyCam(mixCam(c2,c3,ease(seg(t,23.6,26.0))));
-    LAY.forEach((l,i)=>{const end=i===LAY.length-1?23.7:l.t0+1.85;const a=Math.min(seg(t,l.t0+.95,l.t0+1.25),1-seg(t,end-.25,end));
+    if(t<27.4)applyCam(mixCam(c1,c2,ease(seg(t,16.4,27.4)),false));else applyCam(mixCam(c2,c3,ease(seg(t,27.4,29.6))));
+    LAY.forEach((l,i)=>{const a=Math.min(seg(t,LS[i],LS[i]+.3),1-seg(t,LE[i]-.3,LE[i]));
       placeFx(l.el,new THREE.Vector3(l.g.position.x+.02,SB+SH*.62,.25),a,300);});
-    placeFx(labChassis,new THREE.Vector3(.05,SB-.21,.35),seg(t,24.6,25.2),300);
-    placeFx(labAxle,new THREE.Vector3(-.95,.33,.12),seg(t,25.3,25.9),520);
+    placeFx(labChassis,new THREE.Vector3(.05,SB-.21,.35),Math.min(seg(t,28.4,28.9),1-seg(t,31.4,31.85)),300);
+    placeFx(labAxle,new THREE.Vector3(-.95,.33,.12),Math.min(seg(t,29.1,29.6),1-seg(t,31.4,31.85)),520);
   }
   if(mode==='ghost'){
     bg=C('#090c11');ground.visible=false;hemi.intensity=0;sun.intensity=0;fill.intensity=0;scene.environmentIntensity=0;
@@ -353,7 +355,7 @@ window.renderAt=(t)=>{
   }
   if(mode==='ret'){
     const dk=ease(seg(t,41,45.5));bg=BG.clone().lerp(DUSK,dk);flo=C('#e3dfd8').lerp(C('#3a3f4a'),dk);
-    sun.color.set('#fff3e4').lerp(C('#ffae72'),dk);sun.position.set(9,lerp(15,4.2,dk),lerp(5,7,dk));sun.intensity=lerp(2.4,1.5,dk);
+    sun.color.set('#fff3e4').lerp(C('#ffae72'),dk);sun.position.set(9,9,7);sun.intensity=lerp(2.4,1.5,dk);
     hemi.color.set('#ffffff').lerp(C('#6f86b3'),dk);hemi.groundColor.set('#d6cdbf').lerp(C('#20232b'),dk);hemi.intensity=lerp(.6,.35,dk);
     fill.intensity=lerp(.45,.12,dk);scene.environmentIntensity=lerp(.6,.25,dk);
     const closeU=ease(seg(t,43.8,44.8));door.rotation.y=-1.87*(1-closeU);
@@ -364,7 +366,7 @@ window.renderAt=(t)=>{
     else applyCam(mixCam({az:.62,el:.17,d:13.2,tg:new THREE.Vector3(.1,1.6,.2)},{az:.18,el:.04,d:16,tg:new THREE.Vector3(0,4.8,0)},ease(seg(t,45.5,51)),false));
   }
   if(mode==='macro'){
-    bg=DUSK.clone();flo=C('#3a3f4a');sun.color.set('#ffae72');sun.position.set(9,4.2,7);sun.intensity=1.2;hemi.color.set('#6f86b3');hemi.groundColor.set('#20232b');hemi.intensity=.3;
+    bg=DUSK.clone();flo=C('#3a3f4a');sun.color.set('#ffae72');sun.position.set(9,9,7);sun.intensity=1.2;hemi.color.set('#6f86b3');hemi.groundColor.set('#20232b');hemi.intensity=.3;
     fill.intensity=.1;scene.environmentIntensity=.3;M.lambri.emissiveIntensity=.85;M.glass.emissiveIntensity=1.1;
     keyLight.color.set('#ffcf9a');keyLight.position.copy(LOCK).add(new THREE.Vector3(.22,.12,.18));keyLight.intensity=1.1;
     key.rotation.x=ease(seg(t,52.3,53.5))*Math.PI/2;
@@ -374,15 +376,14 @@ window.renderAt=(t)=>{
   renderer.render(scene,camera);
 
   // ---------- overlays ----------
-  const dips=[16.4,27.3,32.3,39.0,55.5].map(c=>clamp(1-Math.abs(t-c)/.42));
-  op($('fade'),Math.max(1-easeOut(seg(t,0,.7)),...dips.slice(0,4)));
+  op($('fade'),isAnat?0:1-easeOut(seg(t,0,.7)));
   const ti=easeOut(seg(t,13.3,14.1)),to=ease(seg(t,15.6,16.2));
   $('txt').style.transform=`translateY(${160*(1-ti)-160*to}px)`;
-    const s=SUBS.find(([a,b])=>t>=a&&t<=b);const sub=$('sub');
+    const s=(isAnat?ASUBS:SUBS).find(([a,b])=>t>=a&&t<=b);const sub=$('sub');
   if(s){sub.textContent=s[2];op(sub,win(t,s[0],s[1],.25));}else op(sub,0);
   const light=(mode==='studio'&&t>4.5)||(mode==='ret'&&t<43.2);sub.style.color=light?'#1d1d1f':'#f5f5f7';sub.style.textShadow=light?'0 0 24px rgba(255,255,255,.7)':'0 2px 24px rgba(0,0,0,.55)';
   op($('topg'),mode==='anat'?seg(t,16.4,16.9):0);
-  op($('legend'),win(t,28.0,32.0,.5));
+  op($('legend'),mode==='ghost'?win(t,28.0,32.0,.5):0);
   const f=$('fact');[...f.children].forEach((e,i)=>op(e,win(t,32.7+i*.35,35.7,.4)));
   const n=$('num');op(n,win(t,35.8,38.8,.4));n.textContent=Math.round(17*easeOut(seg(t,35.9,37.2)));
   [...$('fact2').children].slice(1).forEach((e,i)=>op(e,win(t,36.3+i*.4,38.8,.4)));
@@ -397,5 +398,15 @@ window.renderAt=(t)=>{
   [...$('lt').children].forEach((e,i)=>{const a=easeOut(seg(t,57.5+i*.4,58.0+i*.4));op(e,a);e.style.transform=`translateY(${(1-a)*20}px)`;});
   op($('lu'),seg(t,58.9,59.4));
 };
+const ASUBS=[[16.7,18.9,"Ve göremediğiniz her şey."],[19.1,23.3,"Thermowood cephe. Nefes alan membran. Sekiz santim taş yünü."],
+ [23.7,27.4,"Galvaniz çelik karkas. Ladin iç kaplama."],[28.2,31.6,"Ve hepsini taşıyan galvaniz şasi."]];
+const K=(64.6-31.9)/(60-31.9);
+const story=o=>o<=31.9?o:31.9+(o-31.9)*K;
+function renderStory(S){if(S<16.4)core(S,false);else if(S<31.9)core(S,true);else core(S-4.6,false);}
+const XF=[16.4,31.9,36.9,43.6];
+window.renderAt=(o)=>{const S=story(o);const c=XF.find(c=>Math.abs(S-c)<.3);const xf=$('xf');
+  if(c!==undefined){renderStory(Math.min(S,c-.001));xf.getContext('2d').drawImage(renderer.domElement,0,0,1080,1920);
+    renderStory(Math.max(S,c));op(xf,1-ease(clamp((S-(c-.3))/.6)));}
+  else{op(xf,0);renderStory(S);}};
 window.ready=true;
 </script></body></html>

@@ -9,6 +9,7 @@ const [,, page = 'film.html', outDir = 'frames', from = '0', to = '1800', list] 
   await p.goto(`http://localhost:8765/${page}`);
   await p.waitForFunction('window.ready === true', null, { timeout: 90000 });
   await p.evaluate(() => document.fonts.ready);
+  console.log("samples", await p.evaluate(()=>{const c=document.querySelector("#stage canvas");const g=c.getContext("webgl2");return g.getParameter(g.SAMPLES)+" "+c.width+"x"+c.height;}));
   fs.mkdirSync(outDir, { recursive: true });
   const jobs = list ? list.split(',').map((t, i) => [i, +t]) : Array.from({ length: +to - +from }, (_, k) => [+from + k, (+from + k) / 30]);
   const t0 = Date.now();
