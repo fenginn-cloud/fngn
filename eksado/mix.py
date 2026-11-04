@@ -88,7 +88,7 @@ for k, t in enumerate(np.arange(42.3, 52.0, beat)):
 pad(['F2', 'C3', 'A3'], 52.27, 56.6, .04, .6)
 pad(['C2', 'G2', 'E3', 'B3', 'D4'], 56.0, 60.0, .065, .45)
 for i, n_ in enumerate(['C5', 'E5', 'G5', 'B5', 'D6']):
-    note(n_, O(56.35) + i * .62, .026, 1.5, pan=(i - 2) * .2)
+    note(n_, O(55.5) + i * .62, .022, 1.5, pan=(i - 2) * .2)
 
 # ---------------- ses efektleri (paket) ----------------
 sfx('App Click 1.wav', 1.80, -10); sfx('universfield-computer-mouse-click-352734.mp3', 1.93, 0)          # anahtar
@@ -118,13 +118,11 @@ for i in range(4):
     sfx(['marimba-bloop-2-188149.mp3', 'marimba-bloop-3-188151.mp3'][i % 2], O(46.0 + i * .85), -15)  # belgeler
 sfx('App Click 1.wav', O(53.3), -10); sfx('universfield-computer-mouse-click-352734.mp3', O(53.42), 0)  # anahtar
 sfx('simple-whoosh-02-433006.mp3', O(55.0), -18)                                                    # logo girişi
-sfx('shine-6-268910.mp3', O(56.1), -12, maxlen=3.6)                                                 # yapraklar
-for a_, rest in [(56.35, 6), (57.15, 4), (57.95, 3)]:                                            # Ekolojik / Sağlam / Doğal
-    sfx('soft-subtle-ui-pop-sfx-348820.mp3', O(a_), -14, maxlen=.5)
-    for j in range(rest):
-        sfx('ui-sounds-pack-3-7-359721.mp3', O(a_ + .38 + .24 * j / rest), -2, pan=.15)
-    sfx('minimal-pop-click-ui-11-198311.mp3', O(a_ + .93), -12, maxlen=.6)
-sfx('marimba-bloop-3-188151.mp3', O(58.95), -12)                                                    # EKSADO tamam
+for a_ in (55.5, 56.35, 57.2):                                                                      # Ekolojik / Sağlam / Doğal
+    sfx('soft-subtle-ui-pop-sfx-348820.mp3', O(a_), -16, maxlen=.5)
+    sfx('swoosh-06-351021.mp3', O(a_ + .5), -24)
+sfx('shine-6-268910.mp3', O(58.05), -13, maxlen=3.0)                                                 # ev + yapraklar
+sfx('marimba-bloop-3-188151.mp3', O(58.4), -13)
 
 # ---------------- reverb, seslendirme, master ----------------
 ir_n = int(2.0 * SR); ir_t = np.arange(ir_n) / SR
