@@ -374,7 +374,7 @@ function core(t,isAnat){
 
   // ---------- overlays ----------
   op($('fade'),isAnat?0:1-easeOut(seg(t,0,.7)));
-  const ti=easeOut(seg(t,13.65,14.4)),to=ease(seg(t,15.7,16.25));
+  const ti=easeOut(seg(t,14.1,14.8)),to=ease(seg(t,15.75,16.25));
   $('txt').style.transform=`translateY(${160*(1-ti)-160*to}px)`;
     const s=(isAnat?ASUBS:SUBS).find(([a,b])=>t>=a&&t<=b);const sub=$('sub');
   if(s){sub.textContent=s[2];op(sub,win(t,s[0],s[1],.25));}else op(sub,0);
@@ -391,7 +391,7 @@ function core(t,isAnat){
 };
 
 // ---------- kapanış: Ekolojik / Sağlam / Doğal -> EKSADO ----------
-const CW=[{rest:'olojik',a:55.5},{rest:'ğlam',a:56.35},{rest:'ğal',a:57.2}];
+const CW=[{rest:'olojik',a:55.45},{rest:'ğlam',a:56.4},{rest:'ğal',a:57.35}];
 let CL=null;
 function closeInit(){const B=[0,1,2,3,4,5].map(i=>$('L'+i).getBBox());const top=Math.min(...B.map(b=>b.y)),bot=Math.max(...B.map(b=>b.y+b.height));
   const fs=(bot-top)/.727,gap=B[2].x-(B[1].x+B[1].width),left=B[0].x,cx=(B[0].x+B[5].x+B[5].width)/2;
@@ -405,11 +405,11 @@ function closing(t){if(!CL)closeInit();const{words,left,cx}=CL;let right=words[0
     [2*k,2*k+1].forEach(i=>{const e=$('L'+i);e.style.opacity=ap;e.style.filter=`blur(${(1-ap)*5}px)`;e.style.transform=`translateY(${(1-ap)*6}px)`;});
     w.r.style.opacity=ap*(1-ro);w.r.style.filter=`blur(${(1-ap)*5+ro*7}px)`;w.r.style.transform=`translateY(${(1-ap)*6}px)`;});
   $('WM').style.transform=`translateX(${cx-(left+right)/2}px)`;
-  const hu=ease(seg(t,58.05,58.65));const gH=$('gH');gH.style.clipPath=`inset(${100*(1-hu)}% 0 0 0)`;gH.style.opacity=Math.min(1,hu*1.6);
-  const lo=easeOut(seg(t,58.4,58.9)),lg2=easeOut(seg(t,58.3,58.8));
+  const hu=ease(seg(t,58.2,58.8));const gH=$('gH');gH.style.clipPath=`inset(${100*(1-hu)}% 0 0 0)`;gH.style.opacity=Math.min(1,hu*1.6);
+  const lo=easeOut(seg(t,58.5,59.0)),lg2=easeOut(seg(t,58.42,58.92));
   [[$('gO'),lo],[$('gG'),lg2]].forEach(([e,v])=>{e.style.transformBox='fill-box';e.style.transformOrigin='50% 100%';e.style.transform=`scale(${.6+.4*v})`;e.style.opacity=v;});
-  op($('lu'),easeOut(seg(t,58.85,59.25)));}
-/*OUTSUBS*/const OUTSUBS=[[3.18, 6.27, "Bir evi tanımak için, kapısını açmak gerekir."], [6.03, 8.56, "Çünkü bir evi ev yapan, içindekilerdir."], [8.33, 11.04, "Dinlendiğiniz yatak. Mutfağınız."], [10.73, 13.73, "Serinliğiniz. Akşamlarınız."], [16.58, 18.25, "Ve göremediğiniz her şey."], [18.28, 19.66, "Thermowood cephe."], [20.28, 21.9, "Nefes alan membran."], [22.28, 24.1, "Sekiz santim taş yünü."], [24.23, 26.01, "Galvaniz çelik karkas."], [25.73, 27.25, "Ladin iç kaplama."], [28.38, 31.06, "Ve hepsini taşıyan galvaniz şasi."], [32.28, 35.24, "Elektriğinden suyuna, tesisatı hazır."], [36.23, 40.7, "2017'den bu yana, Sakarya'daki tesisimizde üretiyoruz."], [40.38, 42.76, "Bugün evlerimiz, on yedi ülkede."], [42.88, 46.46, "Bir evi değerlendirirken, hepsini birlikte düşünün."], [47.53, 48.98, "O2 tip onaylı."], [48.78, 49.74, "Plakalı."], [49.48, 50.98, "İki yıl garantili."], [52.43, 55.4, "Size kalan tek şey, anahtarı çevirmek."]];/*END*/
+  op($('lu'),easeOut(seg(t,59.0,59.35)));}
+/*OUTSUBS*/const OUTSUBS=[[2.6, 5.87, "Bir evi tanımak için, kapısını açmak gerekir."], [5.95, 9.18, "Çünkü bir evi ev yapan, içindekilerdir."], [9.2, 11.78, "Dinlendiğiniz yatak. Mutfağınız."], [11.8, 14.27, "Serinliğiniz. Akşamlarınız."], [16.45, 18.47, "Ve göremediğiniz her şey."], [18.49, 20.07, "Thermowood cephe."], [20.3, 21.92, "Nefes alan membran."], [22.3, 24.13, "Sekiz santim taş yünü."], [24.25, 25.83, "Galvaniz çelik karkas."], [25.85, 27.44, "Ladin iç kaplama."], [28.4, 31.07, "Ve hepsini taşıyan galvaniz şasi."], [32.3, 35.17, "Elektriğinden suyuna, tesisatı hazır."], [36.25, 39.93, "2017'den bu yana, Sakarya'daki tesisimizde üretiyoruz."], [39.95, 42.28, "Bugün evlerimiz, on yedi ülkede."], [42.3, 45.61, "Bir evi değerlendirirken, hepsini birlikte düşünün."], [47.55, 48.93, "O2 tip onaylı."], [48.95, 49.73, "Plakalı."], [49.75, 51.34, "İki yıl garantili."], [52.35, 55.22, "Size kalan tek şey, anahtarı çevirmek."]];/*END*/
 const ASUBS=[[16.7,18.9,"Ve göremediğiniz her şey."],[19.1,23.3,"Thermowood cephe. Nefes alan membran. Sekiz santim taş yünü."],
  [23.7,27.4,"Galvaniz çelik karkas. Ladin iç kaplama."],[28.2,31.6,"Ve hepsini taşıyan galvaniz şasi."]];
 const K=(64.6-31.9)/(60-31.9);
