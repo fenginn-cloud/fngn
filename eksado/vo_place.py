@@ -12,31 +12,31 @@ raw = subprocess.run(['ffmpeg', '-v', 'error', '-i', SRC, '-f', 'f32le', '-ac', 
 src = np.frombuffer(raw, dtype=np.float32).astype(float)
 
 # (kaynak başlangıç, kaynak bitiş, filmde başlangıç, altyazı | None)
-# Kaynak zamanları ElevenLabs Scribe kelime zaman damgalarından (eleven_v4, UGUR ISIK sesi, take 1).
+# Kaynak zamanları ElevenLabs Scribe kelime zaman damgalarından (eleven_multilingual_v2, Hasan Yasin sesi, take 1).
 P = [
-    (0.164, 3.084, 2.70, "Bir evi tanımak için, kapısını açmak gerekir."),
-    (3.284, 6.284, 6.05, "Çünkü bir evi ev yapan, içindekilerdir."),
-    (6.484, 8.844, 9.30, "Dinlendiğiniz yatak. Mutfağınız."),
-    (9.044, 11.164, 11.85, "Serinliğiniz. Akşamlarınız."),
-    (11.284, 13.124, 16.55, "Ve göremediğiniz her şey."),
-    (13.284, 14.511, 18.50, "Thermowood cephe."),
-    (14.537, 15.804, 20.40, "Nefes alan membran."),
-    (15.844, 17.324, 22.40, "Sekiz santim taş yünü."),
-    (17.364, 18.844, 24.35, "Galvaniz çelik karkas."),
-    (18.884, 20.124, 25.95, "Ladin iç kaplama."),
-    (20.164, 22.484, 28.50, "Ve hepsini taşıyan galvaniz şasi."),
-    (22.564, 25.084, 32.40, "Elektriğinden suyuna, tesisatı hazır."),
-    (25.124, 28.697, 36.35, "2017'den bu yana, Sakarya'daki tesisimizde üretiyoruz."),
-    (28.751, 30.831, 40.05, "Bugün evlerimiz, on yedi ülkede."),
-    (30.857, 33.817, 42.40, "Bir evi değerlendirirken, hepsini birlikte düşünün."),
-    (33.871, 35.164, 47.65, "O2 tip onaylı."),
-    (35.204, 35.884, 49.05, "Plakalı."),
-    (35.924, 37.164, 49.85, "İki yıl garantili."),
-    (37.204, 39.724, 52.45, "Size kalan tek şey, anahtarı çevirmek."),
-    (39.764, 40.604, O(55.47), None),   # Ekolojik
-    (40.644, 41.404, O(56.42), None),   # Sağlam
-    (41.444, 42.111, O(57.37), None),   # Doğal
-    (42.137, 42.804, O(58.25), None),   # Eksado (logo tamamlanınca)
+    (0.000, 3.216, 2.60, "Bir evi tanımak için, kapısını açmak gerekir."),
+    (3.379, 6.026, 5.95, "Çünkü bir evi ev yapan, içindekilerdir."),
+    (6.502, 9.334, 8.75, "Dinlendiğiniz yatak. Mutfağınız."),
+    (9.636, 12.074, 11.70, "Serinliğiniz. Akşamlarınız."),
+    (12.725, 14.164, 16.55, "Ve göremediğiniz her şey."),
+    (14.640, 15.615, 18.40, "Thermowood cephe."),
+    (15.766, 16.951, 20.40, "Nefes alan membran."),
+    (17.183, 18.669, 22.40, "Sekiz santim taş yünü."),
+    (18.901, 20.422, 24.35, "Galvaniz çelik karkas."),
+    (20.689, 22.059, 25.95, "Ladin iç kaplama."),
+    (22.268, 24.834, 28.40, "Ve hepsini taşıyan galvaniz şasi."),
+    (25.217, 27.980, 32.30, "Elektriğinden suyuna, tesisatı hazır."),
+    (28.305, 32.578, 36.00, "2017'den bu yana, Sakarya'daki tesisimizde üretiyoruz."),
+    (32.613, 35.585, 40.35, "Bugün evlerimiz, on yedi ülkede."),
+    (35.863, 39.021, 43.45, "Bir evi değerlendirirken, hepsini birlikte düşünün."),
+    (39.346, 40.542, 47.65, "O2 tip onaylı."),
+    (40.693, 41.425, 48.95, "Plakalı."),
+    (41.599, 42.632, 49.80, "İki yıl garantili."),
+    (42.678, 45.744, 52.30, "Size kalan tek şey, anahtarı çevirmek."),
+    (45.802, 46.556, O(55.47), None),   # Ekolojik
+    (46.672, 47.392, O(56.42), None),   # Sağlam
+    (47.601, 48.170, O(57.37), None),   # Doğal
+    (48.379, 49.273, O(58.25), None),   # Eksado (logo tamamlanınca)
 ]
 env = np.sqrt(np.convolve(src ** 2, np.ones(int(.01 * SR)) / int(.01 * SR), 'same') + 1e-12)
 def quiet(lo, hi):  # [lo, hi] aralığındaki en sessiz an (kesim noktası)
@@ -46,8 +46,8 @@ srcs = sorted(p_[:2] for p_ in P)
 def bounds(a, b):
     prev = max([e for s_, e in srcs if e <= a + 1e-6], default=None)
     nxt = min([s_ for s_, e in srcs if s_ >= b - 1e-6], default=None)
-    lo = quiet(prev - .02, a + .03) if prev is not None else max(0, a - .08)
-    hi = quiet(b - .03, nxt + .02) if nxt is not None else b + .15
+    lo = quiet(max(a - .12, (prev + a) / 2) if prev is not None else a - .12, a + .02) if a > .05 else 0.0
+    hi = quiet(b - .02, min(b + .18, (b + nxt) / 2)) if nxt is not None else b + .2
     return lo, hi
 vo = np.zeros(N); subs = []; prev_end = 0
 for a, b, t, txt in P:

@@ -133,13 +133,22 @@ def reverb(x, seed, dec=.5):
     return y / (np.abs(y).max() + 1e-9) * np.abs(x).max()
 for c in (0, 1):
     mus[:, c] += .35 * reverb(mus[:, c], c + 1); fx[:, c] += .12 * reverb(fx[:, c], c + 5, .3)
-mix = mus * 10 ** (-3 / 20) + fx
+MUSIC = os.environ.get('MUSIC')
+if MUSIC:  # gerçek müzik parçası sentez altyapının yerine
+    raw = subprocess.run(['ffmpeg', '-v', 'error', '-i', MUSIC, '-f', 'f32le', '-ac', '2', '-ar', str(SR), '-'], capture_output=True, check=True).stdout
+    m = np.frombuffer(raw, dtype=np.float32).reshape(-1, 2).astype(float)[:N]
+    mus = np.zeros((N, 2)); mus[:len(m)] = m
+    mus *= .5 / (np.sqrt((mus ** 2).mean()) * 4 + 1e-9)
+    mix = mus + fx * 10 ** (-4 / 20)
+else:
+    mix = mus * 10 ** (-3 / 20) + fx
 if VO:
     raw = subprocess.run(['ffmpeg', '-v', 'error', '-i', VO, '-f', 'f32le', '-ac', '2', '-ar', str(SR), '-'], capture_output=True, check=True).stdout
     v = np.frombuffer(raw, dtype=np.float32).reshape(-1, 2).astype(float)[:N]
     vo = np.zeros((N, 2)); vo[:len(v)] = v
     duck = np.convolve(np.abs(vo[:, 0]) > .02, np.ones(int(.3 * SR)) / int(.3 * SR), 'same')
-    mix = mix * (1 - .45 * np.clip(duck * 3, 0, 1))[:, None] + vo
+    vo *= 10 ** (float(os.environ.get('VO_GAIN_DB', '0')) / 20)
+    mix = mix * (1 - float(os.environ.get('DUCK', '.45')) * np.clip(duck * 3, 0, 1))[:, None] + vo
 fade = np.ones(N); fn = int(.8 * SR); fade[-fn:] = np.linspace(1, 0, fn) ** 2
 mix *= fade[:, None]
 mix = mix / (np.abs(mix).max() + 1e-9) * .89

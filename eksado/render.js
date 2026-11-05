@@ -15,7 +15,8 @@ const [,, page = 'film.html', outDir = 'frames', from = '0', to = '1800', list] 
   const t0 = Date.now();
   for (const [i, t] of jobs) {
     await p.evaluate(t => window.renderAt(t), t);
-    await p.screenshot({ path: `${outDir}/${String(i).padStart(4, '0')}.jpg`, type: 'jpeg', quality: 92 });
+    if (process.env.PNG) await p.screenshot({ path: `${outDir}/${String(i).padStart(4, '0')}.png`, type: 'png', omitBackground: true });
+    else await p.screenshot({ path: `${outDir}/${String(i).padStart(4, '0')}.jpg`, type: 'jpeg', quality: 92 });
     if (i % 60 === 0) console.log(`${page} frame ${i} ${((Date.now() - t0) / 1000).toFixed(0)}s`);
   }
   await b.close();

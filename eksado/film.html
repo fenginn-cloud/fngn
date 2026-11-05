@@ -64,7 +64,7 @@ import * as THREE from 'three';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
-const W=1080,H=1920;
+const W=1080,H=1920;const Q=new URLSearchParams(location.search);
 const renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});
 renderer.setPixelRatio(+(new URLSearchParams(location.search).get('pr')||1));renderer.setSize(W,H);
 renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;
@@ -370,7 +370,7 @@ function core(t,isAnat){
     setCam(A.az+.25,A.el+.03,lerp(.62,.46,ease(seg(t,51,55.5))),A.tg);
   } else keyLight.color.set('#fff1dc');
   scene.background.copy(bg);scene.fog.color.copy(bg);M.floor.color.copy(flo);
-  if(!(mode==='macro'&&t>55.6))renderer.render(scene,camera);
+  if(!(mode==='macro'&&t>55.6)&&!Q.has('subonly'))renderer.render(scene,camera);
 
   // ---------- overlays ----------
   op($('fade'),isAnat?0:1-easeOut(seg(t,0,.7)));
@@ -409,7 +409,7 @@ function closing(t){if(!CL)closeInit();const{words,left,cx}=CL;let right=words[0
   const lo=easeOut(seg(t,58.5,59.0)),lg2=easeOut(seg(t,58.42,58.92));
   [[$('gO'),lo],[$('gG'),lg2]].forEach(([e,v])=>{e.style.transformBox='fill-box';e.style.transformOrigin='50% 100%';e.style.transform=`scale(${.6+.4*v})`;e.style.opacity=v;});
   op($('lu'),easeOut(seg(t,59.0,59.35)));}
-/*OUTSUBS*/const OUTSUBS=[[2.6, 5.87, "Bir evi tanımak için, kapısını açmak gerekir."], [5.95, 9.18, "Çünkü bir evi ev yapan, içindekilerdir."], [9.2, 11.78, "Dinlendiğiniz yatak. Mutfağınız."], [11.8, 14.27, "Serinliğiniz. Akşamlarınız."], [16.45, 18.47, "Ve göremediğiniz her şey."], [18.49, 20.07, "Thermowood cephe."], [20.3, 21.92, "Nefes alan membran."], [22.3, 24.13, "Sekiz santim taş yünü."], [24.25, 25.83, "Galvaniz çelik karkas."], [25.85, 27.44, "Ladin iç kaplama."], [28.4, 31.07, "Ve hepsini taşıyan galvaniz şasi."], [32.3, 35.17, "Elektriğinden suyuna, tesisatı hazır."], [36.25, 39.93, "2017'den bu yana, Sakarya'daki tesisimizde üretiyoruz."], [39.95, 42.28, "Bugün evlerimiz, on yedi ülkede."], [42.3, 45.61, "Bir evi değerlendirirken, hepsini birlikte düşünün."], [47.55, 48.93, "O2 tip onaylı."], [48.95, 49.73, "Plakalı."], [49.75, 51.34, "İki yıl garantili."], [52.35, 55.22, "Size kalan tek şey, anahtarı çevirmek."]];/*END*/
+/*OUTSUBS*/const OUTSUBS=[[2.5, 5.86, "Bir evi tanımak için, kapısını açmak gerekir."], [5.88, 8.65, "Çünkü bir evi ev yapan, içindekilerdir."], [8.67, 11.66, "Dinlendiğiniz yatak. Mutfağınız."], [11.68, 14.47, "Serinliğiniz. Akşamlarınız."], [16.45, 18.24, "Ve göremediğiniz her şey."], [18.3, 19.62, "Thermowood cephe."], [20.3, 21.84, "Nefes alan membran."], [22.3, 24.14, "Sekiz santim taş yünü."], [24.25, 26.0, "Galvaniz çelik karkas."], [26.02, 27.74, "Ladin iç kaplama."], [28.3, 31.22, "Ve hepsini taşıyan galvaniz şasi."], [32.2, 35.31, "Elektriğinden suyuna, tesisatı hazır."], [35.9, 40.23, "2017'den bu yana, Sakarya'daki tesisimizde üretiyoruz."], [40.25, 43.33, "Bugün evlerimiz, on yedi ülkede."], [43.35, 46.86, "Bir evi değerlendirirken, hepsini birlikte düşünün."], [47.55, 48.92, "O2 tip onaylı."], [48.94, 49.74, "Plakalı."], [49.76, 51.14, "İki yıl garantili."], [52.2, 55.62, "Size kalan tek şey, anahtarı çevirmek."]];/*END*/
 const ASUBS=[[16.7,18.9,"Ve göremediğiniz her şey."],[19.1,23.3,"Thermowood cephe. Nefes alan membran. Sekiz santim taş yünü."],
  [23.7,27.4,"Galvaniz çelik karkas. Ladin iç kaplama."],[28.2,31.6,"Ve hepsini taşıyan galvaniz şasi."]];
 const K=(64.6-31.9)/(60-31.9);
@@ -420,6 +420,7 @@ window.renderAt=(o)=>{const S=story(o);const c=XF.find(c=>Math.abs(S-c)<.3);cons
   if(c!==undefined){renderStory(Math.min(S,c-.001));xf.getContext('2d').drawImage(renderer.domElement,0,0,1080,1920);
     renderStory(Math.max(S,c));op(xf,1-ease(clamp((S-(c-.3))/.6)));}
   else{op(xf,0);renderStory(S);}
-  const ss=OUTSUBS.find(([a,b])=>o>=a&&o<=b),sb=$('sub');if(ss){sb.textContent=ss[2];op(sb,win(o,ss[0],ss[1],.2));}else op(sb,0);};
+  const ss=OUTSUBS.find(([a,b])=>o>=a&&o<=b),sb=$('sub');if(ss&&!Q.has('nosub')){sb.textContent=ss[2];op(sb,win(o,ss[0],ss[1],.2));}else op(sb,0);};
+if(Q.has('subonly')){const st=document.createElement('style');st.textContent='html,body{background:transparent!important}body>*:not(#sub){visibility:hidden!important}#sub{visibility:visible!important}';document.head.appendChild(st);}
 window.ready=true;
 </script></body></html>
