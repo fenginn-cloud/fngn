@@ -573,6 +573,17 @@ const Leverage: React.FC = () => {
 };
 
 /* ---------- Audio ---------- */
+/** Music envelope: punchy on the hook, ducked under the voice, short drop before "kaldıraç", swell on the outro */
+const music01Volume = (f: number) => {
+  const t = f / 30;
+  return interpolate(
+    t,
+    [0, 0.05, 0.9, 1.6, T.kaldirac - 0.6, T.kaldirac - 0.3, T.kaldirac + 0.1, T.kaldirac + 0.6, T.outro - 0.3, T.outro + 0.2, T.end - 1.2, T.end],
+    [0, 0.4, 0.4, 0.15, 0.15, 0.0, 0.0, 0.16, 0.16, 0.5, 0.45, 0],
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
+  );
+};
+
 const Sfx: React.FC<{ at: number; src: string; vol?: number }> = ({ at, src, vol = 1 }) => (
   <Sequence from={s(at)} layout="none">
     <Audio src={staticFile(`sfx/${src}.wav`)} volume={vol} />
@@ -585,7 +596,7 @@ const SoundDesign: React.FC = () => {
   const pops = [T.musteri, T.ivme, T.firsat, T.net, T.keskin, T.bilincli, T.surt, T.anlas, T.karar];
   return (
     <>
-      <Audio src={staticFile("sfx/pad.wav")} volume={0.5} />
+      <Audio src={staticFile("music01.mp3")} volume={music01Volume} />
       <Audio src={staticFile("vo_a.mp3")} volume={1} />
       <Sfx at={0} src="boom" vol={0.7} />
       {whooshes.map((t) => (

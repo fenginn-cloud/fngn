@@ -10,6 +10,14 @@ npm run studio                       # canlı önizleme
 npx remotion render src/index.ts Reel01-Dikkat out/fngn-reel-01-dikkat.mp4 --crf=18
 ```
 
+## Müzik
+ElevenLabs Music (`eleven_music_v2_5`) ile üretilen enstrümantal altlıklar: `public/music01.mp3` (Reel 01), `public/music02.mp3` (Reel 02).
+Her reelde bir `musicVolume` zarfı var: girişte dolu, konuşma altında kısık (ducking), vurgu anından önce kısa sessizlik, outroda yükselir.
+Render sonrası Instagram için ses seviyesi normalize edilir:
+```bash
+ffmpeg -i out/reel.mp4 -c:v copy -af loudnorm=I=-14:TP=-1.5:LRA=11 -c:a aac -b:a 192k final.mp4
+```
+
 ## Yeni bir reel eklemek
 1. Seslendirme: ElevenLabs, ses **Atakan – Deep, Warm & Confident** (`e9a1KJ0kRpwPORrz92UT`), model `eleven_v4`. MP3'ü `public/` içine koy.
 2. Cümle zamanlarını ölç: `ffmpeg -i public/vo.mp3 -af silencedetect=n=-38dB:d=0.18 -f null -`
@@ -22,3 +30,6 @@ Seslendirme metni:
 > Müşteri kaybedersiniz. İvme kaybedersiniz. Fırsat kaybedersiniz. Pazarı kazanan markalar daha gürültülü değil.
 > Daha net. Daha keskin. Daha bilinçli. Sürtünmeyi kaldırırlar. Anlaşılmayı hızlandırırlar. Kararı zahmetsiz kılarlar.
 > Çünkü netlik bir avantaj değil... bir kaldıraçtır.
+
+## Reel 02 — "Viral içeriğin formülü"
+Kanca → Vaat → Değer → Açık Döngü 1 → Değer → Açık Döngü 2 → Değer → (Ama bir şey daha var…) → CTA → "Bunun ekran görüntüsünü al."
