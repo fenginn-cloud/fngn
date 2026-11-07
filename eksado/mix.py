@@ -63,6 +63,8 @@ def note(n_, t0, amp=.05, dec=.9, pan=0.0):
     s = (np.sin(2 * np.pi * f * t) + .25 * np.sin(4 * np.pi * f * t) * np.exp(-t * 5)) * np.exp(-t / dec) * np.minimum(1, t / .006)
     place(mus, s, t0, 20 * np.log10(amp), pan)
 
+if os.environ.get('MUSIC'):  # gerçek müzik varsa sentez altyapıyı hesaplama
+    pad = note = lambda *a, **k: None
 pad(['A1', 'E2'], 0, 3.6, .03, .9)
 for t0, t1, c in [(3.0, 7.8, ['A2', 'C3', 'E3', 'B3']), (6.4, 11.2, ['F2', 'A2', 'C3', 'E3']), (9.8, 14.6, ['C3', 'E3', 'G3', 'D4']), (13.2, 17.2, ['G2', 'B2', 'D3', 'A3'])]:
     pad(c, t0, t1)
