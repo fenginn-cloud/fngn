@@ -1,0 +1,24 @@
+# FNGN Dijital — Günlük Reels
+
+Instagram (@fngndijital) için 1080×1920 bilgilendirici reels. Remotion ile kodlanmış, marka kiti `src/brand.tsx` içinde
+(site ile aynı renkler: `#080808` zemin, `#E26205` turuncu; Bricolage Grotesque + Hanken Grotesk + Instrument Serif italik).
+
+## Komutlar
+```bash
+npm install
+npm run studio                       # canlı önizleme
+npx remotion render src/index.ts Reel01-Dikkat out/fngn-reel-01-dikkat.mp4 --crf=18
+```
+
+## Yeni bir reel eklemek
+1. Seslendirme: ElevenLabs, ses **Atakan – Deep, Warm & Confident** (`e9a1KJ0kRpwPORrz92UT`), model `eleven_v4`. MP3'ü `public/` içine koy.
+2. Cümle zamanlarını ölç: `ffmpeg -i public/vo.mp3 -af silencedetect=n=-38dB:d=0.18 -f null -`
+3. `src/reels/Reel01Dikkat.tsx`'i kopyala, `T` zaman tablosunu ve sahneleri güncelle, `src/Root.tsx`'e kaydet.
+4. `Chrome` (üst marka bandı + ilerleme çubuğu) ve `Outro` (logo + CTA) her reelde ortak kalır.
+
+## Reel 01 — "Dikkat pahalıdır"
+Seslendirme metni:
+> Dikkat... pahalıdır. Çünkü kitlenizin mesajınızı anlamaya çalışarak geçirdiği her saniye... kaybettiğiniz bir saniyedir.
+> Müşteri kaybedersiniz. İvme kaybedersiniz. Fırsat kaybedersiniz. Pazarı kazanan markalar daha gürültülü değil.
+> Daha net. Daha keskin. Daha bilinçli. Sürtünmeyi kaldırırlar. Anlaşılmayı hızlandırırlar. Kararı zahmetsiz kılarlar.
+> Çünkü netlik bir avantaj değil... bir kaldıraçtır.
