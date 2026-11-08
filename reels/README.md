@@ -37,3 +37,7 @@ Kanca → Vaat → Değer → Açık Döngü 1 → Değer → Açık Döngü 2 �
 ## Reel 03 — "Logonuz markanızın belki %10'u"
 Renk → Yazı tipi → Şekiller → Fotoğraflar → Ses → Her yerde test. Örnek marka olarak FNGN'in kendi kimliği kullanılır.
 Altyazı zamanları ElevenLabs Scribe ile çıkarılan kelime zamanlarından gelir (`W` dizisi).
+
+## Reel 04 — "Bütün yolu görmen gerekmiyor"
+Gece yolu (farlar 50 m gösterir) → Türkiye haritası Edirne→Kars (1.600 km = 32.000 × 50 m) → "Beklemeyi bırak" damgası → ışık huzmesinde adımlar → "50 metre yeterli."
+Türkiye silüeti `src/reels/turkiye.ts` içinde, basitleştirilmiş koordinatlardan üretilmiştir (yaklaşık).
