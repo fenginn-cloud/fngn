@@ -41,3 +41,8 @@ Altyazı zamanları ElevenLabs Scribe ile çıkarılan kelime zamanlarından gel
 ## Reel 04 — "Bütün yolu görmen gerekmiyor"
 Gece yolu (farlar 50 m gösterir) → Türkiye haritası Edirne→Kars (1.600 km = 32.000 × 50 m) → "Beklemeyi bırak" damgası → ışık huzmesinde adımlar → "50 metre yeterli."
 Türkiye silüeti `src/reels/turkiye.ts` içinde, basitleştirilmiş koordinatlardan üretilmiştir (yaklaşık).
+
+## Reel 05 — "Tavuk mu, yumurta mı?"
+İllüstrasyonlu hikâye: paradoks döngüsü → Delil A (Andrew Chen, *The Cold Start Problem*, 2021) + boş parti →
+Delil B (2016 Model 3 tanıtımı, 1 haftada 300.000+ kapora) → "Çok yakında" söz / "Şimdi satışta" yalan → rahatsız edici gerçek → "insanlarla başlayın".
+Çizim kiti: `src/reels/illus.tsx` (tavuk, yumurta, döngü, maskot, kalabalık, araba, tabela, bilet…) sonraki hikâye reel'lerinde de kullanılabilir.
