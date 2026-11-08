@@ -33,3 +33,7 @@ Seslendirme metni:
 
 ## Reel 02 — "Viral içeriğin formülü"
 Kanca → Vaat → Değer → Açık Döngü 1 → Değer → Açık Döngü 2 → Değer → (Ama bir şey daha var…) → CTA → "Bunun ekran görüntüsünü al."
+
+## Reel 03 — "Logonuz markanızın belki %10'u"
+Renk → Yazı tipi → Şekiller → Fotoğraflar → Ses → Her yerde test. Örnek marka olarak FNGN'in kendi kimliği kullanılır.
+Altyazı zamanları ElevenLabs Scribe ile çıkarılan kelime zamanlarından gelir (`W` dizisi).
