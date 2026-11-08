@@ -46,3 +46,8 @@ Türkiye silüeti `src/reels/turkiye.ts` içinde, basitleştirilmiş koordinatla
 İllüstrasyonlu hikâye: paradoks döngüsü → Delil A (Andrew Chen, *The Cold Start Problem*, 2021) + boş parti →
 Delil B (2016 Model 3 tanıtımı, 1 haftada 300.000+ kapora) → "Çok yakında" söz / "Şimdi satışta" yalan → rahatsız edici gerçek → "insanlarla başlayın".
 Çizim kiti: `src/reels/illus.tsx` (tavuk, yumurta, döngü, maskot, kalabalık, araba, tabela, bilet…) sonraki hikâye reel'lerinde de kullanılabilir.
+
+## Reel 06 — "Kolay bir hayır değil, bir seçim sunun"
+Minimal çizgi animasyon: "sadece bakıyorum" (sonuç ← sebep) → "Yardımcı olabilir miyim?" = izin sorusu → kolay "hayır" →
+iki seçenek + "Hangisini seçerdiniz?" → cevap + neden → kapı değil ürün → DM'de "Fiyat ne?" → iki paket → Satış kuralı #1.
+Zamanlar cümle düzeyinde, silencedetect ile ölçüldü (`PH` dizisi).
