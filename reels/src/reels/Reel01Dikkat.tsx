@@ -640,7 +640,7 @@ export const Reel01Dikkat: React.FC = () => (
         </Sequence>
       );
     })}
-    <Chrome total={REEL01_FRAMES} series="Günün Notu #01" />
+    <Chrome total={REEL01_FRAMES} />
     <SoundDesign />
   </AbsoluteFill>
 );

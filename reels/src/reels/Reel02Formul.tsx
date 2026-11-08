@@ -523,7 +523,7 @@ export const Reel02Formul: React.FC = () => (
         <Outro />
       </SceneFade>
     </Sequence>
-    <Chrome total={REEL02_FRAMES} series="Günün Notu #02" />
+    <Chrome total={REEL02_FRAMES} />
     <SoundDesign />
   </AbsoluteFill>
 );
