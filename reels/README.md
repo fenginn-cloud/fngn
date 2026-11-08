@@ -51,3 +51,9 @@ Delil B (2016 Model 3 tanıtımı, 1 haftada 300.000+ kapora) → "Çok yakında
 Minimal çizgi animasyon: "sadece bakıyorum" (sonuç ← sebep) → "Yardımcı olabilir miyim?" = izin sorusu → kolay "hayır" →
 iki seçenek + "Hangisini seçerdiniz?" → cevap + neden → kapı değil ürün → DM'de "Fiyat ne?" → iki paket → Satış kuralı #1.
 Zamanlar cümle düzeyinde, silencedetect ile ölçüldü (`PH` dizisi).
+
+## Reel 07 — "Marka kimliği nedir?"
+Buzdağı: %20 marka ifadesi (görünen) / %80 marka stratejisi (suyun altı) → süreç (Keşif → Strateji → Tasarım → Geliştirme → Yayın) →
+strateji diyagramı → moodboard → logo yönleri → temas noktaları → "Strateji anlam verir, tasarım o anlamı iletir" → site telefonlu CTA.
+Telefondaki görüntü yerel olarak çalıştırılan sitenin TR mobil ekran görüntüsüdür (`public/site/fngn-mobile-tr.jpg`); kişisel bilgi
+içermemesi için "Hakkımda" bölümünden önce kırpılmıştır. Videolarda kişi adı kullanılmaz, yalnızca marka (FNGN Dijital).
