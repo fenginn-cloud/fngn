@@ -57,3 +57,8 @@ Buzdağı: %20 marka ifadesi (görünen) / %80 marka stratejisi (suyun altı) �
 strateji diyagramı → moodboard → logo yönleri → temas noktaları → "Strateji anlam verir, tasarım o anlamı iletir" → site telefonlu CTA.
 Telefondaki görüntü yerel olarak çalıştırılan sitenin TR mobil ekran görüntüsüdür (`public/site/fngn-mobile-tr.jpg`); kişisel bilgi
 içermemesi için "Hakkımda" bölümünden önce kırpılmıştır. Videolarda kişi adı kullanılmaz, yalnızca marka (FNGN Dijital).
+
+## Reel 08 — "Yapay zekâ 5 dakikada site yapar mı?"
+Müşteri "YZ 5 dakikada yapar" der → açıklama yerine tek soru: "Bu site işletmeniz için ne başarmalı?" → üretilen ≠ çalışan →
+5 soru (hedef müşteri, form, ödeme, entegrasyon, bakım) + "gece 2'de telefonu kim açacak?" → YZ yardımcı olur ama sorumluluğu biri alır →
+"Saat satmayın, sonucu satın: sonuç + sorumluluk" → yorum çağrısı. Örnek müşteri sitesi kurgusaldır ("Liman Mobilya").
