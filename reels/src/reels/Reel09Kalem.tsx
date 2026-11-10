@@ -2,7 +2,7 @@
 // Original animation: the slow-motion pencil-vs-blade hook is drawn here, NOT taken from the reference footage.
 // VO (public/vo09.mp3) starts at VO_AT; word times below are Scribe times + VO_AT.
 import React from "react";
-import { AbsoluteFill, Audio, OffthreadVideo, Sequence, interpolate, interpolateColors, spring, staticFile, useCurrentFrame, Easing, random } from "remotion";
+import { AbsoluteFill, Audio, Img, OffthreadVideo, Sequence, interpolate, interpolateColors, spring, staticFile, useCurrentFrame, Easing, random } from "remotion";
 import { C, FMark, HANDLE, fonts, s } from "../brand";
 
 const VO_AT = 7.4;
@@ -17,77 +17,19 @@ const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const pr = (t: number, a: number, d = 0.4) => interpolate(t, [a, a + d], [0, 1], { ...clamp, easing: Easing.out(Easing.cubic) });
 const useT = () => useCurrentFrame() / 30;
 
-/* ---------- Pencil tip (points down) ---------- */
-const PencilTip: React.FC<{ w: number; styl: number }> = ({ w, styl }) => {
-  // styl 0 = realistic wood/graphite, 1 = stylized brand orange
-  const wood = interpolateColors(styl, [0, 1], ["#B07A4F", "#F06A1E"]);
-  const woodD = interpolateColors(styl, [0, 1], ["#7E4F2E", "#C24E0D"]);
-  const lead = interpolateColors(styl, [0, 1], ["#2a2a2e", "#FF8A3D"]);
-  const h = w * 1.25;
-  return (
-    <svg width={w} height={h * 1.6} viewBox={`0 0 ${w} ${h * 1.6}`} style={{ overflow: "visible" }}>
-      <defs>
-        <linearGradient id="woodG" x1="0" x2="1">
-          <stop offset="0%" stopColor={woodD} />
-          <stop offset="45%" stopColor={wood} />
-          <stop offset="100%" stopColor={woodD} />
-        </linearGradient>
-        <linearGradient id="lacq" x1="0" x2="1">
-          <stop offset="0%" stopColor="#8a2c00" />
-          <stop offset="40%" stopColor={C.accent} />
-          <stop offset="60%" stopColor="#ff9a55" />
-          <stop offset="100%" stopColor="#8a2c00" />
-        </linearGradient>
-      </defs>
-      {/* lacquered body (hexagonal facets) */}
-      <rect x={0} y={0} width={w} height={h * 0.62} fill="url(#lacq)" />
-      {[0.2, 0.4, 0.6, 0.8].map((k) => <rect key={k} x={w * k - 1} y={0} width={2} height={h * 0.62} fill="rgba(0,0,0,0.18)" />)}
-      {/* sharpened wood cone with scalloped edge */}
-      <path d={`M 0 ${h * 0.62} Q ${w * 0.125} ${h * 0.7} ${w * 0.25} ${h * 0.62} Q ${w * 0.375} ${h * 0.7} ${w * 0.5} ${h * 0.62} Q ${w * 0.625} ${h * 0.7} ${w * 0.75} ${h * 0.62} Q ${w * 0.875} ${h * 0.7} ${w} ${h * 0.62} L ${w * 0.56} ${h * 1.42} L ${w * 0.44} ${h * 1.42} Z`} fill="url(#woodG)" />
-      {/* wood grain striations */}
-      {Array.from({ length: 14 }, (_, i) => {
-        const x0 = (i + 0.5) * (w / 14);
-        return <line key={i} x1={x0} y1={h * 0.66} x2={w * 0.5 + (x0 - w * 0.5) * 0.12} y2={h * 1.4} stroke="rgba(60,30,10,0.25)" strokeWidth={w * 0.006} />;
-      })}
-      {/* graphite tip */}
-      <path d={`M ${w * 0.44} ${h * 1.42} L ${w * 0.56} ${h * 1.42} L ${w * 0.5} ${h * 1.56} Z`} fill={lead} />
-      <path d={`M ${w * 0.47} ${h * 1.42} L ${w * 0.5} ${h * 1.42} L ${w * 0.5} ${h * 1.56} Z`} fill="rgba(255,255,255,0.18)" />
-    </svg>
-  );
-};
-
-/* ---------- Blade tip (points up) ---------- */
-const Blade: React.FC<{ w: number; styl: number }> = ({ w, styl }) => {
-  const h = w * 1.5;
-  return (
-    <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} style={{ overflow: "visible" }}>
-      <defs>
-        <linearGradient id="steelL" x1="0" x2="1" y1="0" y2="0">
-          <stop offset="0%" stopColor={interpolateColors(styl, [0, 1], ["#9aa0a6", "#f3f1ec"])} />
-          <stop offset="100%" stopColor={interpolateColors(styl, [0, 1], ["#e8eaec", "#ffffff"])} />
-        </linearGradient>
-        <linearGradient id="steelR" x1="0" x2="1">
-          <stop offset="0%" stopColor="#3a3d42" />
-          <stop offset="100%" stopColor="#15161a" />
-        </linearGradient>
-      </defs>
-      <path d={`M ${w * 0.5} 0 L ${w * 0.5} ${h} L 0 ${h} Q ${w * 0.18} ${h * 0.45} ${w * 0.5} 0 Z`} fill="url(#steelL)" />
-      <path d={`M ${w * 0.5} 0 L ${w} ${h} L ${w * 0.5} ${h} Z`} fill="url(#steelR)" />
-      <path d={`M ${w * 0.5} 0 L ${w * 0.5} ${h}`} stroke="rgba(255,255,255,0.5)" strokeWidth={2} />
-    </svg>
-  );
-};
-
-/* ---------- 1. Hook: reference footage (used with the creator's permission) → stylized freeze ---------- */
-const CUT = 8.75; // the reference shows English captions from ~8.8s, so we cut just before
+/* ---------- 1. Hook: reference footage (used with the creator's permission) → same frame split into layers ---------- */
+// The reference shows English captions from ~8.8s, so we cut at frame 261 (8.70s). The "OBJECT" titles were
+// painted out of public/ref/hook09.mp4; pencil09.png / knife09.png are that exact frame split at y=1135.
+const CUT = 8.7;
+const SPLIT = 1135;
 const Hook: React.FC = () => {
   const frame = useCurrentFrame();
   const t = useT();
   if (t < CUT) {
-    const chip = pr(t, 8.05, 0.12) * (1 - pr(t, CUT - 0.05, 0.05));
+    const chip = pr(t, 8.05, 0.12);
     return (
       <AbsoluteFill style={{ background: "#000" }}>
-        <OffthreadVideo src={staticFile("ref/hook09.mp4")} volume={(f) => interpolate(f / 30, [0, 7.2, 7.5, 8.75], [0.9, 0.9, 0.45, 0.45], clamp)} style={{ width: 1080, height: 1920 }} />
+        <OffthreadVideo src={staticFile("ref/hook09.mp4")} muted style={{ width: 1080, height: 1920 }} />
         {/* cover the small English "1 frame to impact" label with a Turkish one */}
         <div style={{ position: "absolute", left: 0, right: 0, top: 1006, display: "flex", justifyContent: "center", opacity: chip }}>
           <div style={{ padding: "8px 20px", borderRadius: 999, background: C.accent, fontFamily: fonts.sans, fontWeight: 700, fontSize: 26, color: "#0b0b0b" }}>çarpışmaya 1 kare</div>
@@ -95,41 +37,37 @@ const Hook: React.FC = () => {
       </AbsoluteFill>
     );
   }
-  // stylized frozen moment: pencil hangs over the blade, then snaps down on impact
-  const drift = interpolate(t, [CUT, T.impact - 0.15], [0, 40], clamp);
-  const snap = interpolate(t, [T.impact - 0.15, T.impact], [0, 1], { ...clamp, easing: Easing.in(Easing.quad) });
-  const W = 760;
-  const tipY = 600 + drift + snap * 560;
-  const pencilH = W * 1.25 * 1.56;
+  // open a gap for the lines (like the reference does), hold, then the pencil snaps onto the blade
+  const open = interpolate(t, [CUT + 0.05, CUT + 0.75], [0, 1], { ...clamp, easing: Easing.inOut(Easing.cubic) });
+  const snap = interpolate(t, [T.impact - 0.18, T.impact], [0, 1], { ...clamp, easing: Easing.in(Easing.cubic) });
+  const pencilY = -220 * open + snap * (220 + 150 + 62) * open + snap * (1 - open) * 62;
+  const knifeY = 150 * open;
+  const push = interpolate(t, [CUT, T.impact], [1, 1.035], clamp);
   const flash = interpolate(t, [T.impact, T.impact + 0.05, T.impact + 0.25], [0, 0.9, 0], clamp);
-  const shake = (random(`s${frame}`) - 0.5) * 1.6;
+  const shake = t > T.impact - 0.05 ? (random(`s${frame}`) - 0.5) * 14 : 0;
   return (
-    <AbsoluteFill style={{ background: "#030303" }}>
-      <div style={{ position: "absolute", inset: 0, transform: `translate(${shake}px, 0)` }}>
-        <div style={{ position: "absolute", left: 540 - W / 2, top: tipY - pencilH }}>
-          <PencilTip w={W} styl={1} />
-        </div>
-        <div style={{ position: "absolute", left: 540 - 300, top: 1180 }}>
-          <Blade w={600} styl={1} />
-        </div>
+    <AbsoluteFill style={{ background: "#000" }}>
+      <div style={{ position: "absolute", inset: 0, transform: `translate(${shake}px, ${shake * 0.5}px) scale(${push})`, transformOrigin: "540px 1140px" }}>
+        <Img src={staticFile("ref/knife09.png")} style={{ position: "absolute", left: 0, top: SPLIT + knifeY, width: 1080, mixBlendMode: "lighten" }} />
+        <Img src={staticFile("ref/pencil09.png")} style={{ position: "absolute", left: 0, top: pencilY, width: 1080, mixBlendMode: "lighten" }} />
       </div>
       <AbsoluteFill style={{ background: "#fff", opacity: flash }} />
     </AbsoluteFill>
   );
 };
 
-/* ---------- On-screen lines during the frozen moment ---------- */
+/* ---------- On-screen lines in the gap ---------- */
 const HookText: React.FC = () => {
   const t = useT();
-  if (t < CUT || t > T.impact - 0.1) return null;
-  const a = pr(t, CUT, 0.3);
+  if (t < CUT + 0.3 || t > T.impact - 0.2) return null;
+  const a = pr(t, CUT + 0.35, 0.3);
   const b = pr(t, T.sec8, 0.3);
   const c = pr(t, T.still, 0.3);
   const secs = t.toLocaleString("tr-TR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
   return (
-    <div style={{ position: "absolute", left: 0, right: 0, top: 860, textAlign: "center" }}>
-      <div style={{ fontFamily: fonts.sans, fontWeight: 600, fontSize: 46, color: C.fg, opacity: a }}>{c > 0.5 ? "Ve hâlâ izliyorsunuz," : "Az önce bir kaleme baktınız"}</div>
-      <div style={{ marginTop: 6, fontFamily: fonts.display, fontWeight: 800, fontSize: 104, color: C.fg, letterSpacing: "-0.03em", opacity: Math.max(b, c) }}>
+    <div style={{ position: "absolute", left: 0, right: 0, top: 1010, textAlign: "center" }}>
+      <div style={{ fontFamily: fonts.sans, fontWeight: 600, fontSize: 44, color: C.fg, opacity: a }}>{c > 0.5 ? "Ve hâlâ izliyorsunuz," : "Az önce bir kaleme baktınız"}</div>
+      <div style={{ marginTop: 4, fontFamily: fonts.display, fontWeight: 800, fontSize: 96, color: C.fg, letterSpacing: "-0.03em", opacity: Math.max(b, c) }}>
         tam <span style={{ color: C.accent, fontVariantNumeric: "tabular-nums" }}>{c > 0.5 ? secs : "8"}</span> saniye.
       </div>
     </div>
@@ -164,7 +102,7 @@ const Shatter: React.FC = () => {
         const sz = sh.size * (1 - form * 0.6);
         return (
           <svg key={i} width={sz} height={sz} viewBox="0 0 100 100" style={{ position: "absolute", left: x - sz / 2, top: y - sz / 2, transform: `rotate(${sh.rot * (1 - form) + t * 40 * (1 - form)}deg)`, opacity: 1 - fade }}>
-            <polygon points={sh.pts} fill={i % 3 === 0 ? "#ff8a3d" : C.accent} />
+            <polygon points={sh.pts} fill={i % 3 === 0 ? "#ff8a3d" : i % 3 === 1 ? "#c8432a" : C.accent} />
           </svg>
         );
       })}
@@ -238,8 +176,7 @@ const Screens: React.FC = () => {
               {HANDLE.replace("@", "")}
             </div>
             <div style={{ position: "relative", marginTop: 16, height: 600, background: "#030303", overflow: "hidden" }}>
-              <div style={{ position: "absolute", left: 210 - 90, top: -20 + Math.min(local, 2) * 40 }}><PencilTip w={180} styl={1} /></div>
-              <div style={{ position: "absolute", left: 210 - 80, top: 420 }}><Blade w={160} styl={1} /></div>
+              <Img src={staticFile("ref/still09.png")} style={{ position: "absolute", left: 0, top: -180 + Math.min(local, 2) * 20, width: "100%" }} />
             </div>
             <div style={{ display: "flex", gap: 22, padding: "16px 22px" }}>
               {["♥", "💬", "➤"].map((g, i) => <span key={i} style={{ fontSize: 30, color: i === 0 ? C.accent : C.fg }}>{g}</span>)}
@@ -283,11 +220,13 @@ export const MUSIC09_AT = 0.8; // music's impact hit (~11s in the bed) lands on 
 const SoundDesign: React.FC = () => (
   <>
     <Sequence from={s(MUSIC09_AT)} layout="none">
-      <Audio src={staticFile("music09.mp3")} volume={(f) => interpolate(f / 30 + MUSIC09_AT, [MUSIC09_AT, MUSIC09_AT + 0.5, 8.75, 9.0, T.impact - 0.05, T.impact + 0.1, 23.15, 23.5, 23.9, T.end], [0, 0.22, 0.22, 0.4, 0.4, 0.32, 0.32, 0.6, 0.6, 0], clamp)} />
+      <Audio src={staticFile("music09.mp3")} volume={(f) => interpolate(f / 30 + MUSIC09_AT, [MUSIC09_AT, MUSIC09_AT + 0.5, 8.75, 9.0, T.impact - 0.05, T.impact + 0.1, 23.15, 23.5, 23.9, T.end], [0, 0.6, 0.6, 0.5, 0.5, 0.32, 0.32, 0.6, 0.6, 0], clamp)} />
     </Sequence>
     <Sequence from={s(VO_AT)} layout="none">
       <Audio src={staticFile("vo09.mp3")} volume={1} />
     </Sequence>
+    {Array.from({ length: 6 }, (_, i) => <Sfx key={`t${i}`} at={2.6 + i} src="tick" vol={0.12} />)}
+    <Sfx at={2.25} src="whoosh" vol={0.3} />
     <Sfx at={T.impact} src="boom" vol={0.8} />
     <Sfx at={T.impact} src="whoosh" vol={0.4} />
     <Sfx at={T.imagine} src="whoosh" vol={0.25} />

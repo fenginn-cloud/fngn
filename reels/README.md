@@ -65,5 +65,7 @@ Müşteri "YZ 5 dakikada yapar" der → açıklama yerine tek soru: "Bu site iş
 
 ## Reel 09 — "Az önce 8 saniye bir kaleme baktınız"
 İlk 8,75 sn: referans videonun ağır çekim kalem çekimi (`public/ref/hook09.mp4`) — **kullanıcı, video sahibinden izin aldığını belirtti**.
-İngilizce yazılar başlamadan kesilir; "1 frame to impact" etiketi Türkçe etiketle örtülür. Sonrası tamamen FNGN: stilize kalem + gerçek süre sayacı,
+İngilizce yazılar başlamadan (8,70 sn) kesilir; "1 frame to impact" etiketi Türkçe etiketle örtülür. Referansın sesi kullanılmaz.
+İki "OBJECT" yazısı `tools/clean_hook09.py` ile kare kare boyanarak silindi (ham kareler stdin → stdout).
+Geçişte aynı kare (`ref/still09.png`) kalem/bıçak katmanlarına (`ref/pencil09.png`, `ref/knife09.png`) ayrılıp canlandırılır; kalem değişmez. Sonrası tamamen FNGN: stilize kalem + gerçek süre sayacı,
 parçalanma → telefon, "insanların kaydırıp geçemediği hareketli tasarımlar", FNGN kapanışı ve DM çağrısı ("HAREKET").
