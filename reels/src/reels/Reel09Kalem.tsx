@@ -17,16 +17,18 @@ const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const pr = (t: number, a: number, d = 0.4) => interpolate(t, [a, a + d], [0, 1], { ...clamp, easing: Easing.out(Easing.cubic) });
 const useT = () => useCurrentFrame() / 30;
 
-/* ---------- 1. Hook: reference footage (used with the creator's permission) → same frame split into layers ---------- */
-// The reference shows English captions from ~8.8s, so we cut at frame 261 (8.70s). The "OBJECT" titles were
-// painted out of public/ref/hook09.mp4; pencil09.png / knife09.png are that exact frame split at y=1135.
-const CUT = 8.7;
-const SPLIT = 1135;
+/* ---------- 1. Hook: reference footage (used with the creator's permission) ---------- */
+// public/ref/hook09.mp4 = the reference's first 10.2s with both "OBJECT" titles and the English captions painted out
+// (tools/clean_hook09.py). It includes the reference's own zoom into the pencil/blade gap (8.7–9.3s).
+// At CUT we hold that exact frame, split into pencil (top) / blade (bottom) layers, so the pencil never changes.
+const CUT = 9.4;          // frame 282
+const SPLIT = 991;        // between pencil bottom (830) and blade tip (1152)
+const GAP = 1152 - 830;   // distance the pencil travels to hit the blade
 const Hook: React.FC = () => {
   const frame = useCurrentFrame();
   const t = useT();
   if (t < CUT) {
-    const chip = pr(t, 8.05, 0.12);
+    const chip = pr(t, 8.05, 0.12) * (1 - pr(t, 8.68, 0.08));
     return (
       <AbsoluteFill style={{ background: "#000" }}>
         <OffthreadVideo src={staticFile("ref/hook09.mp4")} muted style={{ width: 1080, height: 1920 }} />
@@ -37,37 +39,34 @@ const Hook: React.FC = () => {
       </AbsoluteFill>
     );
   }
-  // open a gap for the lines (like the reference does), hold, then the pencil snaps onto the blade
-  const open = interpolate(t, [CUT + 0.05, CUT + 0.75], [0, 1], { ...clamp, easing: Easing.inOut(Easing.cubic) });
-  const snap = interpolate(t, [T.impact - 0.18, T.impact], [0, 1], { ...clamp, easing: Easing.in(Easing.cubic) });
-  const pencilY = -220 * open + snap * (220 + 150 + 62) * open + snap * (1 - open) * 62;
-  const knifeY = 150 * open;
-  const push = interpolate(t, [CUT, T.impact], [1, 1.035], clamp);
+  // hold on the zoomed frame (very slow push like the reference), then the pencil snaps onto the blade
+  const snap = interpolate(t, [T.impact - 0.16, T.impact], [0, 1], { ...clamp, easing: Easing.in(Easing.cubic) });
+  const push = interpolate(t, [CUT, T.impact], [1, 1.025], clamp);
   const flash = interpolate(t, [T.impact, T.impact + 0.05, T.impact + 0.25], [0, 0.9, 0], clamp);
   const shake = t > T.impact - 0.05 ? (random(`s${frame}`) - 0.5) * 14 : 0;
   return (
     <AbsoluteFill style={{ background: "#000" }}>
-      <div style={{ position: "absolute", inset: 0, transform: `translate(${shake}px, ${shake * 0.5}px) scale(${push})`, transformOrigin: "540px 1140px" }}>
-        <Img src={staticFile("ref/knife09.png")} style={{ position: "absolute", left: 0, top: SPLIT + knifeY, width: 1080, mixBlendMode: "lighten" }} />
-        <Img src={staticFile("ref/pencil09.png")} style={{ position: "absolute", left: 0, top: pencilY, width: 1080, mixBlendMode: "lighten" }} />
+      <div style={{ position: "absolute", inset: 0, transform: `translate(${shake}px, ${shake * 0.5}px) scale(${push})`, transformOrigin: "540px 991px" }}>
+        <Img src={staticFile("ref/knife09.png")} style={{ position: "absolute", left: 0, top: SPLIT, width: 1080, mixBlendMode: "lighten" }} />
+        <Img src={staticFile("ref/pencil09.png")} style={{ position: "absolute", left: 0, top: -360 + snap * GAP, width: 1080, mixBlendMode: "lighten" }} />
       </div>
       <AbsoluteFill style={{ background: "#fff", opacity: flash }} />
     </AbsoluteFill>
   );
 };
 
-/* ---------- On-screen lines in the gap ---------- */
+/* ---------- Lines in the gap (appear during the zoom, like the reference) ---------- */
 const HookText: React.FC = () => {
   const t = useT();
-  if (t < CUT + 0.3 || t > T.impact - 0.2) return null;
-  const a = pr(t, CUT + 0.35, 0.3);
-  const b = pr(t, T.sec8, 0.3);
+  if (t < 8.95 || t > T.impact - 0.2) return null;
+  const a = pr(t, 8.95, 0.35);
+  const b = pr(t, Math.max(T.sec8, 9.2), 0.3);
   const c = pr(t, T.still, 0.3);
   const secs = t.toLocaleString("tr-TR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
   return (
-    <div style={{ position: "absolute", left: 0, right: 0, top: 1010, textAlign: "center" }}>
-      <div style={{ fontFamily: fonts.sans, fontWeight: 600, fontSize: 44, color: C.fg, opacity: a }}>{c > 0.5 ? "Ve hâlâ izliyorsunuz," : "Az önce bir kaleme baktınız"}</div>
-      <div style={{ marginTop: 4, fontFamily: fonts.display, fontWeight: 800, fontSize: 96, color: C.fg, letterSpacing: "-0.03em", opacity: Math.max(b, c) }}>
+    <div style={{ position: "absolute", left: 0, right: 0, top: 905, textAlign: "center" }}>
+      <div style={{ fontFamily: fonts.sans, fontWeight: 600, fontSize: 42, color: C.fg, opacity: a }}>{c > 0.5 ? "Ve hâlâ izliyorsunuz," : "Az önce bir kaleme baktınız"}</div>
+      <div style={{ marginTop: 2, fontFamily: fonts.display, fontWeight: 800, fontSize: 92, color: C.fg, letterSpacing: "-0.03em", opacity: Math.max(b, c) }}>
         tam <span style={{ color: C.accent, fontVariantNumeric: "tabular-nums" }}>{c > 0.5 ? secs : "8"}</span> saniye.
       </div>
     </div>

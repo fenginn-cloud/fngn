@@ -53,7 +53,36 @@ while True:
                 known = known | upd
             box = img
         a[Y0:Y1, X0:X1] = box.astype(np.uint8)
-    if n >= 60:
+    if n >= 262:
+        # zoom-in frames: English captions sit in the black gap between the pencil (top) and the blade (bottom).
+        f = a.astype(np.int16)
+        R, G = f[..., 0], f[..., 1]
+        orange = (R > 90) & (R > G * 1.35)
+        rows = orange.sum(1)
+        pb = int(np.nonzero(rows > 40)[0].max()) if (rows > 40).any() else 0
+        bright_rows = (f.sum(-1) > 250).any(1)
+        # blade = the bright band that runs down to the bottom edge; find where it starts
+        y = H - 1
+        while y > pb and bright_rows[y]:
+            y -= 1
+        blade_top = y + 1
+        if blade_top - 4 > pb + 3:
+            a[pb + 3:blade_top - 4, :] = 0
+        # captions can start beside / over the pencil's rounded bottom. Keep only the pencil's real silhouette:
+        # strong orange, opened to drop thin letter strokes, closed to fill letter holes inside the pencil.
+        y0 = max(0, pb - 230)
+        band = a[y0:pb + 3].astype(np.int16)
+        Rb, Gb = band[..., 0], band[..., 1]
+        strong = (Rb > 100) & (Rb > Gb * 1.5) & (band.sum(-1) > 150)
+        sil = grow(~grow(~strong, 3), 3)          # opening
+        sil = ~grow(~grow(sil, 6), 6)             # closing
+        band[~sil] = 0
+        over = sil & (Gb > 150)                   # white letter pixels on the pencil -> texture from 28px above
+        ys, xs = np.nonzero(over)
+        for yy, xx in zip(ys, xs):
+            band[yy, xx] = a[max(0, y0 + yy - 28), xx]
+        a[y0:pb + 3] = band.astype(np.uint8)
+    if 60 <= n < 262:
         reg = a[1440:1780, 0:372].astype(np.int16)
         R, G = reg[..., 0], reg[..., 1]
         orange_edge = (R > G * 1.5) & (R > 80)
