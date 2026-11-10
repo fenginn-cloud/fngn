@@ -62,3 +62,8 @@ içermemesi için "Hakkımda" bölümünden önce kırpılmıştır. Videolarda 
 Müşteri "YZ 5 dakikada yapar" der → açıklama yerine tek soru: "Bu site işletmeniz için ne başarmalı?" → üretilen ≠ çalışan →
 5 soru (hedef müşteri, form, ödeme, entegrasyon, bakım) + "gece 2'de telefonu kim açacak?" → YZ yardımcı olur ama sorumluluğu biri alır →
 "Saat satmayın, sonucu satın: sonuç + sorumluluk" → yorum çağrısı. Örnek müşteri sitesi kurgusaldır ("Liman Mobilya").
+
+## Reel 09 — "Az önce 8 saniye bir kaleme baktınız"
+İlk 8,75 sn: referans videonun ağır çekim kalem çekimi (`public/ref/hook09.mp4`) — **kullanıcı, video sahibinden izin aldığını belirtti**.
+İngilizce yazılar başlamadan kesilir; "1 frame to impact" etiketi Türkçe etiketle örtülür. Sonrası tamamen FNGN: stilize kalem + gerçek süre sayacı,
+parçalanma → telefon, "insanların kaydırıp geçemediği hareketli tasarımlar", FNGN kapanışı ve DM çağrısı ("HAREKET").
