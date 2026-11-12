@@ -80,3 +80,7 @@ CTA "Yorumlara KANCA yaz" is backed by the 50-hook PDF: `node library/make_pdf.j
 ### Reel 11 — Plan (`Reel11-Plan`)
 "İki kahve markası. Aynı bütçe." Original motion design (cups, calendar and cards drawn in code); the reference
 was only used for the story beats. VO `vo11.mp3` at 0.5s, music `music11.mp3` from 5s so its ending lands on the close.
+
+### Reel 12 — Kanıt (`Reel12-Kanit`)
+"Henüz hiç yorumun yok mu?" Original pictogram animation (clients, price tag, testimonial cards, proof box, stairs)
+drawn in code with TL prices. VO `vo12.mp3` at 0.4s; music `music12.mp3` from 0 (its build lands on "Her satış…").
