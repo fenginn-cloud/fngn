@@ -76,3 +76,7 @@ parçalanma → telefon, "insanların kaydırıp geçemediği hareketli tasarım
 segments, used as the user asked: audio removed, the source creator's watermark painted out with ffmpeg
 `delogo` and covered by our FNGN handle chip. Music: `music10.mp3` (body twice + its final hit on the outro).
 CTA "Yorumlara KANCA yaz" is backed by the 50-hook PDF: `node library/make_pdf.js out.pdf` (data in `library/hooks.json`).
+
+### Reel 11 — Plan (`Reel11-Plan`)
+"İki kahve markası. Aynı bütçe." Original motion design (cups, calendar and cards drawn in code); the reference
+was only used for the story beats. VO `vo11.mp3` at 0.5s, music `music11.mp3` from 5s so its ending lands on the close.
