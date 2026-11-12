@@ -70,3 +70,9 @@ Müşteri "YZ 5 dakikada yapar" der → açıklama yerine tek soru: "Bu site iş
 Referansın kendi zoom'u (8,7–9,4 sn) korunur; o karelerdeki İngilizce yazılar da aynı araçla silinir. 9,40 sn'deki zoom'lu kare
 kalem/bıçak katmanlarına (`ref/pencil09.png`, `ref/knife09.png`) ayrılıp çarpmaya kadar tutulur; Türkçe yazı aradaki boşlukta. Sonrası tamamen FNGN: stilize kalem + gerçek süre sayacı,
 parçalanma → telefon, "insanların kaydırıp geçemediği hareketli tasarımlar", FNGN kapanışı ve DM çağrısı ("HAREKET").
+
+### Reel 10 — Kanca (`Reel10-Kanca`)
+"Bu bir beklenti kancası." The three hook clips (`public/ref/hook10{a,b,c}.mp4`) are the reference's clean
+segments, used as the user asked: audio removed, the source creator's watermark painted out with ffmpeg
+`delogo` and covered by our FNGN handle chip. Music: `music10.mp3` (body twice + its final hit on the outro).
+CTA "Yorumlara KANCA yaz" is backed by the 50-hook PDF: `node library/make_pdf.js out.pdf` (data in `library/hooks.json`).
