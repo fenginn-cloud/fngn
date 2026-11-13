@@ -8,6 +8,7 @@ import { Reel05Tavuk, REEL05_FRAMES } from "./reels/Reel05Tavuk";
 import { Reel06Secim, REEL06_FRAMES } from "./reels/Reel06Secim";
 import { Reel07Kimlik, REEL07_FRAMES } from "./reels/Reel07Kimlik";
 import { Reel08YapayZeka, REEL08_FRAMES } from "./reels/Reel08YapayZeka";
+import { Reel13Yorgunluk, REEL13_FRAMES } from "./reels/Reel13Yorgunluk";
 import { Reel12Kanit, REEL12_FRAMES } from "./reels/Reel12Kanit";
 import { Reel11Plan, REEL11_FRAMES } from "./reels/Reel11Plan";
 import { Reel10Kanca, REEL10_FRAMES } from "./reels/Reel10Kanca";
@@ -18,6 +19,7 @@ const common = { fps: 30, width: 1080, height: 1920 } as const;
 export const Root: React.FC = () => (
   <>
     <Composition id="Reel01-Dikkat" component={Reel01Dikkat} durationInFrames={REEL01_FRAMES} {...common} />
+    <Composition id="Reel13-Yorgunluk" component={Reel13Yorgunluk} durationInFrames={REEL13_FRAMES} {...common} />
     <Composition id="Reel12-Kanit" component={Reel12Kanit} durationInFrames={REEL12_FRAMES} {...common} />
     <Composition id="Reel11-Plan" component={Reel11Plan} durationInFrames={REEL11_FRAMES} {...common} />
     <Composition id="Reel10-Kanca" component={Reel10Kanca} durationInFrames={REEL10_FRAMES} {...common} />

@@ -84,3 +84,8 @@ was only used for the story beats. VO `vo11.mp3` at 0.5s, music `music11.mp3` fr
 ### Reel 12 — Kanıt (`Reel12-Kanit`)
 "Henüz hiç yorumun yok mu?" Original pictogram animation (clients, price tag, testimonial cards, proof box, stairs)
 drawn in code with TL prices. VO `vo12.mp3` at 0.4s; music `music12.mp3` from 0 (its build lands on "Her satış…").
+
+### Reel 13 — Yorgunluk (`Reel13-Yorgunluk`)
+"Reklamın çalışıyordu. Sonra bir gün… birden durdu." Meta ad fatigue. Original pseudo-3D sphere field (audience)
+projected with an orbit camera in SVG; new creatives fly out as new shapes. CTA "Yorumlara REKLAM yaz".
+VO `vo13.mp3` at 0.6s; music `music13.mp3` placed at 1.5s so its build lands on "Çözüm…".
