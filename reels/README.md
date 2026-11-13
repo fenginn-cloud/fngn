@@ -89,3 +89,12 @@ drawn in code with TL prices. VO `vo12.mp3` at 0.4s; music `music12.mp3` from 0 
 "Reklamın çalışıyordu. Sonra bir gün… birden durdu." Meta ad fatigue. Original pseudo-3D sphere field (audience)
 projected with an orbit camera in SVG; new creatives fly out as new shapes. CTA "Yorumlara REKLAM yaz".
 VO `vo13.mp3` at 0.6s; music `music13.mp3` placed at 1.5s so its build lands on "Çözüm…".
+
+### Reel 14 — Tipo (`Reel14-Tipo`, `Reel14-Tipo-Sessiz`)
+Kinetic typography show timed to the reference's song (`music14.mp3`, cut from the reference file). Only single key
+words of the song are set; FNGN colours/fonts, the face section builds the real FNGN DIGITAL wordmark, FNGN end card.
+`Reel14-Tipo-Sessiz` is the same video without music (to add the song from Instagram's own music library).
+
+## Logo
+`Logo` / `LogoBadge` in `src/brand.tsx` are the official FNGN DIGITAL wordmark (traced from the profile logo).
+Use them in every new reel; the shared `Outro` and `Chrome` already do. `FMark` is the old placeholder mark.
