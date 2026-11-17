@@ -98,3 +98,8 @@ words of the song are set; FNGN colours/fonts, the face section builds the real 
 ## Logo
 `Logo` / `LogoBadge` in `src/brand.tsx` are the official FNGN DIGITAL wordmark (traced from the profile logo).
 Use them in every new reel; the shared `Outro` and `Chrome` already do. `FMark` is the old placeholder mark.
+
+### Reel 15 — Disiplin (`Reel15-Disiplin`, `Reel15-Disiplin-Sessiz`)
+Turkish version of a discipline edit, cut 1:1 to the reference's song (`music15.mp3`, from the reference file).
+Typewriter questions + orange highlighter, handwritten card, black cards, two original ink illustrations
+(`public/ref/ink15a.png`, `ink15b.png`, generated, not the reference's art), "DisiplinKazandırır" + FNGN logo.
