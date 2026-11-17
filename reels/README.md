@@ -103,3 +103,8 @@ Use them in every new reel; the shared `Outro` and `Chrome` already do. `FMark` 
 Turkish version of a discipline edit, cut 1:1 to the reference's song (`music15.mp3`, from the reference file).
 Typewriter questions + orange highlighter, handwritten card, black cards, two original ink illustrations
 (`public/ref/ink15a.png`, `ink15b.png`, generated, not the reference's art), "DisiplinKazandırır" + FNGN logo.
+
+### Reel 16 — Sistem (`Reel16-Sistem`)
+"Siten yayında. Harika. Peki sen çevrimiçi değilken ne oluyor?" Editorial collage (paper, blurred shapes, B&W
+cutouts `public/ref/sil16_*.png`, original generations). VO `vo16.mp3` at 0.4s; music `music16.mp3` from 1.26s
+so its lift lands on "İşte biz bunu kuruyoruz".

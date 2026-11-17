@@ -8,6 +8,7 @@ import { Reel05Tavuk, REEL05_FRAMES } from "./reels/Reel05Tavuk";
 import { Reel06Secim, REEL06_FRAMES } from "./reels/Reel06Secim";
 import { Reel07Kimlik, REEL07_FRAMES } from "./reels/Reel07Kimlik";
 import { Reel08YapayZeka, REEL08_FRAMES } from "./reels/Reel08YapayZeka";
+import { Reel16Sistem, REEL16_FRAMES } from "./reels/Reel16Sistem";
 import { Reel15Disiplin, Reel15DisiplinSessiz, REEL15_FRAMES } from "./reels/Reel15Disiplin";
 import { Reel14Tipo, Reel14TipoSessiz, REEL14_FRAMES } from "./reels/Reel14Tipo";
 import { Reel13Yorgunluk, REEL13_FRAMES } from "./reels/Reel13Yorgunluk";
@@ -21,6 +22,7 @@ const common = { fps: 30, width: 1080, height: 1920 } as const;
 export const Root: React.FC = () => (
   <>
     <Composition id="Reel01-Dikkat" component={Reel01Dikkat} durationInFrames={REEL01_FRAMES} {...common} />
+    <Composition id="Reel16-Sistem" component={Reel16Sistem} durationInFrames={REEL16_FRAMES} {...common} />
     <Composition id="Reel15-Disiplin" component={Reel15Disiplin} durationInFrames={REEL15_FRAMES} {...common} />
     <Composition id="Reel15-Disiplin-Sessiz" component={Reel15DisiplinSessiz} durationInFrames={REEL15_FRAMES} {...common} />
     <Composition id="Reel14-Tipo" component={Reel14Tipo} durationInFrames={REEL14_FRAMES} {...common} />
