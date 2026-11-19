@@ -1,41 +1,71 @@
 <!doctype html><html><head><meta charset="utf-8"><style>
-/* EKSADO – "Sevkiyat biriminden duyuru" 12 sn yazı animasyonu (1080x1920, beyaz zemin, Instagram Reels güvenli alanı içinde) */
+/* EKSADO – "Sevkiyat biriminden duyuru" 13 sn yazı animasyonu (1080x1920, beyaz zemin, Instagram Reels güvenli alanı içinde)
+   Akış: ortada megafon ikonu + başlık → ikon ve başlık sol üste başlık olarak yerleşir → duyuru metni → "Konum atın, bakalım." + konum pini
+   → tiny house + palmiye çizimi → EKSADO */
 html,body{margin:0;width:1080px;height:1920px;background:#fff;overflow:hidden;color:#111;font-family:'Inter Display','Inter',sans-serif}
-#wrap{position:absolute;left:84px;top:300px;width:830px}
-#hdr{font:800 40px/1 'Inter Display';letter-spacing:.04em;opacity:0}
-#body{margin-top:58px;font:500 60px/1.2 'Inter Display';letter-spacing:-.015em}
-#big{margin-top:66px;font:800 88px/1.05 'Inter Display';letter-spacing:-.035em}
+#icon{position:absolute;left:0;top:0;width:200px;height:200px;transform-origin:0 0}
+#icon .bg{fill:#111}
+#icon .ln{fill:none;stroke:#fff;stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+#icon .wv{fill:none;stroke:#fff;stroke-width:6;stroke-linecap:round}
+#ring{position:absolute;left:0;top:0;width:200px;height:200px;border-radius:50%;border:4px solid #111;box-sizing:border-box;opacity:0}
+#title{position:absolute;left:0;top:0;font:800 40px/1 'Inter Display';letter-spacing:.05em;white-space:nowrap;transform-origin:0 0}
+#title span{display:inline-block;opacity:0}
+#body{position:absolute;left:84px;top:430px;width:840px;font:500 60px/1.2 'Inter Display';letter-spacing:-.015em}
+#big{position:absolute;left:84px;top:790px;font:800 88px/1.05 'Inter Display';letter-spacing:-.035em;white-space:nowrap}
 .w{display:inline-block;opacity:0;will-change:transform}
+#pin{position:absolute;width:64px;height:84px;opacity:0}
+#shadow{position:absolute;width:56px;height:14px;border-radius:50%;background:#111;opacity:0}
+#ripple{position:absolute;width:56px;height:14px;border-radius:50%;border:3px solid #111;box-sizing:border-box;opacity:0}
 #art{position:absolute;left:84px;top:1000px;width:640px;height:350px;overflow:visible}
 #art *{fill:none;stroke:#111;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round}
 #art .thick{stroke-width:5}
 #art .thin{stroke-width:2.2}
 #brand{position:absolute;left:84px;top:1385px;font:500 50px/1 'Inter Display';letter-spacing:.02em;opacity:0}
 </style></head><body>
-<div id="wrap">
-  <div id="hdr">SEVKİYAT BİRİMİNDEN DUYURU</div>
-  <div id="body"></div>
-  <div id="big"></div>
-</div>
+<div id="ring"></div>
+<svg id="icon" viewBox="0 0 200 200">
+  <circle class="bg" cx="100" cy="100" r="100"/>
+  <path class="ln" pathLength="1" d="M52,86 L52,114 L72,114 L128,142 L128,58 L72,86 Z"/>
+  <path class="ln" pathLength="1" d="M76,116 L86,146 L100,146 L92,120"/>
+  <path class="wv" d="M145,84 Q152,100 145,116"/>
+  <path class="wv" d="M158,72 Q170,100 158,128"/>
+</svg>
+<div id="title"></div>
+<div id="body"></div>
+<div id="big"></div>
+<div id="shadow"></div><div id="ripple"></div>
+<svg id="pin" viewBox="0 0 64 84"><path d="M32,82 C32,82 4,48 4,30 A28,28 0 1,1 60,30 C60,48 32,82 32,82 Z" fill="#111"/><circle cx="32" cy="30" r="10" fill="#fff"/></svg>
 <svg id="art" viewBox="-20 0 640 350"></svg>
 <div id="brand">EKSADO</div>
 <script>
-const c=x=>Math.min(1,Math.max(0,x)), eo=x=>1-Math.pow(1-c(x),3);
+const c=x=>Math.min(1,Math.max(0,x)), eo=x=>1-Math.pow(1-c(x),3), eio=x=>{x=c(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;};
 const back=x=>{x=c(x);const s=1.7;return 1+(s+1)*Math.pow(x-1,3)+s*Math.pow(x-1,2);};
-// ---- metin: kelime kelime ----
-const LINES=['GTA 6’nın çıkışıyla birlikte','“Vice City’ye tiny house','gönderiyor musunuz?”','sorusu gelmeye başladı.'];  // satırlar görseldeki gibi
-const BIG='Konum atın, bakalım.'.split(' ');
-const bodyEl=document.getElementById('body'), bigEl=document.getElementById('big');
-bodyEl.innerHTML=LINES.map(l=>l.split(' ').map(w=>`<span class="w">${w}</span>`).join(' ')).join('<br>');
-bigEl.innerHTML=BIG.map(w=>`<span class="w">${w}</span>`).join(' ');
-const bodyW=[...bodyEl.children], bigW=[...bigEl.children];
-// ---- çizim: tiny house + palmiye (her parça [başlangıç, süre]) ----
-const svg0=document.getElementById('art'), NS='http://www.w3.org/2000/svg', parts=[];
+const lerp=(a,b,k)=>a+(b-a)*k;
+const $=id=>document.getElementById(id);
+// ---- giriş: ikon + başlık ----
+const TITLE='SEVKİYAT BİRİMİNDEN DUYURU';
+$('title').innerHTML=[...TITLE].map(ch=>`<span>${ch===' '?'&nbsp;':ch}</span>`).join('');
+const titleCh=[...$('title').children];
+const TW=$('title').getBoundingClientRect().width;            // 40px'deki genişlik
+const IC0={x:430,y:640,s:1.1}, IC1={x:84,y:283,s:.37};        // ikon: ortada büyük → sol üstte küçük (200px tabanlı)
+const TT0={x:540-TW*1.25/2,y:910,s:1.25}, TT1={x:176,y:302,s:1}; // başlık: ortada → ikonun sağında
+const MOVE=[2.55,3.25];
+// ---- metin ----
+const LINES=['GTA 6’nın çıkışıyla birlikte','“Vice City’ye tiny house','gönderiyor musunuz?”','sorusu gelmeye başladı.'];
+$('body').innerHTML=LINES.map(l=>l.split(' ').map(w=>`<span class="w">${w}</span>`).join(' ')).join('<br>');
+$('big').innerHTML='Konum atın, bakalım.'.split(' ').map(w=>`<span class="w">${w}</span>`).join(' ');
+const bodyW=[...$('body').children].filter(e=>e.tagName==='SPAN'), bigW=[...$('big').children];
+const BIG_RIGHT=$('big').getBoundingClientRect().right;       // pin "bakalım."ın sağına iner
+const PIN={x:BIG_RIGHT+22,y:790+92-84-4}, TB=3.4, TK=6.85, TPIN=7.75;
+for(const id of ['pin']){ $(id).style.left=PIN.x+'px'; $(id).style.top=PIN.y+'px'; }
+for(const id of ['shadow','ripple']){ $(id).style.left=(PIN.x+4)+'px'; $(id).style.top=(PIN.y+78)+'px'; }
+// ---- çizim: tiny house + palmiye ----
+const svg0=$('art'), NS='http://www.w3.org/2000/svg', parts=[];
 let svg=svg0;
 const palm=document.createElementNS(NS,'g');palm.setAttribute('transform','translate(44,0)');svg0.appendChild(palm);
 function P(d,t0,dur,cls){const p=document.createElementNS(NS,'path');p.setAttribute('d',d);p.setAttribute('pathLength','1');
   p.setAttribute('stroke-dasharray','1 1');if(cls)p.setAttribute('class',cls);svg.appendChild(p);parts.push([p,t0,dur]);}
-const T0=5.75;
+const T0=8.35;
 P('M-15,296 L512,296',T0,.5,'thin');                                   // zemin
 P('M0,252 L362,252 L362,264 L0,264 Z',T0+.15,.45);                      // römork tablası
 P('M0,258 L-16,262',T0+.45,.15);                                        // çeki demiri
@@ -54,25 +84,49 @@ P('M168,122 L318,104 L318,248 L168,248 Z',T0+1.35,.45);                 // büy�
 P('M242,113 L242,124',T0+1.75,.1,'thin');                               // sarkıt lamba
 P('M232,138 L252,138 L248,124 L236,124 Z',T0+1.8,.2,'thin');
 P('M188,246 L188,222 Q188,214 196,214 L274,214 Q282,214 282,222 L282,246 M188,230 L282,230 M200,214 L200,206 Q200,200 206,200 L266,200 Q272,200 272,206 L272,214',T0+1.85,.45,'thin'); // koltuk
-// palmiye (evin çatısına binmesin diye 44 birim sağda)
-svg=palm;
+svg=palm;                                                               // palmiye (evin çatısına binmesin diye 44 birim sağda)
 P('M418,296 C410,240 398,170 388,74',T0+.9,.55,'thick');
 for(let i=0;i<8;i++){const y=270-i*25, x=416-(i*3.6)-(i*i*.25);P(`M${x-6},${y} Q${x},${y-4} ${x+6},${y+1}`,T0+1.35+i*.04,.12,'thin');}
 const FR=['M388,74 C360,52 330,56 306,82','M388,74 C366,40 336,32 312,40','M388,74 C384,40 368,18 348,10','M388,74 C400,40 424,22 452,22',
           'M388,74 C418,52 450,56 470,84','M388,74 C410,74 430,98 436,124','M388,74 C366,78 350,100 346,126'];
 FR.forEach((d,i)=>P(d,T0+1.45+i*.07,.35));
-FR.forEach((d,i)=>{ // yaprak dişleri
-  P(d.replace(/^M388,74/,'M390,72'),T0+1.6+i*.07,.3,'thin');});
+FR.forEach((d,i)=>P(d.replace(/^M388,74/,'M390,72'),T0+1.6+i*.07,.3,'thin'));
 P('M434,296 L438,282 M442,296 L444,278 M450,296 L454,284 M402,296 L398,284',T0+2.0,.3,'thin'); // çimen
+const icLines=[...document.querySelectorAll('#icon .ln')], waves=[...document.querySelectorAll('#icon .wv')];
+icLines.forEach(p=>p.setAttribute('stroke-dasharray','1 1'));
 window.renderAt=t=>{
-  const h=document.getElementById('hdr'), a=eo((t-.3)/.6);
-  h.style.opacity=a; h.style.letterSpacing=(.18-.14*a)+'em'; h.style.transform=`translateY(${(1-a)*18}px)`;
-  bodyW.forEach((el,i)=>{const s=1.0+i*.15, k=eo((t-s)/.38);el.style.opacity=k;
+  // ikon: büyüyerek gelir, megafon çizilir, dalgalar atar; sonra sol üste kayar
+  const m=eio((t-MOVE[0])/(MOVE[1]-MOVE[0]));
+  const pop=t<.1?0:back((t-.1)/.5), si=lerp(IC0.s,IC1.s,m)*(m>0?1:pop);
+  const ix=lerp(IC0.x,IC1.x,m)+(1-(m>0?1:pop))*100*IC0.s, iy=lerp(IC0.y,IC1.y,m)+(1-(m>0?1:pop))*100*IC0.s;
+  const shake=(t>1.0&&t<2.4)?Math.sin(t*38)*2.2*Math.max(0,Math.sin((t-1.0)/1.4*Math.PI)):0;
+  $('icon').style.transform=`translate(${ix}px,${iy}px) scale(${Math.max(0,si)}) rotate(${shake}deg)`;
+  $('icon').style.opacity=c(t/.15);
+  icLines.forEach((p,i)=>p.style.strokeDashoffset=1-eo((t-.35-i*.2)/.5));
+  waves.forEach((w,i)=>{let o=0;if(t>.9&&t<MOVE[0]+.2){const ph=((t-.9-i*.18)%.75)/.75;o=t-.9-i*.18<0?0:Math.sin(Math.PI*c(ph))}
+    else if(t>=MOVE[1])o=1; w.style.opacity=o;});
+  // ikonun etrafında yayılan halka (sadece girişte)
+  const rk=c((t-.45)/.9); $('ring').style.opacity=t<.45||m>0?0:(1-rk)*.5;
+  const RS=IC0.s*(1+.5*rk), rcx=IC0.x+100*IC0.s, rcy=IC0.y+100*IC0.s;
+  $('ring').style.transform=`translate(${rcx-100*RS}px,${rcy-100*RS}px) scale(${RS})`;
+  $('ring').style.transformOrigin='0 0';
+  // başlık: harf harf; sonra ikonun yanına kayar
+  titleCh.forEach((el,i)=>{const s=.85+i*.035,k=eo((t-s)/.25);el.style.opacity=k;el.style.transform=`translateY(${(1-k)*14}px)`;});
+  $('title').style.transform=`translate(${lerp(TT0.x,TT1.x,m)}px,${lerp(TT0.y,TT1.y,m)}px) scale(${lerp(TT0.s,TT1.s,m)})`;
+  // duyuru metni
+  bodyW.forEach((el,i)=>{const s=TB+i*.15, k=eo((t-s)/.38);el.style.opacity=k;
     el.style.transform=`translateY(${(1-k)*26}px)`;el.style.filter=`blur(${(1-k)*8}px)`;});
-  bigW.forEach((el,i)=>{const s=4.75+i*.26, k=c((t-s)/.32);el.style.opacity=c(k*2);
+  bigW.forEach((el,i)=>{const s=TK+i*.26, k=c((t-s)/.32);el.style.opacity=c(k*2);
     el.style.transform=`scale(${t<s?.7:.7+.3*back(k)})`;el.style.transformOrigin='0% 80%';});
+  // konum pini: yukarıdan düşer, sekip oturur; altında gölge ve halka
+  const pk=c((t-TPIN)/.45), fall=pk<1?(1-Math.pow(pk,2))*-260:0;
+  const bounce=t>TPIN+.45?Math.abs(Math.sin((t-TPIN-.45)*9))*Math.exp(-(t-TPIN-.45)*7)*-26:0;
+  $('pin').style.opacity=t<TPIN?0:1; $('pin').style.transform=`translateY(${fall+bounce}px)`;
+  $('shadow').style.opacity=t<TPIN?0:.18*c(pk*1.5); $('shadow').style.transform=`scale(${.4+.6*pk})`;
+  const rp=c((t-TPIN-.45)/.7); $('ripple').style.opacity=rp>0&&rp<1?(1-rp)*.6:0; $('ripple').style.transform=`scale(${1+rp*1.6})`;
+  // çizim + marka
   for(const [p,t0,d] of parts)p.style.strokeDashoffset=1-eo((t-t0)/d);
-  const b=document.getElementById('brand'), k=eo((t-8.5)/.6);
+  const b=$('brand'), k=eo((t-10.9)/.6);
   b.style.opacity=k; b.style.transform=`translateY(${(1-k)*16}px)`; b.style.letterSpacing=(.12-.1*k)+'em';
 };
 window.ready=true;</script></body></html>
