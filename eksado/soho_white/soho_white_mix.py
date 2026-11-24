@@ -9,20 +9,22 @@ def dec(p, ch):
     raw = subprocess.run(['ffmpeg', '-v', 'error', '-i', p, '-vn', '-f', 'f32le', '-ac', str(ch), '-ar', str(SR), '-'], capture_output=True, check=True).stdout
     a = np.frombuffer(raw, dtype=np.float32).astype(float); return a.reshape(-1, ch) if ch > 1 else a
 music = dec(VID, 2); N = len(music); END = N / SR
-# Scribe kelime zaman damgaları (take 2); ekranda görünen yazım. 4. alan: 'hl' turuncu kutu; 5. alan: '|' = altyazı öbeği burada biter
-W = [("8",0,.24), ("metre",.32,.88,'','|'), ("1",.9,.96), ("yatak",1,1.28), ("odası",1.307,1.6,'','|'), ("ve",1.627,1.68), ("1",1.72,1.84), ("loft",1.904,2.4,'','|'),
-     ("Karşınızda",2.44,2.96,'','|'), ("Soho White",3.013,3.76,'hl','|'),
-     ("Işıl",4.16,4.72), ("ışıl",4.8,4.96,'','|'), ("merdiveni",5,5.52,'','|'), ("ilk",5.56,5.68), ("bakışta",5.733,6.08,'','|'), ("büyülüyor",6.12,6.64,'','|'),
-     ("Buzdolabı",6.76,7.36), ("ve",7.387,7.44,'','|'), ("ikili",7.493,7.76), ("ocak",7.813,8.08), ("hazır",8.133,8.48,'','|'),
-     ("Geniş",8.58,8.96), ("camların",9.02,9.36,'','|'), ("önünde",9.406,9.68), ("koltuk",9.76,10.24,'','|'), ("klima",10.304,10.64), ("ve",10.667,10.72,'','|'), ("50",10.8,10.96), ("litrelik",11.013,11.36,'','|'), ("termosifon",11.408,12.08,'','|'),
-     ("Ve",12.187,12.4), ("dünyanın",12.453,12.88,'','|'), ("her",12.94,13.12), ("yerine",13.166,13.44,'','|'), ("gönderiyoruz",13.486,14.24,'','|'),
-     ("Tam",14.34,14.64), ("eşyalı",14.693,15.04), ("fiyatı",15.093,15.52,'','|'), ("1.600.000 TL",15.6,17.04,'hl','|'),
-     ("Detaylı",17.18,17.76), ("bilgi",17.813,18.08), ("için",18.128,18.4,'','|'), ("yorumlara",18.453,18.96,'','|'), ("Soho White",19.067,19.72,'hl'), ("yazın",19.75,20,'','|')]
+# Scribe kelime zaman damgaları (take 1, ikinci metin: koltuk ile klima/termosifon ayrı cümlelerde); ekranda görünen yazım. 4. alan: 'hl' turuncu kutu; 5. alan: '|' = altyazı öbeği burada biter
+W = [("8",0,.24), ("metre",.307,.8,'','|'), ("1",.82,.88), ("yatak",.92,1.12), ("odası",1.173,1.52,'','|'), ("ve",1.573,1.68), ("1",1.7,1.76), ("loft",1.84,2.32,'','|'),
+     ("Karşınızda",2.38,2.96,'','|'), ("Soho White",3.04,4.24,'hl','|'),
+     ("Işıl",4.28,4.48), ("ışıl",4.56,4.72,'','|'), ("merdiveni",4.78,5.36,'','|'), ("ilk",5.38,5.44), ("bakışta",5.493,5.84,'','|'), ("büyülüyor",5.88,6.4,'','|'),
+     ("Mutfakta",6.52,7.04,'','|'), ("buzdolabı",7.093,7.6), ("ve",7.653,7.76,'','|'), ("ikili",7.813,8.08), ("ocak",8.133,8.32), ("hazır",8.373,8.72,'','|'),
+     ("Geniş",8.84,9.28), ("camların",9.34,9.68,'','|'), ("önünde",9.726,10.08,'','|'), ("rahat",10.133,10.4), ("bir",10.42,10.48), ("koltuk",10.56,11.04,'','|'),
+     ("Dünyanın",16.688,17.12,'','|'), ("her",17.16,17.28), ("yerine",17.326,17.6,'','|'), ("gönderiyoruz",17.646,18.32,'','|'),
+     ("Klima",11.2,11.6), ("ve",11.627,11.68,'','|'), ("50",11.84,11.92), ("litrelik",11.973,12.32,'','|'), ("termosifon",12.368,12.88), ("da",12.933,13.04,'','|'), ("standart",13.102,13.68,'','|'),
+     ("Tam",13.78,14.08), ("eşyalı",14.16,14.56), ("fiyatı",14.613,15.04,'','|'), ("1.600.000 TL",15.06,16.64,'hl','|'),
+     ("Detaylı",18.42,18.88), ("bilgi",18.933,19.2), ("için",19.248,19.52,'','|'), ("yorumlara",19.573,20.08,'','|'), ("Soho White",20.187,20.72,'hl'), ("yazın",20.76,21.12,'','|')]
 W = [w + ('',) * (5 - len(w)) for w in W]
 # (kaynak başlangıç, kaynak bitiş, videoda başlangıç) — sahneler: dış cephe 0–5,8 | ışıklı merdiven 6 | mutfak + TV 10 | koltuk + geniş cam 12,5 |
 # geçiş 17 | mutfak + merdiven 17,5 | loft yatağı 20 | logo kapanışı 23,4
-P = [(0, 2.4, .40), (2.44, 3.76, 3.00), (4.16, 6.64, 6.40), (6.76, 8.48, 10.20), (8.58, 12.08, 12.80), (12.187, 14.24, 17.60),
-     (14.34, 17.04, 20.30), (17.18, 20.0, 23.80)]
+# cümle sırası videoya göre değiştirildi: koltuk sahnesinde "dünyanın her yerine gönderiyoruz", klima + termosifon mutfakta, fiyat loft'ta
+P = [(0, 2.32, .40), (2.38, 4.24, 2.95), (4.28, 6.4, 6.40), (6.52, 8.72, 10.10), (8.84, 11.04, 12.70), (16.688, 18.32, 15.10),
+     (11.2, 13.68, 17.60), (13.78, 16.64, 20.30), (18.42, 21.12, 23.80)]
 src = dec(VO, 1)
 env = np.sqrt(np.convolve(src ** 2, np.ones(480) / 480, 'same') + 1e-12)
 def quiet(lo, hi):
